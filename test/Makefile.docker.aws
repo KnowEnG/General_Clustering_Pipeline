@@ -1,0 +1,14 @@
+.PHONY: docker_pipelines docker_run_hclustering docker_run_kmeans
+
+# Set up the environment to run docker image
+# It includes create a run directory, copy run_files for docker to run directory and decompress input data 
+env_setup: 
+	make create_run_dir copy_run_files 
+
+# Run hclustering pipeline on AWS cluster 
+docker_hclustring:
+	curl -L -H 'Content-Type: application/json' -X POST -d '{"schedule":"R1\/\/P3M","name":"aws_docker_run_hclustering","container":{"type":"DOCKER","image":"knowengdev/general_clustering_pipeline:10_18_2016","forcePullImage": true, "volumes": [{"containerPath": "/mnt/clustershare/knoweng/", "hostPath":"/mnt/clustershare/knoweng/", "mode":"RW"}, {"containerPath": "/home/test/run_dir", "hostPath":"/home/ubuntu", "mode":"RW"}]},"cpus":"36","mem":"5120","retries": "0","command":"cd test; make env_setup run_hclustering"}' knownbs.dyndns.org:4400/scheduler/iso8601	
+
+# Run kmeans pipeline on AWS cluster
+docker_run_kmeans:
+	curl -L -H 'Content-Type: application/json' -X POST -d '{"schedule":"R1\/\/P3M","name":"aws_docker_run_kmeans","container":{"type":"DOCKER","image":"knowengdev/general_clustering_pipeline:10_18_2016","forcePullImage": true, "volumes": [{"containerPath": "/mnt/clustershare/knoweng/", "hostPath":"/mnt/clustershare/knoweng/", "mode":"RW"}]},"cpus":"36","mem":"5120","retries": "0","command":"cd test; make env_setup run_kmeans"}' knownbs.dyndns.org:4400/scheduler/iso8601	

@@ -1,0 +1,1 @@
+Build directory placeholder file: forces git to clone the empty build/ directory so that sphinx documentation auto-generation and Makefile will fail to crash due to gits' clever rules.

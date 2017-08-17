@@ -1,0 +1,1 @@
+This file is a placeholder for github rules concerning empty directories.
