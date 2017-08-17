@@ -1,7 +1,7 @@
 # KnowEnG's General Clustering Pipeline 
 This is the Knowledge Engine for Genomics (KnowEnG), an NIH BD2K Center of Excellence, General Clustering Pipeline.
 
-This pipeline **clusters** the columns or rows of a given spreadsheet
+This pipeline **clusters** the columns of a given spreadsheet
 
 There are four clustering methods that one can choose from:
 
@@ -127,46 +127,46 @@ spreadsheet_name = ProGENI_rwr20_STExp_GDSC_500.rname.gxc.tsv</br>
 ## Description of Output files saved in results directory
 * * * 
 
-* Output files of all four methods save genes by sample heatmap variances per row with name **row{column}_variance_{method}_{timestamp}_viz.tsv**.</br>
+* Output files of all  methods save row by col heatmap variances per row with name **row_variance_{method}_{timestamp}_viz.tsv**.</br>
 
  |  |**variance**|
  | :--------------------: |:--------------------:|
- | **row{col} 1**         |float                 |
+ | **row 1**              |float                 |
  |...                     |...                   |
- | **row{col} m**         | float                |
+ | **row m**              | float                |
 
-* Output files of all the methods save row{col} by col{row} heatmap with name **row{col}_by_col{row}_heatmp_{method}_{timestamp}_viz.tsv**.</br>
+* Output files of all the methods save row by col heatmap with name **row_by_col_heatmp_{method}_{timestamp}_viz.tsv**.</br>
 
- |  |**col{row} 1**|...|**col{row} n**|
+ |  |**col 1**|...|**col n**|
  | :--------------------: |:--------------------:|:--------------------:|:--------------------:|
- | **row{col} 1**         |float                 |...                   |float                 |
+ | **row 1**              |float                 |...                   |float                 |
  |...                     |...                   |...                   |...                   |  
- | **row{col} m**         |float                 |...                   |float                 |
+ | **row m**              |float                 |...                   |float                 |
 
  
-* Output files of all  methods save col{row} to cluster map with name **col{row}_labeled_by_cluster_{method}_{timestamp}_viz.tsv**.</br>
+* Output files of all  methods save col to cluster map with name **col_labeled_by_cluster_{method}_{timestamp}_viz.tsv**.</br>
 
  |    |**cluster**|
  | :--------------------: |:--------------------:|
- | **col{row} 1**         |int                   |
+ | **col 1**              |int                   |
  |...                     |...                   |
- | **col{row} n**         |int                   |
+ | **col n**              |int                   |
  
-* Output files of all  methods save row{col} scores by cluster with name **row{col}_averages_by_cluster_{method}_{timestamp}_viz.tsv**.</br>
+* Output files of all  methods save row scores by cluster with name **row_averages_by_cluster_{method}_{timestamp}_viz.tsv**.</br>
 
  |  |**cluster 1**|...|**cluster k**|
  | :--------------------: |:--------------------:|:--------------------:|:--------------------:|
- | **row{col} 1**         |float                 |...                   |float                 |
+ | **row 1**              |float                 |...                   |float                 |
  |...                     |...                   |...                   |...                   |
- | **row{col} m**         |float                 |...                   |float                 |
+ | **row m**              |float                 |...                   |float                 |
  
-* Output files of all  methods save spreadsheet with top ranked genes per sample with name **top_row{col}_by_cluster_{method}_{timestamp}_download.tsv**.</br>
+* Output files of all  methods save spreadsheet with top ranked genes per sample with name **top_row_by_cluster_{method}_{timestamp}_download.tsv**.</br>
 
  |  |**cluster 1**|...|**cluster k**|
  | :--------------------: |:--------------------:|:--------------------:|:--------------------:|
- | **row{col} 1**         |1/0                   |...                   |1/0                   |
+ | **row 1**              |1/0                   |...                   |1/0                   |
  |...                     |...                   |...                   |...                   |
- | **row{col} m**         |1/0                   |...                   |1/0                   |
+ | **row m**              |1/0                   |...                   |1/0                   |
   
 * All  methods save **silhouette number of clusters** and **corresponding silhouette score** with name silhouette_average\_{method}\_{timestamp}\_viz.tsv.</br>
  ```
