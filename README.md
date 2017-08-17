@@ -8,9 +8,9 @@ There are four clustering methods that one can choose from:
 
 | **Options**                                      | **Method**                           | **Parameters** |
 | ------------------------------------------------ | -------------------------------------| -------------- |
-| hierarchical clustering                          | nmf                                  | hclustering    |
-| K-means                                          | bootstrapping with nmf               | kmeans         |
-
+| hierarchical clustering                          | hierarchical clustering              | hclustering    |
+| K-means                                          | K Means                              | kmeans         |
+     
 
 * * * 
 ## How to run this pipeline with Our data
