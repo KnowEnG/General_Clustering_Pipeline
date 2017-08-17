@@ -98,7 +98,7 @@ processing_method: serial
 set the data file targets to the files you want to run, and the parameters as appropriate for your data.
 
 
-### * Run the Samples Clustering Pipeline:
+### * Run the General Clustering Pipeline:
 
   * Update PYTHONPATH enviroment variable
    ``` 
@@ -107,7 +107,7 @@ set the data file targets to the files you want to run, and the parameters as ap
    
   * Run
    ```
-  python3 ../src/samples_clustering.py -run_directory ./run_dir -run_file zTEMPLATE_cc_net_nmf.yml
+  python3 ../src/general_clustering.py -run_directory ./run_dir -run_file zTEMPLATE_cc_net_nmf.yml
    ```
 
 * * * 
@@ -160,7 +160,7 @@ spreadsheet_name = ProGENI_rwr20_STExp_GDSC_500.rname.gxc.tsv</br>
  |...                     |...                   |...                   |...                   |
  | **row m**              |float                 |...                   |float                 |
  
-* Output files of all  methods save spreadsheet with top ranked genes per sample with name **top_row_by_cluster_{method}_{timestamp}_download.tsv**.</br>
+* Output files of all  methods save spreadsheet with top ranked rows per column with name **top_row_by_cluster_{method}_{timestamp}_download.tsv**.</br>
 
  |  |**cluster 1**|...|**cluster k**|
  | :--------------------: |:--------------------:|:--------------------:|:--------------------:|
