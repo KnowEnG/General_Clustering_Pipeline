@@ -34,17 +34,17 @@ def run_kmeans(run_parameters):
     Args:
         run_parameters: parameter set dictionary.
     """
-    processing_method = run_parameters['processing_method']
     number_of_clusters = run_parameters['number_of_clusters']
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df = kn.get_spreadsheet_df(spreadsheet_name_full_path)
     spreadsheet_mat = spreadsheet_df.as_matrix()
-    spreadsheet_mat = kn.get_quantile_norm_matrix(spreadsheet_mat)
     number_of_samples = spreadsheet_mat.shape[1]
 
+    labels = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
+
     sample_names = spreadsheet_df.columns
-    save_consensus_clustering(consensus_matrix, sample_names, labels, run_parameters)
+#    save_consensus_clustering(spreadsheet_mat, sample_names, labels, run_parameters)
     save_final_samples_clustering(sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
 
@@ -53,19 +53,15 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
         Also save variance in separate file.
     Args:
         spreadsheet_df: the dataframe as processed
-        run_parameters: with keys for "results_directory", "method", (optional - "top_number_of_genes")
+        run_parameters: with keys for "results_directory", "method", (optional - "top_number_of_rows")
         network_mat:    (if appropriate) normalized network adjacency matrix used in processing
 
     Output:
         genes_by_samples_heatmp_{method}_{timestamp}_viz.tsv
         genes_averages_by_cluster_{method}_{timestamp}_viz.tsv
-        top_genes_by_cluster_{method}_{timestamp}_download.tsv
+        top_rows_by_cluster_{method}_{timestamp}_download.tsv
     """
-    if network_mat is not None:
-        sample_smooth, nun = kn.smooth_matrix_with_rwr(spreadsheet_df.as_matrix(), network_mat, run_parameters)
-        clusters_df = pd.DataFrame(sample_smooth, index=spreadsheet_df.index.values, columns=spreadsheet_df.columns.values)
-    else:
-        clusters_df = spreadsheet_df
+    clusters_df = spreadsheet_df
 
     clusters_df.to_csv(get_output_file_name(run_parameters, 'genes_by_samples_heatmap', 'viz'), sep='\t')
 
@@ -79,14 +75,14 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
     clusters_variance_df = pd.DataFrame(clusters_df.var(axis=1), columns=['variance'])
     clusters_variance_df.to_csv(get_output_file_name(run_parameters, 'genes_variance', 'viz'), sep='\t')
 
-    top_number_of_genes_df = pd.DataFrame(data=np.zeros((cluster_ave_df.shape)), columns=cluster_ave_df.columns,
+    top_number_of_rows_df = pd.DataFrame(data=np.zeros((cluster_ave_df.shape)), columns=cluster_ave_df.columns,
                                           index=cluster_ave_df.index.values)
 
-    top_number_of_genes = run_parameters['top_number_of_genes']
-    for sample in top_number_of_genes_df.columns.values:
+    top_number_of_rows = run_parameters['top_number_of_rows']
+    for sample in top_number_of_rows_df.columns.values:
         top_index = np.argsort(cluster_ave_df[sample].values)[::-1]
-        top_number_of_genes_df[sample].iloc[top_index[0:top_number_of_genes]] = 1
-    top_number_of_genes_df.to_csv(get_output_file_name(run_parameters, 'top_genes_by_cluster', 'download'), sep='\t')
+        top_number_of_rows_df[sample].iloc[top_index[0:top_number_of_rows]] = 1
+    top_number_of_rows_df.to_csv(get_output_file_name(run_parameters, 'top_rows_by_cluster', 'download'), sep='\t')
 
 
 def save_final_samples_clustering(sample_names, labels, run_parameters):
@@ -101,13 +97,12 @@ def save_final_samples_clustering(sample_names, labels, run_parameters):
         samples_labeled_by_cluster_{method}_{timestamp}_viz.tsv
         phenotypes_labeled_by_cluster_{method}_{timestamp}_viz.tsv
     """
-    cluster_labels_df = kn.create_df_with_sample_labels(sample_names, labels)
-    cluster_mapping_full_path = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
-    cluster_labels_df.to_csv(cluster_mapping_full_path, sep='\t', header=None)
+#    cluster_labels_df = kn.create_df_with_sample_labels(sample_names, labels)
+    cluster_labels_df = pd.DataFrame(data=labels, index=sample_names)
 
-    if 'phenotype_name_full_path' in run_parameters.keys():
-        run_parameters['cluster_mapping_full_path'] = cluster_mapping_full_path
-        cluster_eval.clustering_evaluation(run_parameters)
+#    cluster_mapping_full_path = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
+#    cluster_labels_df.to_csv(cluster_mapping_full_path, sep='\t', header=None)
+
 
 def get_output_file_name(run_parameters, prefix_string, suffix_string='', type_suffix='tsv'):
     """ get the full directory / filename for writing
