@@ -1,5 +1,5 @@
 
-method: kmeans             # Available methods: hclust, kmeans
+method: kmeans               # Available methods: hclust, kmeans
 
 spreadsheet_name_full_path: ../data/spreadsheets/tcga_ucec_somatic_mutation_data.df
 

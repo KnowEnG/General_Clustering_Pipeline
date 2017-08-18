@@ -8,6 +8,11 @@ def hclust(run_parameters):
     from general_clustering_toolbox import run_hclust
     run_hclust(run_parameters) 
 
+def hclust_link(run_parameters):
+    '''linked hierarchical clustering'''
+    from general_clustering_toolbox import run_hclust_link
+    run_hclust_link(run_parameters) 
+
 def kmeans(run_parameters):
     '''kmeans clustering'''
     from general_clustering_toolbox import run_kmeans
@@ -16,6 +21,7 @@ def kmeans(run_parameters):
 
 SELECT = {
     "hclust":hclust,
+    "hclust_link":hclust_link,
     "kmeans":kmeans }
 
 def main():
