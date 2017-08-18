@@ -8,8 +8,9 @@ There are four clustering methods that one can choose from:
 
 | **Options**                                      | **Method**                           | **Parameters** |
 | ------------------------------------------------ | -------------------------------------| -------------- |
-| hierarchical clustering                          | hierarchical clustering              | hclustering    |
+| hierarchical clustering                          | hierarchical clustering              | hclust         |
 | K-means                                          | K Means                              | kmeans         |
+| Linked hierarchical clustering                   | hierarchical clustering constraint   | hclust_link    |
      
 
 * * * 
