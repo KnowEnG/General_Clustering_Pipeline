@@ -5,8 +5,9 @@ import os
 import numpy as np
 import pandas as pd
 
-from sklearn.cluster import AgglomerativeClustering
-from sklearn.metrics import silhouette_score
+from sklearn.cluster   import AgglomerativeClustering
+from sklearn.neighbors import kneighbors_graph
+from sklearn.metrics   import silhouette_score
 
 import knpackage.toolbox as kn
 import knpackage.distributed_computing_utils as dstutil
@@ -26,7 +27,34 @@ def run_hclust(run_parameters):
     # ------------------------------------------------------------------------------
     #h_mat                      = kn.perform_hclust(spreadsheet_mat, run_parameters)
     # ------------------------------------------------------------------------------
-    ward                       = AgglomerativeClustering(n_clusters=number_of_clusters, linkage='ward').fit(spreadsheet_mat.T)
+    ward                       = AgglomerativeClustering(n_clusters   = number_of_clusters, 
+                                                         linkage      = 'ward'            ).fit(spreadsheet_mat.T)
+    labels                     = ward.labels_
+    sample_names               = spreadsheet_df.columns
+
+    save_final_samples_clustering(sample_names, labels, run_parameters)
+    save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+
+def run_hclust_link(run_parameters):
+    """ wrapper: call sequence to perform hierchical clustering and save the results.
+
+    Args:
+        run_parameters: parameter set dictionary.
+    """
+
+    nearest_neighbors          = run_parameters['nearest_neighbors']
+    number_of_clusters         = run_parameters['number_of_clusters']
+    spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
+    spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
+    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    number_of_samples          = spreadsheet_mat.shape[1]
+    # ------------------------------------------------------------------------------
+    #h_mat                      = kn.perform_hclust(spreadsheet_mat, run_parameters)
+    # ------------------------------------------------------------------------------
+    connectivity = kneighbors_graph(spreadsheet_mat.T, n_neighbors=nearest_neighbors, include_self=False)
+    ward                       = AgglomerativeClustering(n_clusters   = number_of_clusters, 
+                                                         connectivity = connectivity      , 
+                                                         linkage      = 'ward'            ).fit(spreadsheet_mat.T)
     labels                     = ward.labels_
     sample_names               = spreadsheet_df.columns
 
