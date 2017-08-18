@@ -14,15 +14,14 @@ def run_hclust(run_parameters):
     Args:
         run_parameters: parameter set dictionary.
     """
-    number_of_clusters = run_parameters['number_of_clusters']
+
+    number_of_clusters         = run_parameters['number_of_clusters']
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
+    spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
+    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    h_mat                      = kn.perform_hclust(spreadsheet_mat, run_parameters)
+    sample_names               = spreadsheet_df.columns
 
-    spreadsheet_df = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat = spreadsheet_df.as_matrix()
-
-    h_mat = kn.perform_hclust(spreadsheet_mat, run_parameters)
-
-    sample_names = spreadsheet_df.columns
     save_consensus_clustering(linkage_matrix, sample_names, labels, run_parameters)
     save_final_samples_clustering(sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
@@ -34,17 +33,15 @@ def run_kmeans(run_parameters):
     Args:
         run_parameters: parameter set dictionary.
     """
-    number_of_clusters = run_parameters['number_of_clusters']
+
+    number_of_clusters         = run_parameters['number_of_clusters']
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
+    spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
+    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    number_of_samples          = spreadsheet_mat.shape[1]
+    labels                     = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
+    sample_names               = spreadsheet_df.columns
 
-    spreadsheet_df = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat = spreadsheet_df.as_matrix()
-    number_of_samples = spreadsheet_mat.shape[1]
-
-    labels = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
-
-    sample_names = spreadsheet_df.columns
-#    save_consensus_clustering(spreadsheet_mat, sample_names, labels, run_parameters)
     save_final_samples_clustering(sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
 
