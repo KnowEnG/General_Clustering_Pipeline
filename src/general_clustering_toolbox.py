@@ -26,7 +26,7 @@ def run_hclust(run_parameters):
     # ------------------------------------------------------------------------------
     #h_mat                      = kn.perform_hclust(spreadsheet_mat, run_parameters)
     # ------------------------------------------------------------------------------
-    ward                       = AgglomerativeClustering(n_clusters=6, linkage='ward').fit(spreadsheet_mat.T)
+    ward                       = AgglomerativeClustering(n_clusters=number_of_clusters, linkage='ward').fit(spreadsheet_mat.T)
     labels                     = ward.labels_
     sample_names               = spreadsheet_df.columns
 
@@ -52,7 +52,7 @@ def run_kmeans(run_parameters):
     save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
 
 def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters, network_mat=None):
-    """ save the full genes by samples spreadsheet as processed or smoothed if network is provided.
+    """ save the full rows by columns spreadsheet as processed or smoothed if network is provided.
         Also save variance in separate file.
     Args:
         spreadsheet_df: the dataframe as processed
@@ -60,12 +60,12 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
         network_mat:    (if appropriate) normalized network adjacency matrix used in processing
 
     Output:
-        genes_by_samples_heatmp_{method}_{timestamp}_viz.tsv
-        genes_averages_by_cluster_{method}_{timestamp}_viz.tsv
+        rows_by_samples_heatmp_{method}_{timestamp}_viz.tsv
+        rows_averages_by_cluster_{method}_{timestamp}_viz.tsv
         top_rows_by_cluster_{method}_{timestamp}_download.tsv
     """
     clusters_df = spreadsheet_df
-    clusters_df.to_csv(get_output_file_name(run_parameters, 'genes_by_samples_heatmap', 'viz'), sep='\t')
+    clusters_df.to_csv(get_output_file_name(run_parameters, 'rows_by_columns_heatmap', 'viz'), sep='\t')
 
     cluster_ave_df = pd.DataFrame({i: spreadsheet_df.iloc[:, labels == i].mean(axis=1) for i in np.unique(labels)})
 
@@ -74,10 +74,10 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
         col_labels.append('Cluster_%d'%(cluster_number))
 
     cluster_ave_df.columns = col_labels
-    cluster_ave_df.to_csv(get_output_file_name(run_parameters, 'genes_averages_by_cluster', 'viz'), sep='\t')
+    cluster_ave_df.to_csv(get_output_file_name(run_parameters, 'rows_averages_by_cluster', 'viz'), sep='\t')
 
     clusters_variance_df = pd.DataFrame(clusters_df.var(axis=1), columns=['variance'])
-    clusters_variance_df.to_csv(get_output_file_name(run_parameters, 'genes_variance', 'viz'), sep='\t')
+    clusters_variance_df.to_csv(get_output_file_name(run_parameters, 'rows_variance', 'viz'), sep='\t')
 
     top_number_of_rows_df = pd.DataFrame(data=np.zeros((cluster_ave_df.shape)), columns=cluster_ave_df.columns,
                                           index=cluster_ave_df.index.values)
