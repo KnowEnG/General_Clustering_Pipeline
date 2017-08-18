@@ -1,14 +1,16 @@
 
-method: hclust      # Available Methods: hclust, kmeans
+method: hclust              # Available Methods: hclust, kmeans
 
 #  rows x cols  Spreadsheet
 spreadsheet_name_full_path: ../data/spreadsheets/tcga_ucec_somatic_mutation_data.df
+
 # directories for storing run results and temporary data
 results_directory: ./run_dir/results
-# estimated number of clusters; bootstraps = number of sub-samples included in consensus
-number_of_clusters: 3
 
-top_number_of_rows:        100
+# estimated number of clusters; 
+number_of_clusters:         3
+
+top_number_of_rows:         100
 
 # processing_method dictionary, valid values are serial, parallel, dist_comp
 # single core machine: set the processing_method value to be serial
@@ -18,6 +20,7 @@ processing_method: serial
 
 # AWS configuration
 cluster_ip_address:
+
 # AWS env
 - 172.31.47.99
 - 172.31.41.138

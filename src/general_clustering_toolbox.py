@@ -4,7 +4,10 @@
 import os
 import numpy as np
 import pandas as pd
+
+from sklearn.cluster import AgglomerativeClustering
 from sklearn.metrics import silhouette_score
+
 import knpackage.toolbox as kn
 import knpackage.distributed_computing_utils as dstutil
 
@@ -19,13 +22,16 @@ def run_hclust(run_parameters):
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
     spreadsheet_mat            = spreadsheet_df.as_matrix()
-    h_mat                      = kn.perform_hclust(spreadsheet_mat, run_parameters)
+    number_of_samples          = spreadsheet_mat.shape[1]
+    # ------------------------------------------------------------------------------
+    #h_mat                      = kn.perform_hclust(spreadsheet_mat, run_parameters)
+    # ------------------------------------------------------------------------------
+    ward                       = AgglomerativeClustering(n_clusters=6, linkage='ward').fit(spreadsheet_mat.T)
+    labels                     = ward.labels_
     sample_names               = spreadsheet_df.columns
 
-    save_consensus_clustering(linkage_matrix, sample_names, labels, run_parameters)
     save_final_samples_clustering(sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
-
 
 def run_kmeans(run_parameters):
     """ wrapper: call sequence to perform kmeans clustering and save the results.
@@ -59,13 +65,14 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
         top_rows_by_cluster_{method}_{timestamp}_download.tsv
     """
     clusters_df = spreadsheet_df
-
     clusters_df.to_csv(get_output_file_name(run_parameters, 'genes_by_samples_heatmap', 'viz'), sep='\t')
 
     cluster_ave_df = pd.DataFrame({i: spreadsheet_df.iloc[:, labels == i].mean(axis=1) for i in np.unique(labels)})
+
     col_labels = []
     for cluster_number in np.unique(labels):
         col_labels.append('Cluster_%d'%(cluster_number))
+
     cluster_ave_df.columns = col_labels
     cluster_ave_df.to_csv(get_output_file_name(run_parameters, 'genes_averages_by_cluster', 'viz'), sep='\t')
 
