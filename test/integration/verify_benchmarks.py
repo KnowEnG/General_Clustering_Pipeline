@@ -5,67 +5,57 @@ sobh@illinois.edu
 
 import os
 import filecmp
-import time
 
-verif_dir = '../data/verification'
+verification_dir = '../data/verification'
+results_dir      = '../test/run_dir/results'
 
-def verify_benchmark_1():
+def verify_benchmark(BENCHMARK_name,BENCHMARK_YML) :
 
-    print('\n\tBENCHMARK_1_SC_nmf.yml')
-    t0 = time.time()
-    os.system('python3 ../src/general_clustering.py -run_directory ./run_dir -run_file BENCHMARK_1_hclustering.yml')
+    run_command    = 'python3 ../src/general_clustering.py -run_directory ./run_dir -run_file ' + BENCHMARK_YML
+    os.system(run_command)
 
-    verif_file = os.path.join(verif_dir, 'general_label_by_cluster_hclustering_BENCHMARK_1.tsv')
+    All_files_in_results_dir = os.listdir(results_dir)
 
-    results_dir = '../test/run_dir/results'
-    results_prefix = 'general_label_by_cluster_nmf_'
-    results_file_list = os.listdir(results_dir)
-
-    verifiable_files_list = []
-    for f in results_file_list:
-        if f[0:len(results_prefix)] == results_prefix:
-            verifiable_files_list.append(os.path.join(results_dir, f))
-    if len(verifiable_files_list) > 0:
-        for veri_file_name in verifiable_files_list:
-            if filecmp.cmp(veri_file_name, verif_file) == True:
-                print(veri_file_name, '\n\t\t BENCHMARK_1 Verification Success', time.time() - t0)
+    for f in All_files_in_results_dir:
+        if BENCHMARK_name in f :
+            RESULT    = os.path.join(results_dir,      f             )
+            BENCHMARK = os.path.join(verification_dir, BENCHMARK_name+'.tsv')
+            if filecmp.cmp(RESULT, BENCHMARK) == True:
+                print(BENCHMARK, 'PASS' )
             else:
-                print(veri_file_name, 'Differs: BENCHMARK_1 Verification Fails')
-    else:
-        print(verif_file, 'no file name match found')
-
-
-def verify_benchmark_2():
-    print('\n\tBENCHMARK_2_kmeans.yml')
-    t0 = time.time()
-    os.system('python3 ../src/general_clustering.py -run_directory ./run_dir -run_file BENCHMARK_2_kmeans.yml')
-
-    verif_file = os.path.join(verif_dir, 'general_label_by_cluster_net_nmf_BENCHMARK_2.tsv')
-
-    results_dir = '../test/run_dir/results'
-    results_prefix = 'general_label_by_cluster_net_nmf_'
-    results_file_list = os.listdir(results_dir)
-
-    verifiable_files_list = []
-    for f in results_file_list:
-        if f[0:len(results_prefix)] == results_prefix:
-            verifiable_files_list.append(os.path.join(results_dir, f))
-    if len(verifiable_files_list) > 0:
-        for veri_file_name in verifiable_files_list:
-            if filecmp.cmp(veri_file_name, verif_file) == True:
-                print(veri_file_name, '\n\t\t BENCHMARK_2 Verification Success', time.time() - t0)
-            else:
-                print(veri_file_name, 'Differs: BENCHMARK_2 Verification Fails')
-    else:
-        print(verif_file, 'no file name match found')
-
+                print(BENCHMARK, 'FAIL' )
 
 def main():
-    os.system('make env_setup')
-    verify_benchmark_1()
-    verify_benchmark_2()
-    print('\n')
+    BENCHMARK = {'kmeans'    : [ 
+                                 'BENCHMARK_1_kmeans.yml'
+                               , 'rows_averages_by_cluster_kmeans'
+                               , 'rows_by_columns_heatmap_kmeans'
+                               , 'top_rows_by_cluster_kmeans'
+                               , 'rows_variance_kmeans'
+                               ] 
+               ,'hclust'     : [  
+                                 'BENCHMARK_2_hclust.yml'
+                               , 'rows_averages_by_cluster_hclust'
+                               , 'rows_by_columns_heatmap_hclust'
+                               , 'top_rows_by_cluster_hclust'
+                               , 'rows_variance_hclust'
+                               ] 
+               ,'hclust_link': [  
+                                 'BENCHMARK_3_hclust_link.yml'
+                               , 'rows_averages_by_cluster_hclust_link'
+                               , 'rows_by_columns_heatmap_hclust_link'
+                               , 'top_rows_by_cluster_hclust_link'
+                               , 'rows_variance_hclust_link'
+                               ]
+                }
 
+    os.system('make env_setup')
+    for key in BENCHMARK.keys(): 
+        BENCHMARK_list = BENCHMARK[key]
+        BENCHMARK_YML  = BENCHMARK_list[0]
+        for BENCHMARK_name in BENCHMARK_list[1:] :
+            verify_benchmark(BENCHMARK_name,BENCHMARK_YML)
+            os.system('rm ./run_dir/results/*')
 
 if __name__ == "__main__":
     main()
