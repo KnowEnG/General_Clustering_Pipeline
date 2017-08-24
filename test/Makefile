@@ -26,17 +26,17 @@ clean_dir_recursively:
 # ----------------------------------------------------------------
 # Large Benchmarks RUN Section                                   -
 # ----------------------------------------------------------------
-run_hclust:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_1_hclust.yml
-
 run_kmeans:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_2_kmeans.yml
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_1_kmeans.yml
+
+run_hclust:
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_2_hclust.yml
 
 run_hclust_link:
 	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_3_hclust_link.yml
 
 
-run_all_methods: run_hclust hclust_link run_kmeans
+run_all_methods: run_kmeans run_hclust run_hclust_link
 
 # ----------------------------------------------------------------
 # - VERIFICATION TESTS RUN SECTION                               -
