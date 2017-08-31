@@ -34,6 +34,7 @@ def run_hclust(run_parameters):
 
     save_final_samples_clustering(sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+    return labels
 
 def run_hclust_link(run_parameters):
     """ wrapper: call sequence to perform hierchical clustering and save the results.
@@ -60,6 +61,7 @@ def run_hclust_link(run_parameters):
 
     save_final_samples_clustering(sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+    return labels
 
 def run_kmeans(run_parameters):
     """ wrapper: call sequence to perform kmeans clustering and save the results.
@@ -78,6 +80,7 @@ def run_kmeans(run_parameters):
 
     save_final_samples_clustering(sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+    return labels
 
 def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters, network_mat=None):
     """ save the full rows by columns spreadsheet as processed or smoothed if network is provided.
