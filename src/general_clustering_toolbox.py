@@ -132,8 +132,8 @@ def save_final_samples_clustering(sample_names, labels, run_parameters):
 #    cluster_labels_df = kn.create_df_with_sample_labels(sample_names, labels)
     cluster_labels_df = pd.DataFrame(data=labels, index=sample_names)
 
-#    cluster_mapping_full_path = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
-#    cluster_labels_df.to_csv(cluster_mapping_full_path, sep='\t', header=None)
+    cluster_mapping_full_path = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
+    cluster_labels_df.to_csv(cluster_mapping_full_path, sep='\t', header=None)
 
 
 def get_output_file_name(run_parameters, prefix_string, suffix_string='', type_suffix='tsv'):
