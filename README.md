@@ -3,7 +3,7 @@ This is the Knowledge Engine for Genomics (KnowEnG), an NIH BD2K Center of Excel
 
 This pipeline **clusters** the columns of a given spreadsheet
 
-There are four clustering methods that one can choose from:
+There are three clustering methods that one can choose from:
 
 
 | **Options**                                      | **Method**                           | **Parameters** |
