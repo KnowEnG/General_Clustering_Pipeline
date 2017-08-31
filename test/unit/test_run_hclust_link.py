@@ -3,7 +3,6 @@ from unittest import TestCase
 import general_clustering_toolbox as tl
 import numpy as np
 
-
 class TestRun_ClustLink(TestCase):
     def setUp(self):
         self.run_parameters = {"spreadsheet_name_full_path":"../../data/spreadsheets/zTEST_1_gene_sample.tsv",
