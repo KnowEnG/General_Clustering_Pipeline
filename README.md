@@ -58,7 +58,8 @@ make env_setup
 
 | **Command**           | **Option**                                       | 
 |:--------------------- |:------------------------------------------------ | 
-| make run_hclustering  | Clustering with linkage                          |
+| make run_hclustering  | Hierarchical Clustering                          |
+| make run_hclust_link  | Hierarchical lingage Clustering                  |
 | make run_kmeans       | Clustering with k-means                          |
 
  
