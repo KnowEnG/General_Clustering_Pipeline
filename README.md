@@ -3,7 +3,7 @@ This is the Knowledge Engine for Genomics (KnowEnG), an NIH BD2K Center of Excel
 
 This pipeline **clusters** the columns of a given spreadsheet
 
-There are four clustering methods that one can choose from:
+There are three clustering methods that one can choose from:
 
 
 | **Options**                                      | **Method**                           | **Parameters** |
@@ -23,17 +23,17 @@ There are four clustering methods that one can choose from:
  
 ### 2. Install the following (Ubuntu or Linux)
   ```
+ apt-get install -y python3-pip
+ apt-get install -y libfreetype6-dev libxft-dev
+ apt-get install -y libblas-dev liblapack-dev libatlas-base-dev gfortran
+
  pip3 install pyyaml
  pip3 install knpackage
  pip3 install scipy==0.18.0
  pip3 install numpy==1.11.1
  pip3 install pandas==0.18.1
  pip3 install matplotlib==1.4.2
- pip3 install scikit-learn==0.17.1
- 
- apt-get install -y python3-pip
- apt-get install -y libfreetype6-dev libxft-dev
- apt-get install -y libblas-dev liblapack-dev libatlas-base-dev gfortran
+ pip3 install scikit-learn==0.17.1 
 ```
 
 ### 3. Change directory to General_Clustering_Pipeline
@@ -58,7 +58,8 @@ make env_setup
 
 | **Command**           | **Option**                                       | 
 |:--------------------- |:------------------------------------------------ | 
-| make run_hclustering  | Clustering with linkage                          |
+| make run_hclustering  | Hierarchical Clustering                          |
+| make run_hclust_link  | Hierarchical lingage Clustering                  |
 | make run_kmeans       | Clustering with k-means                          |
 
  
@@ -66,24 +67,24 @@ make env_setup
 ## How to run this pipeline with Your data
 * * * 
 
-__***Follow steps 1-3 above then do the following:***__
+__***Follow steps 1-5 above then do the following:***__
 
 ### * Create your run directory
 
  ```
- mkdir run_directory
+ mkdir run_dir
  ```
 
-### * Change directory to the run_directory
+### * Change directory to the run directory
 
  ```
- cd run_directory
+ cd run_dir
  ```
 
 ### * Create your results directory
 
  ```
- mkdir results_directory
+ mkdir results
  ```
  
 ### * Create run_paramters file  (YAML Format)
