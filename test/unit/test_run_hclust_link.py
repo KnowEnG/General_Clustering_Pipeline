@@ -6,7 +6,7 @@ import numpy as np
 
 class TestRun_ClustLink(TestCase):
     def setUp(self):
-        self.run_parameters = {"spreadsheet_name_full_path":"../../data/spreadsheets/TEST_1_gene_sample.tsv",
+        self.run_parameters = {"spreadsheet_name_full_path":"../../data/spreadsheets/zTEST_1_gene_sample.tsv",
                                "results_directory":"./tmp",
                                "method": "hclust_link",
                                "top_number_of_rows": 2,
@@ -18,7 +18,7 @@ class TestRun_ClustLink(TestCase):
 
     def test_run_hclust_link(self):
         ret = tl.run_hclust_link(self.run_parameters)
-        expected = np.array([0, 1, 0, 0])
+        expected = np.array([1, 0, 0, 0])
         self.assertEqual(np.array_equal(ret, expected), True)
 
 if __name__ == '__main__':
