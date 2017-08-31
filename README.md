@@ -72,19 +72,19 @@ __***Follow steps 1-5 above then do the following:***__
 ### * Create your run directory
 
  ```
- mkdir run_directory
+ mkdir run_dir
  ```
 
-### * Change directory to the run_directory
+### * Change directory to the run directory
 
  ```
- cd run_directory
+ cd run_dir
  ```
 
 ### * Create your results directory
 
  ```
- mkdir results_directory
+ mkdir results
  ```
  
 ### * Create run_paramters file  (YAML Format)
