@@ -22,21 +22,29 @@ copy_run_files:
 clean_dir_recursively:
 	$(RMR) $(RUN_DIR)
 
-
 # ----------------------------------------------------------------
 # Large Benchmarks RUN Section                                   -
 # ----------------------------------------------------------------
-run_kmeans:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_1_kmeans.yml
+run_all_methods: run_kmeans_binary run_kmeans_continuous run_hclust_binary run_hclust_continuous run_hclust_link_binary run_hclust_link_continuous
 
-run_hclust:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_2_hclust.yml
+run_kmeans_binary:
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_1_kmeans_binary.yml
 
-run_hclust_link:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_3_hclust_link.yml
+run_kmeans_continuous:
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_2_kmeans_continuous.yml
 
+run_hclust_binary:
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_3_hclust_binary.yml
 
-run_all_methods: run_kmeans run_hclust run_hclust_link
+run_hclust_continuous:
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_4_hclust_continuous.yml
+
+run_hclust_link_binary:
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_5_hclust_link_binary.yml
+
+run_hclust_link_continuous:
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_6_hclust_link_continuous.yml
+
 
 # ----------------------------------------------------------------
 # - VERIFICATION TESTS RUN SECTION                               -
