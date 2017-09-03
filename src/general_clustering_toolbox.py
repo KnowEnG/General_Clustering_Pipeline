@@ -116,8 +116,10 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
         top_rows_by_cluster_{method}_{timestamp}_download.tsv
     """
 
-    clusters_df     = spreadsheet_df
-    cluster_ave_df  = pd.DataFrame({i: spreadsheet_df.iloc[:, labels == i].mean(axis=1) for i in np.unique(labels)})
+    top_number_of_rows = run_parameters['top_number_of_rows']
+
+    clusters_df        = spreadsheet_df
+    cluster_ave_df     = pd.DataFrame({i: spreadsheet_df.iloc[:, labels == i].mean(axis=1) for i in np.unique(labels)})
 
     col_labels  = []
     for cluster_number in np.unique(labels):
@@ -130,9 +132,6 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
                                         , columns=cluster_ave_df.columns
                                         , index=cluster_ave_df.index.values     )
 
-    print(run_parameters)
-
-    top_number_of_rows = 10 #run_parameters['top_number_of_rows']
     for sample in top_number_of_rows_df.columns.values:
         top_index                                                           = np.argsort(cluster_ave_df[sample].values)[::-1]
         top_number_of_rows_df[sample].iloc[top_index[0:top_number_of_rows]] = 1
