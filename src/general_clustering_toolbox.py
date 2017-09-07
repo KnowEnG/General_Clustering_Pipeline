@@ -9,8 +9,105 @@ from sklearn.cluster   import AgglomerativeClustering
 from sklearn.neighbors import kneighbors_graph
 from sklearn.metrics   import silhouette_score
 
+from scipy.sparse import csr_matrix
+
 import knpackage.toolbox as kn
 import knpackage.distributed_computing_utils as dstutil
+
+def run_cc_kmeans(run_parameters):
+    """ wrapper: call sequence to perform kmeans with
+        consensus clustering and write results.
+
+    Args:
+        run_parameters: parameter set dictionary.
+    """
+    tmp_dir = 'tmp_cc_nmf'
+    run_parameters = update_tmp_directory(run_parameters, tmp_dir)
+
+    processing_method = run_parameters['processing_method']
+    number_of_bootstraps = run_parameters['number_of_bootstraps']
+    number_of_clusters = run_parameters['number_of_clusters']
+    spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
+
+    spreadsheet_df = kn.get_spreadsheet_df(spreadsheet_name_full_path)
+    spreadsheet_mat = spreadsheet_df.as_matrix()
+    spreadsheet_mat = kn.get_quantile_norm_matrix(spreadsheet_mat)
+    number_of_samples = spreadsheet_mat.shape[1]
+
+    if processing_method == 'serial':
+        for sample in range(0, number_of_bootstraps):
+            run_cc_kmeans_clusters_worker(spreadsheet_mat, run_parameters, sample)
+
+    elif processing_method == 'parallel':
+        find_and_save_cc_kmeans_clusters_parallel(spreadsheet_mat, run_parameters, number_of_bootstraps)
+
+    elif processing_method == 'distribute':
+        func_args = [spreadsheet_mat, run_parameters]
+        dependency_list = [run_cc_kmeans_clusters_worker, kn.save_a_clustering_to_tmp, dstutil.determine_parallelism_locally]
+        dstutil.execute_distribute_computing_job(run_parameters['cluster_ip_address'],
+                                                 number_of_bootstraps,
+                                                 func_args,
+                                                 find_and_save_cc_kmeans_clusters_parallel,
+                                                 dependency_list)
+    else:
+        raise ValueError('processing_method contains bad value.')
+
+    consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
+    labels = kn.perform_kmeans(consensus_matrix, number_of_clusters)
+
+    sample_names = spreadsheet_df.columns
+    save_consensus_clustering(consensus_matrix, sample_names, labels, run_parameters)
+    save_final_samples_clustering(sample_names, labels, run_parameters)
+    save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+
+    kn.remove_dir(run_parameters["tmp_directory"])
+
+
+def find_and_save_cc_kmeans_clusters_parallel(spreadsheet_mat, run_parameters, local_parallelism):
+    """ central loop: compute components for the consensus matrix by kmeans.
+
+    Args:
+        spreadsheet_mat: genes x samples matrix.
+        run_parameters: dictionary of run-time parameters.
+        number_of_cpus: number of processes to be running in parallel
+    """
+    import knpackage.distributed_computing_utils as dstutil
+
+    jobs_id = range(0, local_parallelism)
+    zipped_arguments = dstutil.zip_parameters(spreadsheet_mat, run_parameters, jobs_id)
+    if 'parallelism' in run_parameters:
+        parallelism = dstutil.determine_parallelism_locally(local_parallelism, run_parameters['parallelism'])
+    else:
+        parallelism = dstutil.determine_parallelism_locally(local_parallelism)
+    dstutil.parallelize_processes_locally(run_cc_kmeans_clusters_worker, zipped_arguments, parallelism)
+
+
+def run_cc_kmeans_clusters_worker(spreadsheet_mat, run_parameters, sample):
+    """Worker to execute kmeans in a single process
+
+    Args:
+        spreadsheet_mat: genes x samples matrix.
+        run_parameters: dictionary of run-time parameters.
+        sample: each loops.
+
+    Returns:
+        None
+
+    """
+    import knpackage.toolbox as kn
+    import numpy as np
+
+    np.random.seed(sample)
+    rows_sampling_fraction      = run_parameters["rows_sampling_fraction"]
+    cols_sampling_fraction      = run_parameters["cols_sampling_fraction"]
+    number_of_clusters          = run_parameters["number_of_clusters"]
+    spreadsheet_mat, sample_permutation = kn.sample_a_matrix(spreadsheet_mat,
+                                                             rows_sampling_fraction, cols_sampling_fraction)
+
+    labels                     = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
+    h_mat                      = labels_to_hmat(labels, number_of_clusters)
+    kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
+
 
 def run_kmeans(run_parameters):
     """ wrapper: call sequence to perform kmeans clustering and save the results.
@@ -85,6 +182,20 @@ def run_hclust_link(run_parameters):
 
     return labels
 
+def labels_to_hmat(labels, number_of_clusters):
+    """ Convert labels in sampled data to a binary matrix for consensus clustering methods.
+
+    Args:
+        labels:             1 x sample size labels array
+        number_of_clusters: number of clusters
+
+    Output:
+        h_mat:              binary matrix number_of_clusters x sample size
+    """
+    col                         = labels.shape[0]
+    mtx                         = csr_matrix((np.ones(col), (labels, np.arange(col))), shape=(number_of_clusters, col))
+    return mtx.toarray()
+
 def save_final_samples_clustering(sample_names, labels, run_parameters):
     """ write .tsv file that assings a cluster number label to the sample_names.
 
@@ -101,7 +212,6 @@ def save_final_samples_clustering(sample_names, labels, run_parameters):
     cluster_mapping_full_path = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
     cluster_labels_df         = kn.create_df_with_sample_labels(sample_names, labels)
     cluster_labels_df.to_csv  (cluster_mapping_full_path, sep='\t', header=None)
-
 
 def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters):
     """ save the full rows by columns spreadsheet.
@@ -142,6 +252,38 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
     top_number_of_rows_df.to_csv(get_output_file_name(run_parameters, 'top_rows_by_cluster', 'download'), sep='\t')
 
 
+def save_consensus_clustering(consensus_matrix, sample_names, labels, run_parameters):
+    """ write the consensus matrix as a dataframe with sample_names column lablels
+        and cluster labels as row labels.
+
+    Args:
+        consensus_matrix: sample_names x sample_names numerical matrix.
+        sample_names: data identifiers for column names.
+        labels: cluster numbers for row names.
+        run_parameters: path to write to consensus_data file (run_parameters["results_directory"]).
+
+    Output:
+        consensus_matrix_{method}_{timestamp}_viz.tsv
+        silhouette_average_{method}_{timestamp}_viz.tsv
+    """
+    out_df = pd.DataFrame(data=consensus_matrix, columns=sample_names, index=sample_names)
+    out_df.to_csv(get_output_file_name(run_parameters, 'consensus_matrix', 'viz'), sep='\t')
+
+    n_labels = len(set(labels))
+    n_samples= len(sample_names)
+
+    if (n_labels < 2) or (n_labels > n_samples-1):
+        silhouette_average = 1.0
+    else:
+        silhouette_average = silhouette_score(consensus_matrix, labels)
+
+    silhouette_score_string = 'silhouette number of clusters = %d, corresponding silhouette score = %g' % (
+        n_labels, silhouette_average)
+
+    with open(get_output_file_name(run_parameters, 'silhouette_average', 'viz'), 'w') as fh:
+        fh.write(silhouette_score_string)
+
+
 def get_output_file_name(run_parameters, prefix_string, suffix_string='', type_suffix='tsv'):
     """ get the full directory / filename for writing
     Args:
@@ -156,3 +298,21 @@ def get_output_file_name(run_parameters, prefix_string, suffix_string='', type_s
     output_file_name = kn.create_timestamped_filename(output_file_name) + '_' + suffix_string + '.' + type_suffix
 
     return output_file_name
+
+def update_tmp_directory(run_parameters, tmp_dir):
+    ''' Update tmp_directory value in rum_parameters dictionary
+
+    Args:
+        run_parameters: run_parameters as the dictionary config
+        tmp_dir: temporary directory prefix subjected to different functions
+
+    Returns:
+        run_parameters: an updated run_parameters
+
+    '''
+    if (run_parameters['processing_method'] == 'distribute'):
+        run_parameters["tmp_directory"] = kn.create_dir(run_parameters['cluster_shared_volumn'], tmp_dir)
+    else:
+        run_parameters["tmp_directory"] = kn.create_dir(run_parameters["run_directory"], tmp_dir)
+
+    return run_parameters
