@@ -18,11 +18,16 @@ def kmeans(run_parameters):
     from general_clustering_toolbox import run_kmeans
     run_kmeans(run_parameters)
 
+def cc_kmeans(run_parameters):
+    """ consensus clustering kmeans """
+    from general_clustering_toolbox import run_cc_kmeans
+    run_cc_kmeans(run_parameters)
 
 SELECT = {
     "hclust":hclust,
     "hclust_link":hclust_link,
-    "kmeans":kmeans }
+    "kmeans":kmeans,
+    "cc_kmeans":cc_kmeans}
 
 def main():
     """
