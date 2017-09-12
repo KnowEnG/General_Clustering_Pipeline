@@ -61,19 +61,14 @@ make env_setup
 |:------------------------------- |:-------------------------------------------| 
 | make run_kmeans_binary          | Clustering with k-means                    |
 | make run_kmeans_continuous      |                                            |
-| ------------------------------- | ------------------------------------------ |
 | make run_hclust_binary          | Hierarchical Clustering                    |
 | make run_hclust_continuous      |                                            |
-| ------------------------------- | ------------------------------------------ |
 | make run_link_hclust_binary     | Hierarchical linkage Clustering            |
 | make run_link_hclust_continuous |                                            |
-|:------------------------------- | -------------------------------------------| 
 | make run_cc_kmeans_binary       | Consensus Clustering with k-means          |
 | make run_cc_kmeans_continuous   |                                            |
-| ------------------------------- | ------------------------------------------ |
 | make run_cc_hclust_binary       | Consensus Hierarchical Clustering          |
 | make run_cc_hclust_continuous   |                                            |
-| ------------------------------- | ------------------------------------------ |
 | make run_cc_link_hclust_binary  | Consensus Hierarchical linkage Clustering  |
 
 
