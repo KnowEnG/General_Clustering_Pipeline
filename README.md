@@ -57,14 +57,25 @@ make env_setup
 ### 6. Use one of the following "make" commands to select and run a clustering option:
 
 
-| **Command**             | **Option**                                 | 
-|:----------------------- |:-------------------------------------------| 
-| make run_kmeans_{binary|continuous}         | Clustering with k-means                    |
-| make run_hclust         | Hierarchical Clustering                    |
-| make run_link_hclust    | Hierarchical linkage Clustering            |
-| make run_cc_kmeans      | Consensus Clustering with k-means          |
-| make run_cc_hclust      | Consensus Hierarchical Clustering          |
-| make run_cc_link_hclust | Consensus Hierarchical linkage Clustering  |
+| **Command**                     | **Option**                                 | 
+|:------------------------------- |:-------------------------------------------| 
+| make run_kmeans_binary          | Clustering with k-means                    |
+| make run_kmeans_continuous      |                                            |
+| ------------------------------- | ------------------------------------------ |
+| make run_hclust_binary          | Hierarchical Clustering                    |
+| make run_hclust_continuous      |                                            |
+| ------------------------------- | ------------------------------------------ |
+| make run_link_hclust_binary     | Hierarchical linkage Clustering            |
+| make run_link_hclust_continuous |                                            |
+|:------------------------------- | -------------------------------------------| 
+| make run_cc_kmeans_binary       | Consensus Clustering with k-means          |
+| make run_cc_kmeans_continuous   |                                            |
+| ------------------------------- | ------------------------------------------ |
+| make run_cc_hclust_binary       | Consensus Hierarchical Clustering          |
+| make run_cc_hclust_continuous   |                                            |
+| ------------------------------- | ------------------------------------------ |
+| make run_cc_link_hclust_binary  | Consensus Hierarchical linkage Clustering  |
+
 
 
  
