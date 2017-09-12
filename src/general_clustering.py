@@ -28,12 +28,18 @@ def cc_hclust(run_parameters):
     from general_clustering_toolbox import run_cc_hclust
     run_cc_hclust(run_parameters)
 
+def cc_link_hclust(run_parameters):
+    """ consensus link clustering hclust """
+    from general_clustering_toolbox import run_cc_link_hclust
+    run_cc_link_hclust(run_parameters)
+
 SELECT = { 
-           "hclust"      : hclust 
-         , "link_hclust" : link_hclust
-         , "kmeans"      : kmeans 
-         , "cc_kmeans"   : cc_kmeans 
-         , "cc_hclust"   : cc_hclust
+           "hclust"         : hclust 
+         , "link_hclust"    : link_hclust
+         , "kmeans"         : kmeans 
+         , "cc_kmeans"      : cc_kmeans 
+         , "cc_hclust"      : cc_hclust
+         , "cc_link_hclust" : cc_link_hclust
          }
 
 def main():

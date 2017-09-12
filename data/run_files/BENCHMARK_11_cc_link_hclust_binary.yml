@@ -1,0 +1,45 @@
+# --------------------------------------------------------------------
+# - Analysis Method: kmeans,hclust,link_hclust,cc_kmeans, cc_hclust  -
+# --------------------------------------------------------------------
+method:                     cc_link_hclust       
+
+# --------------------------------------------------------------------
+# - Distance Measure:                                                -
+# --------------------------------------------------------------------
+#distance_measure:          to_be_determined 
+
+# --------------------------------------------------------------------
+# - spreadsheet          dataframe in .tsv format                    -
+# --------------------------------------------------------------------
+spreadsheet_name_full_path: ../data/spreadsheets/EXPR_GSE_METABRIC_lymphN_binary.tsv.gz
+
+# --------------------------------------------------------------------
+# - directory where the result and temporary files will be written   -
+# --------------------------------------------------------------------
+results_directory:          ./run_dir/results
+tmp_directory:              ./run_dir/tmp
+
+# --------------------------------------------------------------------
+# - Number of Clusters Required                                      -
+# --------------------------------------------------------------------
+number_of_clusters:         3
+number_of_bootstraps:       4
+
+rows_sampling_fraction:     0.8        # 0.8 means 80% of rows
+cols_sampling_fraction:     0.8        # 0.8 means 80% of columns
+
+# --------------------------------------------------------------------
+# - Number of Nearest Neighbors                                      -
+# --------------------------------------------------------------------
+nearest_neighbors:          10
+
+# --------------------------------------------------------------------
+# - Top number of rows to analyze                                    -
+# --------------------------------------------------------------------
+top_number_of_rows:         10
+
+
+processing_method:          parallel   # available methods: serial, parallel, distribute
+                                       # available clusters: AWS, CS Cluster
+
+parallelism:                4          # user defined parallelism

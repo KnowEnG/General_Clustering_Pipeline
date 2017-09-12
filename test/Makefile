@@ -58,6 +58,9 @@ run_cc_hclust_binary:
 run_cc_hclust_continuous:
 	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_X_cc_hclust_continuous.yml
 
+run_cc_link_hclust_binary:
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_11_cc_link_hclust_binary.yml
+
 
 # ----------------------------------------------------------------
 # - VERIFICATION TESTS RUN SECTION                               -
