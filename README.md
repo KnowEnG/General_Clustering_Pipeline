@@ -59,7 +59,7 @@ make env_setup
 
 | **Command**             | **Option**                                 | 
 |:----------------------- |:-------------------------------------------| 
-| make run_kmeans         | Clustering with k-means                    |
+| make run_kmeans_{binary|continuous}         | Clustering with k-means                    |
 | make run_hclust         | Hierarchical Clustering                    |
 | make run_link_hclust    | Hierarchical linkage Clustering            |
 | make run_cc_kmeans      | Consensus Clustering with k-means          |
