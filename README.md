@@ -5,13 +5,14 @@ This pipeline **clusters** the columns of a given spreadsheet
 
 There are three clustering methods that one can choose from:
 
-
-| **Options**                                      | **Method**                           | **Parameters** |
-| ------------------------------------------------ | -------------------------------------| -------------- |
-| hierarchical clustering                          | hierarchical clustering              | hclust         |
-| K-means                                          | K Means                              | kmeans         |
-| Linked hierarchical clustering                   | hierarchical clustering constraint   | hclust_link    |
-     
+| **Options**                                      | **Method**                                   | **Parameters** |
+| ------------------------------------------------ | ---------------------------------------------| -------------- |
+| K-means                                          | K Means                                      | kmeans         |
+| hierarchical clustering                          | hierarchical clustering                      | hclust         |
+| Linked hierarchical clustering                   | hierarchical clustering constraint           | link_hclust    |
+| Bootstrapped hierarchical clustering             | consensus hierarchical clustering            | cc_ hclust     |
+| Bootstrapped K-means                             | consensus K Means                            | cc_kmeans      |
+| Bootstrapped Linked hierarchical clustering      | consensus linked hierarchical clustering     | cc_link_hclust |     
 
 * * * 
 ## How to run this pipeline with Our data
@@ -56,11 +57,21 @@ make env_setup
 ### 6. Use one of the following "make" commands to select and run a clustering option:
 
 
-| **Command**           | **Option**                                       | 
-|:--------------------- |:------------------------------------------------ | 
-| make run_hclustering  | Hierarchical Clustering                          |
-| make run_hclust_link  | Hierarchical lingage Clustering                  |
-| make run_kmeans       | Clustering with k-means                          |
+| **Command**                     | **Option**                                 | 
+|:------------------------------- |:-------------------------------------------| 
+| make run_kmeans_binary          | Clustering with k-means                    |
+| make run_kmeans_continuous      |                                            |
+| make run_hclust_binary          | Hierarchical Clustering                    |
+| make run_hclust_continuous      |                                            |
+| make run_link_hclust_binary     | Hierarchical linkage Clustering            |
+| make run_link_hclust_continuous |                                            |
+| make run_cc_kmeans_binary       | Consensus Clustering with k-means          |
+| make run_cc_kmeans_continuous   |                                            |
+| make run_cc_hclust_binary       | Consensus Hierarchical Clustering          |
+| make run_cc_hclust_continuous   |                                            |
+| make run_cc_link_hclust_binary  | Consensus Hierarchical linkage Clustering  |
+
+
 
  
 * * * 
@@ -89,7 +100,7 @@ __***Follow steps 1-5 above then do the following:***__
  
 ### * Create run_paramters file  (YAML Format)
  ``` 
- Look for examples of run_parameters in the General_Clustering_Pipeline/data/run_files zTEMPLATE_cc_net_nmf.yml
+ Look for examples of run_parameters in the General_Clustering_Pipeline/data/run_files zTEMPLATE_cc_hclust.yml
  ```
 ### * Modify run_paramters file  (YAML Format)
 Change processing_method to one of: serial, parallel depending on your machine.
@@ -116,12 +127,12 @@ set the data file targets to the files you want to run, and the parameters as ap
 ## Description of "run_parameters" file
 * * * 
 
-| **Key**                    | **Value**                   | **Comments**                                   |
-| -------------------------  | --------------------------- | ---------------------------------------------- |
-| method                     | **hclustering**, **kmeans** | Choose clustering method                       |
-| spreadsheet_name_full_path | directory+spreadsheet_name  |  Path and file name of user supplied gene sets |
-| results_directory          | directory                   | Directory to save the output files             |
-| number_of_clusters         | 3                           | Estimated number of clusters                   |
+| **Key**                    | **Value**                    | **Comments**                                   |
+| -------------------------  | ---------------------------- | ---------------------------------------------- |
+| method                     | **hclust**, **cc_hclust**,...| Choose clustering method                       |
+| spreadsheet_name_full_path | directory+spreadsheet_name   |  Path and file name of user supplied gene sets |
+| results_directory          | directory                    | Directory to save the output files             |
+| number_of_clusters         | 3                            | Estimated number of clusters                   |
 
 spreadsheet_name = ProGENI_rwr20_STExp_GDSC_500.rname.gxc.tsv</br>
 
