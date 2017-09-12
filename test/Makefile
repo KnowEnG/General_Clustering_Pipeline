@@ -45,6 +45,12 @@ run_hclust_link_binary:
 run_hclust_link_continuous:
 	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_6_hclust_link_continuous.yml
 
+run_cc_kmeans_binary:
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_7_cc_kmeans_binary.yml
+
+run_cc_kmeans_continuous:
+	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_8_cc_kmeans_continuous.yml
+
 
 # ----------------------------------------------------------------
 # - VERIFICATION TESTS RUN SECTION                               -
