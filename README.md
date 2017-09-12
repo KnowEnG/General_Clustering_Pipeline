@@ -9,7 +9,7 @@ There are three clustering methods that one can choose from:
 | ------------------------------------------------ | ---------------------------------------------| -------------- |
 | K-means                                          | K Means                                      | kmeans         |
 | hierarchical clustering                          | hierarchical clustering                      | hclust         |
-| Linked hierarchical clustering                   | hierarchical clustering constraint           | hclust_link    |
+| Linked hierarchical clustering                   | hierarchical clustering constraint           | link_hclust    |
 | Bootstrapped hierarchical clustering             | consensus hierarchical clustering            | cc_ hclust     |
 | Bootstrapped K-means                             | consensus K Means                            | cc_kmeans      |
 | Bootstrapped Linked hierarchical clustering      | consensus linked hierarchical clustering     | cc_link_hclust |     
