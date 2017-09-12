@@ -8,21 +8,33 @@ def hclust(run_parameters):
     from general_clustering_toolbox import run_hclust
     run_hclust(run_parameters) 
 
-def hclust_link(run_parameters):
+def link_hclust(run_parameters):
     '''linked hierarchical clustering'''
-    from general_clustering_toolbox import run_hclust_link
-    run_hclust_link(run_parameters) 
+    from general_clustering_toolbox import run_link_hclust
+    run_link_hclust(run_parameters) 
 
 def kmeans(run_parameters):
     '''kmeans clustering'''
     from general_clustering_toolbox import run_kmeans
     run_kmeans(run_parameters)
 
+def cc_kmeans(run_parameters):
+    """ consensus clustering kmeans """
+    from general_clustering_toolbox import run_cc_kmeans
+    run_cc_kmeans(run_parameters)
 
-SELECT = {
-    "hclust":hclust,
-    "hclust_link":hclust_link,
-    "kmeans":kmeans }
+def cc_hclust(run_parameters):
+    """ consensus clustering hclust """
+    from general_clustering_toolbox import run_cc_hclust
+    run_cc_hclust(run_parameters)
+
+SELECT = { 
+           "hclust"      : hclust 
+         , "link_hclust" : link_hclust
+         , "kmeans"      : kmeans 
+         , "cc_kmeans"   : cc_kmeans 
+         , "cc_hclust"   : cc_hclust
+         }
 
 def main():
     """

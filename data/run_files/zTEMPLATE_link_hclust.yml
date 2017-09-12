@@ -1,0 +1,40 @@
+method: link_hclust # Analysis Method: kmeans,hclust,link_hclust,cc_kmeans, cc_hclust 
+
+
+#  rows x cols  Spreadsheet
+spreadsheet_name_full_path: ../data/spreadsheets/tcga_ucec_somatic_mutation_data.df
+
+# directories for storing run results and temporary data
+results_directory: ./run_dir/results
+
+# estimated number of clusters; 
+number_of_clusters:         3
+nearest_neighbors:          10
+
+top_number_of_rows:         100
+
+# processing_method dictionary, valid values are serial, parallel, dist_comp
+# single core machine: set the processing_method value to be serial
+# multi core machine: set the processing_method value to be parallel
+# multi node machine: set the processing_method value to be dist_comp 
+processing_method: serial
+
+# AWS configuration
+cluster_ip_address:
+
+# AWS env
+- 172.31.47.99
+- 172.31.41.138
+# Dev env
+#- 192.17.176.156
+#- 192.17.176.151
+#- 192.17.176.158
+#- 192.17.176.161
+#- 192.17.176.152
+#- 192.17.176.150
+#- 128.174.244.71
+
+# AWS configuration
+cluster_shared_ram: /mnt/ramdisk/knoweng/
+# AWS configuration
+cluster_shared_volumn: /mnt/clustershare/knoweng/
