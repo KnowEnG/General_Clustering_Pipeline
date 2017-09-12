@@ -5,13 +5,14 @@ This pipeline **clusters** the columns of a given spreadsheet
 
 There are three clustering methods that one can choose from:
 
-
-| **Options**                                      | **Method**                           | **Parameters** |
-| ------------------------------------------------ | -------------------------------------| -------------- |
-| hierarchical clustering                          | hierarchical clustering              | hclust         |
-| K-means                                          | K Means                              | kmeans         |
-| Linked hierarchical clustering                   | hierarchical clustering constraint   | hclust_link    |
-     
+| **Options**                                      | **Method**                                   | **Parameters** |
+| ------------------------------------------------ | ---------------------------------------------| -------------- |
+| K-means                                          | K Means                                      | kmeans         |
+| hierarchical clustering                          | hierarchical clustering                      | hclust         |
+| Linked hierarchical clustering                   | hierarchical clustering constraint           | hclust_link    |
+| Bootstrapped hierarchical clustering             | consensus hierarchical clustering            | cc_ hclust     |
+| Bootstrapped K-means                             | consensus K Means                            | cc_kmeans      |
+| Bootstrapped Linked hierarchical clustering      | consensus linked hierarchical clustering     | cc_link_hclust |     
 
 * * * 
 ## How to run this pipeline with Our data
@@ -56,11 +57,15 @@ make env_setup
 ### 6. Use one of the following "make" commands to select and run a clustering option:
 
 
-| **Command**           | **Option**                                       | 
-|:--------------------- |:------------------------------------------------ | 
-| make run_hclustering  | Hierarchical Clustering                          |
-| make run_hclust_link  | Hierarchical lingage Clustering                  |
-| make run_kmeans       | Clustering with k-means                          |
+| **Command**             | **Option**                                 | 
+|:----------------------- |:-------------------------------------------| 
+| make run_kmeans         | Clustering with k-means                    |
+| make run_hclust         | Hierarchical Clustering                    |
+| make run_link_hclust    | Hierarchical linkage Clustering            |
+| make run_cc_kmeans      | Consensus Clustering with k-means          |
+| make run_cc_hclust      | Consensus Hierarchical Clustering          |
+| make run_cc_link_hclust | Consensus Hierarchical linkage Clustering  |
+
 
  
 * * * 
@@ -89,7 +94,7 @@ __***Follow steps 1-5 above then do the following:***__
  
 ### * Create run_paramters file  (YAML Format)
  ``` 
- Look for examples of run_parameters in the General_Clustering_Pipeline/data/run_files zTEMPLATE_cc_net_nmf.yml
+ Look for examples of run_parameters in the General_Clustering_Pipeline/data/run_files zTEMPLATE_cc_hclust.yml
  ```
 ### * Modify run_paramters file  (YAML Format)
 Change processing_method to one of: serial, parallel depending on your machine.
