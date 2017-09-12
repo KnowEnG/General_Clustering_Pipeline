@@ -170,7 +170,6 @@ def run_cc_hclust(run_parameters):
         raise ValueError('processing_method contains bad value.')
 
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
-#    labels = kn.perform_hclust(consensus_matrix, number_of_clusters)
     labels = perform_hclust(consensus_matrix, number_of_clusters)
 
     sample_names = spreadsheet_df.columns
@@ -222,7 +221,6 @@ def run_cc_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
     spreadsheet_mat, sample_permutation = kn.sample_a_matrix(spreadsheet_mat,
                                                              rows_sampling_fraction, cols_sampling_fraction)
 
-#    labels                     = kn.perform_hclust(spreadsheet_mat.T, number_of_clusters)
     labels                     = perform_hclust(spreadsheet_mat.T, number_of_clusters)
     h_mat                      = labels_to_hmat(labels, number_of_clusters)
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
@@ -369,6 +367,7 @@ def run_hclust(run_parameters):
         run_parameters: parameter set dictionary.
     """
 
+    np.random.seed()
     number_of_clusters         = run_parameters['number_of_clusters'        ]
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
@@ -393,6 +392,7 @@ def run_link_hclust(run_parameters):
         run_parameters: parameter set dictionary.
     """
 
+    np.random.seed()
     nearest_neighbors          = run_parameters['nearest_neighbors'         ]
     number_of_clusters         = run_parameters['number_of_clusters'        ]
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
