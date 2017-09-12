@@ -127,12 +127,12 @@ set the data file targets to the files you want to run, and the parameters as ap
 ## Description of "run_parameters" file
 * * * 
 
-| **Key**                    | **Value**                   | **Comments**                                   |
-| -------------------------  | --------------------------- | ---------------------------------------------- |
-| method                     | **hclust**, **cc_hclust**   | Choose clustering method                       |
-| spreadsheet_name_full_path | directory+spreadsheet_name  |  Path and file name of user supplied gene sets |
-| results_directory          | directory                   | Directory to save the output files             |
-| number_of_clusters         | 3                           | Estimated number of clusters                   |
+| **Key**                    | **Value**                    | **Comments**                                   |
+| -------------------------  | ---------------------------- | ---------------------------------------------- |
+| method                     | **hclust**, **cc_hclust**,...| Choose clustering method                       |
+| spreadsheet_name_full_path | directory+spreadsheet_name   |  Path and file name of user supplied gene sets |
+| results_directory          | directory                    | Directory to save the output files             |
+| number_of_clusters         | 3                            | Estimated number of clusters                   |
 
 spreadsheet_name = ProGENI_rwr20_STExp_GDSC_500.rname.gxc.tsv</br>
 
