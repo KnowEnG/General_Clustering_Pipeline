@@ -4,7 +4,7 @@ MAINTAINER Nahil Sobh <sobh@illinois.edu>
 ENV SRC_LOC /home
 
 # Install the latest knpackage
-RUN pip3 install -I knpackage dispy 
+RUN pip3 install -I knpackage
 
 # Clone from github
 RUN git clone https://github.com/KnowEnG/General_Clustering_Pipeline.git ${SRC_LOC} 
