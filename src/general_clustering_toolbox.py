@@ -14,6 +14,105 @@ from scipy.sparse import csr_matrix
 import knpackage.toolbox as kn
 import knpackage.distributed_computing_utils as dstutil
 
+
+def run_cc_hclust(run_parameters):
+    """ wrapper: call sequence to perform hclust with
+        consensus clustering and write results.
+
+    Args:
+        run_parameters: parameter set dictionary.
+    """
+    tmp_dir = 'tmp_cc_nmf'
+    run_parameters = update_tmp_directory(run_parameters, tmp_dir)
+
+    processing_method = run_parameters['processing_method']
+    number_of_bootstraps = run_parameters['number_of_bootstraps']
+    number_of_clusters = run_parameters['number_of_clusters']
+    spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
+
+    spreadsheet_df = kn.get_spreadsheet_df(spreadsheet_name_full_path)
+    spreadsheet_mat = spreadsheet_df.as_matrix()
+    spreadsheet_mat = kn.get_quantile_norm_matrix(spreadsheet_mat)
+    number_of_samples = spreadsheet_mat.shape[1]
+
+    if processing_method == 'serial':
+        for sample in range(0, number_of_bootstraps):
+            run_cc_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample)
+
+    elif processing_method == 'parallel':
+        find_and_save_cc_hclust_clusters_parallel(spreadsheet_mat, run_parameters, number_of_bootstraps)
+
+    elif processing_method == 'distribute':
+        func_args = [spreadsheet_mat, run_parameters]
+        dependency_list = [run_cc_hclust_clusters_worker, kn.save_a_clustering_to_tmp, dstutil.determine_parallelism_locally]
+        dstutil.execute_distribute_computing_job(run_parameters['cluster_ip_address'],
+                                                 number_of_bootstraps,
+                                                 func_args,
+                                                 find_and_save_cc_hclust_clusters_parallel,
+                                                 dependency_list)
+    else:
+        raise ValueError('processing_method contains bad value.')
+
+    consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
+#    labels = kn.perform_hclust(consensus_matrix, number_of_clusters)
+    labels = perform_hclust(consensus_matrix, number_of_clusters)
+
+    sample_names = spreadsheet_df.columns
+    save_consensus_clustering(consensus_matrix, sample_names, labels, run_parameters)
+    save_final_samples_clustering(sample_names, labels, run_parameters)
+    save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+
+    kn.remove_dir(run_parameters["tmp_directory"])
+
+
+def find_and_save_cc_hclust_clusters_parallel(spreadsheet_mat, run_parameters, local_parallelism):
+    """ central loop: compute components for the consensus matrix by hclust.
+
+    Args:
+        spreadsheet_mat: genes x samples matrix.
+        run_parameters: dictionary of run-time parameters.
+        number_of_cpus: number of processes to be running in parallel
+    """
+    import knpackage.distributed_computing_utils as dstutil
+
+    jobs_id = range(0, local_parallelism)
+    zipped_arguments = dstutil.zip_parameters(spreadsheet_mat, run_parameters, jobs_id)
+    if 'parallelism' in run_parameters:
+        parallelism = dstutil.determine_parallelism_locally(local_parallelism, run_parameters['parallelism'])
+    else:
+        parallelism = dstutil.determine_parallelism_locally(local_parallelism)
+    dstutil.parallelize_processes_locally(run_cc_hclust_clusters_worker, zipped_arguments, parallelism)
+
+
+def run_cc_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
+    """Worker to execute hclust in a single process
+
+    Args:
+        spreadsheet_mat: genes x samples matrix.
+        run_parameters: dictionary of run-time parameters.
+        sample: each loops.
+
+    Returns:
+        None
+
+    """
+    import knpackage.toolbox as kn
+    import numpy as np
+
+    np.random.seed(sample)
+    rows_sampling_fraction      = run_parameters["rows_sampling_fraction"]
+    cols_sampling_fraction      = run_parameters["cols_sampling_fraction"]
+    number_of_clusters          = run_parameters["number_of_clusters"]
+    spreadsheet_mat, sample_permutation = kn.sample_a_matrix(spreadsheet_mat,
+                                                             rows_sampling_fraction, cols_sampling_fraction)
+
+#    labels                     = kn.perform_hclust(spreadsheet_mat.T, number_of_clusters)
+    labels                     = perform_hclust(spreadsheet_mat.T, number_of_clusters)
+    h_mat                      = labels_to_hmat(labels, number_of_clusters)
+    kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
+
+
+
 def run_cc_kmeans(run_parameters):
     """ wrapper: call sequence to perform kmeans with
         consensus clustering and write results.
@@ -109,6 +208,22 @@ def run_cc_kmeans_clusters_worker(spreadsheet_mat, run_parameters, sample):
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
 
 
+
+
+def perform_hclust(spreadsheet_mat, number_of_clusters):
+    """ wrapper: call sequence to perform hclust clustering 
+
+    Args:
+        spreadsheet_mat: matrix to be clusters by rows
+        number_of_clusters: number of clusters requested
+    """
+
+    ward                       = AgglomerativeClustering( n_clusters   = number_of_clusters  
+                                                        , linkage      = 'ward'            ).fit(spreadsheet_mat)
+    labels                     = ward.labels_
+
+    return labels
+
 def run_kmeans(run_parameters):
     """ wrapper: call sequence to perform kmeans clustering and save the results.
 
@@ -155,7 +270,7 @@ def run_hclust(run_parameters):
 
     return labels
 
-def run_hclust_link(run_parameters):
+def run_link_hclust(run_parameters):
     """ wrapper: call sequence to perform hierchical clustering using linkage and save the results.
 
     Args:
