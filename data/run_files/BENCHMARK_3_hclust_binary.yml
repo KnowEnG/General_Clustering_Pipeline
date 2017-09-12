@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------
-# - Analysis Method:   kmeans, hclust, or hclust_link                -
+# - Analysis Method: kmeans,hclust,link_hclust,cc_kmeans, cc_hclust  -
 # --------------------------------------------------------------------
 method:                     hclust       
 
