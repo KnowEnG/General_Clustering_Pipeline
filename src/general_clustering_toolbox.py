@@ -375,9 +375,7 @@ def run_hclust(run_parameters):
     spreadsheet_mat            = spreadsheet_df.as_matrix()
     number_of_samples          = spreadsheet_mat.shape[1]
 
-    ward                       = AgglomerativeClustering( n_clusters   = number_of_clusters  
-                                                        , linkage      = 'ward'            ).fit(spreadsheet_mat.T)
-    labels                     = ward.labels_
+    labels                     = perform_hclust(spreadsheet_mat.T, number_of_clusters)
     sample_names               = spreadsheet_df.columns
 
     save_final_samples_clustering        (sample_names  , labels, run_parameters)
@@ -401,11 +399,8 @@ def run_link_hclust(run_parameters):
     spreadsheet_mat            = spreadsheet_df.as_matrix()
     number_of_samples          = spreadsheet_mat.shape[1]
 
-    connectivity               = kneighbors_graph(spreadsheet_mat.T, n_neighbors=nearest_neighbors, include_self=False)
-    ward                       = AgglomerativeClustering( n_clusters   = number_of_clusters 
-                                                        , connectivity = connectivity       
-                                                        , linkage      = 'ward'            ).fit(spreadsheet_mat.T)
-    labels                     = ward.labels_
+    labels                     = perform_link_hclust(spreadsheet_mat.T, number_of_clusters,nearest_neighbors)
+
     sample_names               = spreadsheet_df.columns
 
     save_final_samples_clustering        (sample_names  , labels, run_parameters)
