@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/
+src/__pycache__/
+test/unit/__pycache__/
+test/unit/tmp/
+.DS_Store
+
