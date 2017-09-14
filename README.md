@@ -1,17 +1,16 @@
 # KnowEnG's General Clustering Pipeline 
 This is the Knowledge Engine for Genomics (KnowEnG), an NIH BD2K Center of Excellence, General Clustering Pipeline.
 
-This pipeline **clusters** the columns of a given spreadsheet
+This pipeline **clusters** a spreadsheet's columns, with various methods:
 
-There are three clustering methods that one can choose from:
-
-
-| **Options**                                      | **Method**                           | **Parameters** |
-| ------------------------------------------------ | -------------------------------------| -------------- |
-| hierarchical clustering                          | hierarchical clustering              | hclust         |
-| K-means                                          | K Means                              | kmeans         |
-| Linked hierarchical clustering                   | hierarchical clustering constraint   | hclust_link    |
-     
+| **Options**                                      | **Method**                                   | **Parameters** |
+| ------------------------------------------------ | ---------------------------------------------| -------------- |
+| K-means                                          | K Means                                      | kmeans         |
+| hierarchical clustering                          | hierarchical clustering                      | hclust         |
+| Linked hierarchical clustering                   | hierarchical clustering constraint           | link_hclust    |
+| Bootstrapped hierarchical clustering             | consensus hierarchical clustering            | cc_ hclust     |
+| Bootstrapped K-means                             | consensus K Means                            | cc_kmeans      |
+| Bootstrapped Linked hierarchical clustering      | consensus linked hierarchical clustering     | cc_link_hclust |     
 
 * * * 
 ## How to run this pipeline with Our data
@@ -21,19 +20,10 @@ There are three clustering methods that one can choose from:
  git clone https://github.com/KnowEnG-Research/General_Clustering_Pipeline.git
 ```
  
-### 2. Install the following (Ubuntu or Linux)
-  ```
- apt-get install -y python3-pip
- apt-get install -y libfreetype6-dev libxft-dev
- apt-get install -y libblas-dev liblapack-dev libatlas-base-dev gfortran
-
- pip3 install pyyaml
- pip3 install knpackage
- pip3 install scipy==0.18.0
- pip3 install numpy==1.11.1
- pip3 install pandas==0.18.1
- pip3 install matplotlib==1.4.2
- pip3 install scikit-learn==0.17.1 
+### 2. Install the following, for Linux
+```
+ apt-get install -y python3-pip libfreetype6-dev libxft-dev libblas-dev liblapack-dev libatlas-base-dev gfortran
+ pip3 install pyyaml knpackage scipy==0.18.0 numpy==1.11.1 pandas==0.18.1 matplotlib==1.4.2 scikit-learn==0.17.1 
 ```
 
 ### 3. Change directory to General_Clustering_Pipeline
@@ -56,11 +46,19 @@ make env_setup
 ### 6. Use one of the following "make" commands to select and run a clustering option:
 
 
-| **Command**           | **Option**                                       | 
-|:--------------------- |:------------------------------------------------ | 
-| make run_hclustering  | Hierarchical Clustering                          |
-| make run_hclust_link  | Hierarchical lingage Clustering                  |
-| make run_kmeans       | Clustering with k-means                          |
+| **Command**                     | **Option**                                 | 
+|:------------------------------- |:-------------------------------------------| 
+| make run_kmeans_binary          | Clustering with k-means                    |
+| make run_kmeans_continuous      |                                            |
+| make run_hclust_binary          | Hierarchical Clustering                    |
+| make run_hclust_continuous      |                                            |
+| make run_link_hclust_binary     | Hierarchical linkage Clustering            |
+| make run_link_hclust_continuous |                                            |
+| make run_cc_kmeans_binary       | Consensus Clustering with k-means          |
+| make run_cc_kmeans_continuous   |                                            |
+| make run_cc_hclust_binary       | Consensus Hierarchical Clustering          |
+| make run_cc_hclust_continuous   |                                            |
+| make run_cc_link_hclust_binary  | Consensus Hierarchical linkage Clustering  |
 
  
 * * * 
@@ -89,7 +87,7 @@ __***Follow steps 1-5 above then do the following:***__
  
 ### * Create run_paramters file  (YAML Format)
  ``` 
- Look for examples of run_parameters in the General_Clustering_Pipeline/data/run_files zTEMPLATE_cc_net_nmf.yml
+ Look for examples of run_parameters in the General_Clustering_Pipeline/data/run_files zTEMPLATE_cc_hclust.yml
  ```
 ### * Modify run_paramters file  (YAML Format)
 Change processing_method to one of: serial, parallel depending on your machine.
@@ -116,12 +114,12 @@ set the data file targets to the files you want to run, and the parameters as ap
 ## Description of "run_parameters" file
 * * * 
 
-| **Key**                    | **Value**                   | **Comments**                                   |
-| -------------------------  | --------------------------- | ---------------------------------------------- |
-| method                     | **hclustering**, **kmeans** | Choose clustering method                       |
-| spreadsheet_name_full_path | directory+spreadsheet_name  |  Path and file name of user supplied gene sets |
-| results_directory          | directory                   | Directory to save the output files             |
-| number_of_clusters         | 3                           | Estimated number of clusters                   |
+| **Key**                    | **Value**                    | **Comments**                                   |
+| -------------------------  | ---------------------------- | ---------------------------------------------- |
+| method                     | **hclust**, **cc_hclust**,...| Choose clustering method                       |
+| spreadsheet_name_full_path | directory+spreadsheet_name   |  Path and file name of user supplied gene sets |
+| results_directory          | directory                    | Directory to save the output files             |
+| number_of_clusters         | 3                            | Estimated number of clusters                   |
 
 spreadsheet_name = ProGENI_rwr20_STExp_GDSC_500.rname.gxc.tsv</br>
 
