@@ -1,9 +1,7 @@
 # KnowEnG's General Clustering Pipeline 
 This is the Knowledge Engine for Genomics (KnowEnG), an NIH BD2K Center of Excellence, General Clustering Pipeline.
 
-This pipeline **clusters** the columns of a given spreadsheet
-
-There are three clustering methods that one can choose from:
+This pipeline **clusters** a spreadsheet's columns, with various methods:
 
 | **Options**                                      | **Method**                                   | **Parameters** |
 | ------------------------------------------------ | ---------------------------------------------| -------------- |
@@ -22,19 +20,10 @@ There are three clustering methods that one can choose from:
  git clone https://github.com/KnowEnG-Research/General_Clustering_Pipeline.git
 ```
  
-### 2. Install the following (Ubuntu or Linux)
-  ```
- apt-get install -y python3-pip
- apt-get install -y libfreetype6-dev libxft-dev
- apt-get install -y libblas-dev liblapack-dev libatlas-base-dev gfortran
-
- pip3 install pyyaml
- pip3 install knpackage
- pip3 install scipy==0.18.0
- pip3 install numpy==1.11.1
- pip3 install pandas==0.18.1
- pip3 install matplotlib==1.4.2
- pip3 install scikit-learn==0.17.1 
+### 2. Install the following, for Linux
+```
+ apt-get install -y python3-pip libfreetype6-dev libxft-dev libblas-dev liblapack-dev libatlas-base-dev gfortran
+ pip3 install pyyaml knpackage scipy==0.19.1 numpy==1.11.1 pandas==0.18.1 matplotlib==1.4.2 scikit-learn==0.17.1 
 ```
 
 ### 3. Change directory to General_Clustering_Pipeline
@@ -70,8 +59,6 @@ make env_setup
 | make run_cc_hclust_binary       | Consensus Hierarchical Clustering          |
 | make run_cc_hclust_continuous   |                                            |
 | make run_cc_link_hclust_binary  | Consensus Hierarchical linkage Clustering  |
-
-
 
  
 * * * 
