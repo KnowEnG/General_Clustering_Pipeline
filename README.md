@@ -23,7 +23,7 @@ This pipeline **clusters** a spreadsheet's columns, with various methods:
 ### 2. Install the following, for Linux
 ```
  apt-get install -y python3-pip libfreetype6-dev libxft-dev libblas-dev liblapack-dev libatlas-base-dev gfortran
- pip3 install pyyaml knpackage scipy==0.18.0 numpy==1.11.1 pandas==0.18.1 matplotlib==1.4.2 scikit-learn==0.17.1 
+ pip3 install pyyaml knpackage scipy==0.19.1 numpy==1.11.1 pandas==0.18.1 matplotlib==1.4.2 scikit-learn==0.17.1 
 ```
 
 ### 3. Change directory to General_Clustering_Pipeline

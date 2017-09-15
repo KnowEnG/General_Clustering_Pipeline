@@ -10,7 +10,7 @@ Use verification testing to assure that the runtime environment and the current 
   ```
  pip3 install pyyaml
  pip3 install knpackage
- pip3 install scipy==0.18.0
+ pip3 install scipy==0.19.1
  pip3 install numpy==1.11.1
  pip3 install pandas==0.18.1
  pip3 install matplotlib==1.4.2
