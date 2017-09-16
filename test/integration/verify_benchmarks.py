@@ -86,7 +86,7 @@ def main():
     for key in BENCHMARK.keys():
         BENCHMARK_list = BENCHMARK[key]
         BENCHMARK_YML = BENCHMARK_list[0]
-
+        print()
         print("INFO: Running test ", "./run_dir/results/" + BENCHMARK_YML)
         for BENCHMARK_name in BENCHMARK_list[1:]:
             num_succeed_tests, num_failed_tests = verify_benchmark(key, BENCHMARK_name, BENCHMARK_YML)
@@ -94,9 +94,11 @@ def main():
             total_failure += num_failed_tests
             os.system('rm ./run_dir/results/*')
     end_time = time.time()
+    print()
     print("Ran {} tests in {}s".format(total_success + total_failure, end_time - start_time))
     if (total_failure == 0):
         print("OK")
+        print()
     else:
         print("FAILED(errors={})".format(total_failure))
 
