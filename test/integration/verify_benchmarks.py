@@ -11,7 +11,7 @@ verification_dir = '../data/verification/'
 results_dir = '../test/run_dir/results'
 
 
-def verify_benchmark(option, algo_name, BENCHMARK_name, BENCHMARK_YML):
+def verify_benchmark(option, algo_name, BENCHMARK_name_list, BENCHMARK_YML):
     run_command = 'python3 ../src/general_clustering.py -run_directory ./run_dir -run_file ' + BENCHMARK_YML
     os.system(run_command)
 
@@ -20,15 +20,16 @@ def verify_benchmark(option, algo_name, BENCHMARK_name, BENCHMARK_YML):
     num_failed_tests = 0
     num_succeed_tests = 0
     for f in All_files_in_results_dir:
-        if BENCHMARK_name in f:
-            RESULT = os.path.join(results_dir, f)
-            BENCHMARK = os.path.join(verification_dir, option, algo_name, BENCHMARK_name + '.tsv')
-            if filecmp.cmp(RESULT, BENCHMARK) == True:
-                num_succeed_tests += 1
-                print(BENCHMARK, '______ PASS ______')
-            else:
-                num_failed_tests += 1
-                print(BENCHMARK, '****** FAIL ******')
+        for BENCHMARK_name in BENCHMARK_name_list:
+            if BENCHMARK_name in f:
+                RESULT = os.path.join(results_dir, f)
+                BENCHMARK = os.path.join(verification_dir, option, algo_name, BENCHMARK_name + '.tsv')
+                if filecmp.cmp(RESULT, BENCHMARK) == True:
+                    num_succeed_tests += 1
+                    print(BENCHMARK, '______ PASS ______')
+                else:
+                    num_failed_tests += 1
+                    print(BENCHMARK, '****** FAIL ******')
     return num_succeed_tests, num_failed_tests
 
 
@@ -137,11 +138,11 @@ def main():
             BENCHMARK_YML = BENCHMARK_list[0]
             print()
             print("INFO: Running test ", "./run_dir/results/" + BENCHMARK_YML)
-            for BENCHMARK_name in BENCHMARK_list[1:]:
-                num_succeed_tests, num_failed_tests = verify_benchmark(option, key, BENCHMARK_name, BENCHMARK_YML)
-                total_success += num_succeed_tests
-                total_failure += num_failed_tests
-                os.system('rm ./run_dir/results/*')
+            # for BENCHMARK_name in BENCHMARK_list[1:]:
+            num_succeed_tests, num_failed_tests = verify_benchmark(option, key, BENCHMARK_list[1:], BENCHMARK_YML)
+            total_success += num_succeed_tests
+            total_failure += num_failed_tests
+            os.system('rm ./run_dir/results/*')
     end_time = time.time()
     print()
     print("Ran {} tests in {}s".format(total_success + total_failure, end_time - start_time))
