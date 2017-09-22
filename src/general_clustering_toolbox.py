@@ -417,6 +417,9 @@ def run_link_hclust(run_parameters):
     np.random.seed()
     nearest_neighbors          = run_parameters['nearest_neighbors'         ]
     number_of_clusters         = run_parameters['number_of_clusters'        ]
+    affinity_metric            = run_parameters['affinity_metric']
+    linkage_criterion          = run_parameters['linkage_criterion']
+
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
