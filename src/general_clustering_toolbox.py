@@ -29,12 +29,14 @@ def run_cc_link_hclust(run_parameters):
     number_of_bootstraps       = run_parameters['number_of_bootstraps']
     number_of_clusters         = run_parameters['number_of_clusters']
     nearest_neighbors          = run_parameters['nearest_neighbors']
+    affinity_metric            = run_parameters['affinity_metric']
+    linkage_criterion          = run_parameters['linkage_criterion']
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
-    spreadsheet_df    = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat   = spreadsheet_df.as_matrix()
-    spreadsheet_mat   = kn.get_quantile_norm_matrix(spreadsheet_mat)
-    number_of_samples = spreadsheet_mat.shape[1]
+    spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
+    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    spreadsheet_mat            = kn.get_quantile_norm_matrix(spreadsheet_mat)
+    number_of_samples          = spreadsheet_mat.shape[1]
 
     if processing_method == 'serial':
         for sample in range(0, number_of_bootstraps):
@@ -55,7 +57,11 @@ def run_cc_link_hclust(run_parameters):
         raise ValueError('processing_method contains bad value.')
 
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
-    labels           = perform_link_hclust(consensus_matrix, number_of_clusters,nearest_neighbors)
+    labels           = perform_link_hclust( consensus_matrix
+                                          , number_of_clusters
+                                          , nearest_neighbors 
+                                          , affinity_metric 
+                                          , linkage_criterion) 
 
     sample_names     = spreadsheet_df.columns
 
@@ -76,8 +82,8 @@ def find_and_save_cc_link_hclust_clusters_parallel(spreadsheet_mat, run_paramete
     """
     import knpackage.distributed_computing_utils as dstutil
 
-    jobs_id = range(0, local_parallelism)
-    zipped_arguments = dstutil.zip_parameters(spreadsheet_mat, run_parameters, jobs_id)
+    jobs_id         = range(0, local_parallelism)
+    zipped_arguments= dstutil.zip_parameters(spreadsheet_mat, run_parameters, jobs_id)
 
     if 'parallelism' in run_parameters:
         parallelism = dstutil.determine_parallelism_locally(local_parallelism, run_parameters['parallelism'])
@@ -103,20 +109,27 @@ def run_cc_link_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
     import numpy as np
 
     np.random.seed(sample)
-    rows_sampling_fraction      = run_parameters["rows_sampling_fraction"]
-    cols_sampling_fraction      = run_parameters["cols_sampling_fraction"]
-    number_of_clusters          = run_parameters["number_of_clusters"]
-    nearest_neighbors           = run_parameters["nearest_neighbors"]
+    rows_sampling_fraction = run_parameters["rows_sampling_fraction"]
+    cols_sampling_fraction = run_parameters["cols_sampling_fraction"]
+    number_of_clusters     = run_parameters["number_of_clusters"]
+    nearest_neighbors      = run_parameters["nearest_neighbors"]
+    affinity_metric        = run_parameters['affinity_metric']
+    linkage_criterion      = run_parameters['linkage_criterion']
 
     spreadsheet_mat, sample_permutation = kn.sample_a_matrix(spreadsheet_mat,
                                                              rows_sampling_fraction, cols_sampling_fraction)
 
-    labels                     = perform_link_hclust(spreadsheet_mat.T, number_of_clusters,nearest_neighbors)
-    h_mat                      = labels_to_hmat(labels, number_of_clusters)
+    labels                 = perform_link_hclust( spreadsheet_mat.T
+                                                , number_of_clusters
+                                                , nearest_neighbors 
+                                                , affinity_metric
+                                                , linkage_criterion )
+
+    h_mat                  = labels_to_hmat(labels, number_of_clusters)
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
 
 
-def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors):
+def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors, affinity_metric, linkage_criterion):
     """ wrapper: call sequence to perform hclust clustering 
 
     Args:
@@ -126,7 +139,7 @@ def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors):
     connectivity = kneighbors_graph(spreadsheet_mat, n_neighbors=nearest_neighbors, include_self=False)
     ward         = AgglomerativeClustering( n_clusters   = number_of_clusters
                                           , connectivity = connectivity
-                                          , linkage      = 'ward'            ).fit(spreadsheet_mat)
+                                          , linkage      = linkage_criterion   ).fit(spreadsheet_mat)
     labels       = ward.labels_
 
     return labels
@@ -141,15 +154,18 @@ def run_cc_hclust(run_parameters):
     tmp_dir = 'tmp_cc_nmf'
     run_parameters = update_tmp_directory(run_parameters, tmp_dir)
 
-    processing_method = run_parameters['processing_method']
-    number_of_bootstraps = run_parameters['number_of_bootstraps']
-    number_of_clusters = run_parameters['number_of_clusters']
+    processing_method          = run_parameters['processing_method']
+    affinity_metric            = run_parameters['affinity_metric']
+    linkage_criterion          = run_parameters['linkage_criterion']
+   
+    number_of_bootstraps       = run_parameters['number_of_bootstraps']
+    number_of_clusters         = run_parameters['number_of_clusters']
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
-    spreadsheet_df = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat = spreadsheet_df.as_matrix()
-    spreadsheet_mat = kn.get_quantile_norm_matrix(spreadsheet_mat)
-    number_of_samples = spreadsheet_mat.shape[1]
+    spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
+    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    spreadsheet_mat            = kn.get_quantile_norm_matrix(spreadsheet_mat)
+    number_of_samples          = spreadsheet_mat.shape[1]
 
     if processing_method == 'serial':
         for sample in range(0, number_of_bootstraps):
@@ -170,9 +186,9 @@ def run_cc_hclust(run_parameters):
         raise ValueError('processing_method contains bad value.')
 
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
-    labels = perform_hclust(consensus_matrix, number_of_clusters)
+    labels           = perform_hclust(consensus_matrix, number_of_clusters, affinity_metric, linkage_criterion)
+    sample_names     = spreadsheet_df.columns
 
-    sample_names = spreadsheet_df.columns
     save_consensus_clustering(consensus_matrix, sample_names, labels, run_parameters)
     save_final_samples_clustering(sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
@@ -215,14 +231,18 @@ def run_cc_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
     import numpy as np
 
     np.random.seed(sample)
-    rows_sampling_fraction      = run_parameters["rows_sampling_fraction"]
-    cols_sampling_fraction      = run_parameters["cols_sampling_fraction"]
-    number_of_clusters          = run_parameters["number_of_clusters"]
+
+    rows_sampling_fraction = run_parameters["rows_sampling_fraction"]
+    cols_sampling_fraction = run_parameters["cols_sampling_fraction"]
+    number_of_clusters     = run_parameters["number_of_clusters"]
+    affinity_metric        = run_parameters['affinity_metric']
+    linkage_criterion      = run_parameters['linkage_criterion']
+
     spreadsheet_mat, sample_permutation = kn.sample_a_matrix(spreadsheet_mat,
                                                              rows_sampling_fraction, cols_sampling_fraction)
 
-    labels                     = perform_hclust(spreadsheet_mat.T, number_of_clusters)
-    h_mat                      = labels_to_hmat(labels, number_of_clusters)
+    labels                 = perform_hclust(spreadsheet_mat.T, number_of_clusters, affinity_metric, linkage_criterion)
+    h_mat                  = labels_to_hmat(labels, number_of_clusters)
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
 
 
@@ -235,17 +255,18 @@ def run_cc_kmeans(run_parameters):
         run_parameters: parameter set dictionary.
     """
     tmp_dir = 'tmp_cc_nmf'
-    run_parameters = update_tmp_directory(run_parameters, tmp_dir)
+    run_parameters             = update_tmp_directory(run_parameters, tmp_dir)
 
-    processing_method = run_parameters['processing_method']
-    number_of_bootstraps = run_parameters['number_of_bootstraps']
-    number_of_clusters = run_parameters['number_of_clusters']
+    processing_method          = run_parameters['processing_method']
+
+    number_of_bootstraps       = run_parameters['number_of_bootstraps']
+    number_of_clusters         = run_parameters['number_of_clusters']
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
-    spreadsheet_df = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat = spreadsheet_df.as_matrix()
-    spreadsheet_mat = kn.get_quantile_norm_matrix(spreadsheet_mat)
-    number_of_samples = spreadsheet_mat.shape[1]
+    spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
+    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    spreadsheet_mat            = kn.get_quantile_norm_matrix(spreadsheet_mat)
+    number_of_samples          = spreadsheet_mat.shape[1]
 
     if processing_method == 'serial':
         for sample in range(0, number_of_bootstraps):
@@ -286,8 +307,8 @@ def find_and_save_cc_kmeans_clusters_parallel(spreadsheet_mat, run_parameters, l
     """
     import knpackage.distributed_computing_utils as dstutil
 
-    jobs_id = range(0, local_parallelism)
-    zipped_arguments = dstutil.zip_parameters(spreadsheet_mat, run_parameters, jobs_id)
+    jobs_id         = range(0, local_parallelism)
+    zipped_arguments= dstutil.zip_parameters(spreadsheet_mat, run_parameters, jobs_id)
     if 'parallelism' in run_parameters:
         parallelism = dstutil.determine_parallelism_locally(local_parallelism, run_parameters['parallelism'])
     else:
@@ -311,20 +332,18 @@ def run_cc_kmeans_clusters_worker(spreadsheet_mat, run_parameters, sample):
     import numpy as np
 
     np.random.seed(sample)
-    rows_sampling_fraction      = run_parameters["rows_sampling_fraction"]
-    cols_sampling_fraction      = run_parameters["cols_sampling_fraction"]
-    number_of_clusters          = run_parameters["number_of_clusters"]
+    rows_sampling_fraction = run_parameters["rows_sampling_fraction"]
+    cols_sampling_fraction = run_parameters["cols_sampling_fraction"]
+    number_of_clusters     = run_parameters["number_of_clusters"]
     spreadsheet_mat, sample_permutation = kn.sample_a_matrix(spreadsheet_mat,
                                                              rows_sampling_fraction, cols_sampling_fraction)
 
-    labels                     = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
-    h_mat                      = labels_to_hmat(labels, number_of_clusters)
+    labels                 = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
+    h_mat                  = labels_to_hmat(labels, number_of_clusters)
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
 
 
-
-
-def perform_hclust(spreadsheet_mat, number_of_clusters):
+def perform_hclust(spreadsheet_mat, number_of_clusters, affinity_metric, linkage_criterion):
     """ wrapper: call sequence to perform hclust clustering 
 
     Args:
@@ -332,9 +351,10 @@ def perform_hclust(spreadsheet_mat, number_of_clusters):
         number_of_clusters: number of clusters requested
     """
 
-    ward                       = AgglomerativeClustering( n_clusters   = number_of_clusters  
-                                                        , linkage      = 'ward'            ).fit(spreadsheet_mat)
-    labels                     = ward.labels_
+    ward   = AgglomerativeClustering( n_clusters   = number_of_clusters  
+                                    , affinity     = affinity_metric  
+                                    , linkage      = linkage_criterion  ).fit(spreadsheet_mat)
+    labels = ward.labels_
 
     return labels
 
@@ -346,6 +366,7 @@ def run_kmeans(run_parameters):
     """
 
     number_of_clusters         = run_parameters['number_of_clusters'        ]
+
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
@@ -369,13 +390,16 @@ def run_hclust(run_parameters):
 
     np.random.seed()
     number_of_clusters         = run_parameters['number_of_clusters'        ]
+    affinity_metric            = run_parameters['affinity_metric']
+    linkage_criterion          = run_parameters['linkage_criterion']
+
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
     spreadsheet_mat            = spreadsheet_df.as_matrix()
     number_of_samples          = spreadsheet_mat.shape[1]
 
-    labels                     = perform_hclust(spreadsheet_mat.T, number_of_clusters)
+    labels                     = perform_hclust(spreadsheet_mat.T, number_of_clusters, affinity_metric, linkage_criterion)
     sample_names               = spreadsheet_df.columns
 
     save_final_samples_clustering        (sample_names  , labels, run_parameters)
@@ -399,8 +423,12 @@ def run_link_hclust(run_parameters):
     spreadsheet_mat            = spreadsheet_df.as_matrix()
     number_of_samples          = spreadsheet_mat.shape[1]
 
-    labels                     = perform_link_hclust(spreadsheet_mat.T, number_of_clusters,nearest_neighbors)
-
+    labels                     = perform_link_hclust( spreadsheet_mat.T
+                                                    , number_of_clusters
+                                                    , nearest_neighbors
+                                                    , affinity_metric
+                                                    , linkage_criterion )
+        
     sample_names               = spreadsheet_df.columns
 
     save_final_samples_clustering        (sample_names  , labels, run_parameters)
@@ -418,8 +446,8 @@ def labels_to_hmat(labels, number_of_clusters):
     Output:
         h_mat:              binary matrix number_of_clusters x sample size
     """
-    col                         = labels.shape[0]
-    mtx                         = csr_matrix((np.ones(col), (labels, np.arange(col))), shape=(number_of_clusters, col))
+    col    = labels.shape[0]
+    mtx    = csr_matrix((np.ones(col), (labels, np.arange(col))), shape=(number_of_clusters, col))
     return mtx.toarray()
 
 def save_final_samples_clustering(sample_names, labels, run_parameters):
@@ -453,7 +481,6 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
     """
 
     top_number_of_rows = run_parameters['top_number_of_rows']
-
     clusters_df        = spreadsheet_df
     cluster_ave_df     = pd.DataFrame({i: spreadsheet_df.iloc[:, labels == i].mean(axis=1) for i in np.unique(labels)})
 

@@ -4,9 +4,14 @@
 method:                     hclust
 
 # --------------------------------------------------------------------
-# - Distance Measure:                                                -
+# - affinity_metric: euclidean, manhattan
 # --------------------------------------------------------------------
-#distance_measure:          to_be_determined
+affinity_metric:            euclidean
+
+# --------------------------------------------------------------------
+# - linkage_method:   ward, complete, average
+# --------------------------------------------------------------------
+linkage_criterion:          ward
 
 # --------------------------------------------------------------------
 # - spreadsheet          dataframe in .tsv format                    -

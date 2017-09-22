@@ -11,6 +11,16 @@ results_directory: ./run_dir/results
 number_of_clusters:         3
 nearest_neighbors:          10
 
+# --------------------------------------------------------------------
+# - affinity_metric: euclidean, manhattan
+# --------------------------------------------------------------------
+affinity_metric:            euclidean
+
+# --------------------------------------------------------------------
+# - linkage_method:   ward, complete, average
+# --------------------------------------------------------------------
+linkage_criterion:          ward
+
 top_number_of_rows:         100
 
 # processing_method dictionary, valid values are serial, parallel, dist_comp
