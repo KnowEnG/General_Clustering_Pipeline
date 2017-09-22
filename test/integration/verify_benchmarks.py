@@ -35,77 +35,77 @@ def verify_benchmark(option, algo_name, BENCHMARK_name_list, BENCHMARK_YML):
 
 def main():
     BENCHMARK = {
-        # 'binary': {
-        #     'kmeans': [
-        #         'BENCHMARK_1_kmeans_binary.yml',
-        #         'rows_averages_by_cluster_kmeans',
-        #         'rows_by_columns_heatmap_kmeans',
-        #         'rows_variance_kmeans',
-        #         'samples_label_by_cluster_kmeans',
-        #         'top_rows_by_cluster_kmeans'
-        #     ],
-        #     'hclust': [
-        #         'BENCHMARK_3_hclust_binary.yml',
-        #         'rows_averages_by_cluster_hclust',
-        #         'rows_by_columns_heatmap_hclust',
-        #         'rows_variance_hclust',
-        #         'samples_label_by_cluster_hclust',
-        #         'top_rows_by_cluster_hclust'
-        #     ],
-        #     'link_hclust': [
-        #         'BENCHMARK_5_link_hclust_binary.yml',
-        #         'rows_averages_by_cluster_link_hclust',
-        #         'rows_by_columns_heatmap_link_hclust',
-        #         'rows_variance_link_hclust',
-        #         'samples_label_by_cluster_link_hclust',
-        #         'top_rows_by_cluster_link_hclust'
-        #     ],
-        #     'cc_kmeans': [
-        #         'BENCHMARK_7_cc_kmeans_binary.yml',
-        #         'consensus_matrix_cc_kmeans',
-        #         'rows_averages_by_cluster_cc_kmeans',
-        #         'rows_by_columns_heatmap_cc_kmeans',
-        #         'rows_variance_cc_kmeans',
-        #         'samples_label_by_cluster_cc_kmeans',
-        #         'silhouette_average_cc_kmeans',
-        #         'top_rows_by_cluster_cc_kmeans'
-        #     ],
-        #     'cc_hclust': [
-        #         'BENCHMARK_9_cc_hclust_binary.yml',
-        #         'consensus_matrix_cc_hclust',
-        #         'rows_averages_by_cluster_cc_hclust',
-        #         'rows_by_columns_heatmap_cc_hclust',
-        #         'rows_variance_cc_hclust',
-        #         'samples_label_by_cluster_cc_hclust',
-        #         'silhouette_average_cc_hclust',
-        #         'top_rows_by_cluster_cc_hclust'
-        #     ]
-        # },
+        'binary': {
+            'kmeans': [
+                'BENCHMARK_1_kmeans_binary.yml',
+                'rows_averages_by_cluster_kmeans',
+                'rows_by_columns_heatmap_kmeans',
+                'rows_variance_kmeans',
+                'samples_label_by_cluster_kmeans',
+                'top_rows_by_cluster_kmeans'
+            ],
+            'hclust': [
+                'BENCHMARK_3_hclust_binary.yml',
+                'rows_averages_by_cluster_hclust',
+                'rows_by_columns_heatmap_hclust',
+                'rows_variance_hclust',
+                'samples_label_by_cluster_hclust',
+                'top_rows_by_cluster_hclust'
+            ],
+            'link_hclust': [
+                'BENCHMARK_5_link_hclust_binary.yml',
+                'rows_averages_by_cluster_link_hclust',
+                'rows_by_columns_heatmap_link_hclust',
+                'rows_variance_link_hclust',
+                'samples_label_by_cluster_link_hclust',
+                'top_rows_by_cluster_link_hclust'
+            ],
+            'cc_kmeans': [
+                'BENCHMARK_7_cc_kmeans_binary.yml',
+                'consensus_matrix_cc_kmeans',
+                'rows_averages_by_cluster_cc_kmeans',
+                'rows_by_columns_heatmap_cc_kmeans',
+                'rows_variance_cc_kmeans',
+                'samples_label_by_cluster_cc_kmeans',
+                'silhouette_average_cc_kmeans',
+                'top_rows_by_cluster_cc_kmeans'
+            ],
+            'cc_hclust': [
+                'BENCHMARK_9_cc_hclust_binary.yml',
+                'consensus_matrix_cc_hclust',
+                'rows_averages_by_cluster_cc_hclust',
+                'rows_by_columns_heatmap_cc_hclust',
+                'rows_variance_cc_hclust',
+                'samples_label_by_cluster_cc_hclust',
+                'silhouette_average_cc_hclust',
+                'top_rows_by_cluster_cc_hclust'
+            ]
+        },
         'continuous': {
-            # 'kmeans': [
-            #     'BENCHMARK_2_kmeans_continuous.yml',
-            #     'rows_averages_by_cluster_kmeans',
-            #     'rows_by_columns_heatmap_kmeans',
-            #     'rows_variance_kmeans',
-            #     'samples_label_by_cluster_kmeans',
-            #     'top_rows_by_cluster_kmeans'
-            # ],
-            # 'hclust': [
-            #     'BENCHMARK_4_hclust_continuous.yml',
-            #     'rows_averages_by_cluster_hclust',
-            #     'rows_by_columns_heatmap_hclust',
-            #     'rows_variance_hclust',
-            #     'samples_label_by_cluster_hclust',
-            #     'top_rows_by_cluster_hclust'
-            # ],
-            # 'link_hclust': [
-            #     'BENCHMARK_6_link_hclust_continuous.yml',
-            #     'rows_averages_by_cluster_link_hclust',
-            #     'rows_by_columns_heatmap_link_hclust',
-            #     'rows_variance_link_hclust',
-            #     'samples_label_by_cluster_link_hclust',
-            #     'top_rows_by_cluster_link_hclust'
-            # ],
+            'kmeans': [
+                'BENCHMARK_2_kmeans_continuous.yml',
+                'rows_averages_by_cluster_kmeans',
+                'rows_by_columns_heatmap_kmeans',
+                'rows_variance_kmeans',
+                'samples_label_by_cluster_kmeans',
+                'top_rows_by_cluster_kmeans'
+            ],
+            'hclust': [
+                'BENCHMARK_4_hclust_continuous.yml',
+                'rows_averages_by_cluster_hclust',
+                'rows_by_columns_heatmap_hclust',
+                'rows_variance_hclust',
+                'samples_label_by_cluster_hclust',
+                'top_rows_by_cluster_hclust'
+            ],
+            'link_hclust': [
+                'BENCHMARK_6_link_hclust_continuous.yml',
+                'rows_averages_by_cluster_link_hclust',
+                'rows_by_columns_heatmap_link_hclust',
+                'rows_variance_link_hclust',
+                'samples_label_by_cluster_link_hclust',
+                'top_rows_by_cluster_link_hclust'
+            ],
             'cc_kmeans': [
                 'BENCHMARK_8_cc_kmeans_continuous.yml',
                 'consensus_matrix_cc_kmeans',
@@ -115,18 +115,17 @@ def main():
                 'samples_label_by_cluster_cc_kmeans',
                 'silhouette_average_cc_kmeans',
                 'top_rows_by_cluster_cc_kmeans'
+            ],
+            'cc_hclust': [
+                'BENCHMARK_X_cc_hclust_continuous.yml',
+                'consensus_matrix_cc_hclust',
+                'rows_averages_by_cluster_cc_hclust',
+                'rows_by_columns_heatmap_cc_hclust',
+                'rows_variance_cc_hclust',
+                'samples_label_by_cluster_cc_hclust',
+                'silhouette_average_cc_hclust',
+                'top_rows_by_cluster_cc_hclust'
             ]
-            # ,
-            # 'cc_hclust': [
-            #     'BENCHMARK_X_cc_hclust_continuous.yml',
-            #     'consensus_matrix_cc_hclust',
-            #     'rows_averages_by_cluster_cc_hclust',
-            #     'rows_by_columns_heatmap_cc_hclust',
-            #     'rows_variance_cc_hclust',
-            #     'samples_label_by_cluster_cc_hclust',
-            #     'silhouette_average_cc_hclust',
-            #     'top_rows_by_cluster_cc_hclust'
-            # ]
         }
     }
 
