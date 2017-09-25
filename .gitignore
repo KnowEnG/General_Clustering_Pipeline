@@ -1,8 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 .gitignore
+.DS_Store
 .idea/
 src/__pycache__/
 test/unit/__pycache__/
 test/unit/tmp/
-.DS_Store
-
+test/run_dir
+**/*.swp

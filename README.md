@@ -12,120 +12,70 @@ This pipeline **clusters** a spreadsheet's columns, with various methods:
 | Bootstrapped K-means                             | consensus K Means                            | cc_kmeans      |
 | Bootstrapped Linked hierarchical clustering      | consensus linked hierarchical clustering     | cc_link_hclust |     
 
-* * * 
-## How to run this pipeline with Our data
-* * * 
-### 1. Clone the General_Clustering_Pipeline Repo
+## How to install this pipeline
+Install prerequisite packages, and clone the repo:
 ```
- git clone https://github.com/KnowEnG-Research/General_Clustering_Pipeline.git
-```
- 
-### 2. Install the following, for Linux
-```
- apt-get install -y python3-pip libfreetype6-dev libxft-dev libblas-dev liblapack-dev libatlas-base-dev gfortran
- pip3 install pyyaml knpackage scipy==0.19.1 numpy==1.11.1 pandas==0.18.1 matplotlib==1.4.2 scikit-learn==0.17.1 
+apt-get install -y python3-pip libfreetype6-dev libxft-dev libblas-dev liblapack-dev libatlas-base-dev gfortran
+pip3 install pyyaml knpackage scipy==0.19.1 numpy==1.11.1 pandas==0.18.1 matplotlib==1.4.2 scikit-learn==0.17.1 
+git clone https://github.com/KnowEnG-Research/General_Clustering_Pipeline.git
 ```
 
-### 3. Change directory to General_Clustering_Pipeline
-
+## How to run this pipeline with its bundled data
+Make the directory `./run_dir/` to store the output files:
 ```
-cd General_Clustering_Pipeline
-```
-
-### 4. Change directory to test
-
-```
-cd test
-```
- 
-### 5. Create a local directory "run_dir" and place all the run files in it
-```
+cd General_Clustering_Pipeline/test
 make env_setup
 ```
 
-### 6. Use one of the following "make" commands to select and run a clustering option:
-
+Run one of these commands:
 
 | **Command**                     | **Option**                                 | 
 |:------------------------------- |:-------------------------------------------| 
-| make run_kmeans_binary          | Clustering with k-means                    |
-| make run_kmeans_continuous      |                                            |
-| make run_hclust_binary          | Hierarchical Clustering                    |
-| make run_hclust_continuous      |                                            |
-| make run_link_hclust_binary     | Hierarchical linkage Clustering            |
-| make run_link_hclust_continuous |                                            |
-| make run_cc_kmeans_binary       | Consensus Clustering with k-means          |
-| make run_cc_kmeans_continuous   |                                            |
-| make run_cc_hclust_binary       | Consensus Hierarchical Clustering          |
-| make run_cc_hclust_continuous   |                                            |
-| make run_cc_link_hclust_binary  | Consensus Hierarchical linkage Clustering  |
+| `make run_kmeans_binary`          | Clustering with k-means                    |
+| `make run_kmeans_continuous`      |                                            |
+| `make run_hclust_binary`          | Hierarchical Clustering                    |
+| `make run_hclust_continuous`      |                                            |
+| `make run_link_hclust_binary`     | Hierarchical linkage Clustering            |
+| `make run_link_hclust_continuous` |                                            |
+| `make run_cc_kmeans_binary`       | Consensus Clustering with k-means          |
+| `make run_cc_kmeans_continuous`   |                                            |
+| `make run_cc_hclust_binary`       | Consensus Hierarchical Clustering          |
+| `make run_cc_hclust_continuous`   |                                            |
+| `make run_cc_link_hclust_binary`  | Consensus Hierarchical linkage Clustering  |
 
- 
-* * * 
-## How to run this pipeline with Your data
-* * * 
 
-__***Follow steps 1-5 above then do the following:***__
-
-### * Create your run directory
-
- ```
- mkdir run_dir
- ```
-
-### * Change directory to the run directory
-
- ```
- cd run_dir
- ```
-
-### * Create your results directory
-
- ```
- mkdir results
- ```
- 
-### * Create run_paramters file  (YAML Format)
- ``` 
- Look for examples of run_parameters in the General_Clustering_Pipeline/data/run_files zTEMPLATE_cc_hclust.yml
- ```
-### * Modify run_paramters file  (YAML Format)
-Change processing_method to one of: serial, parallel depending on your machine.
+## How to run this pipeline with your own data
+### Create your run directory and results directory
 ```
-processing_method: serial
+mkdir run_dir
+cd run_dir
+mkdir results
 ```
 
-set the data file targets to the files you want to run, and the parameters as appropriate for your data.
+### Create and modify the run_parameters file (in YAML format)
+- Copy an example such as `General_Clustering_Pipeline/data/run_files/zTEMPLATE_*.yml`.
 
+- In your copy, change `processing_method` to `serial` or `parallel`, depending on your machine.
 
-### * Run the General Clustering Pipeline:
+- Set the data file targets to the files you want to run, and the parameters as appropriate for your data.
 
+| **Key**                    | **Example value**             | **Description**                               |
+| -------------------------  | ----------------------------- | --------------------------------------------- |
+| method                     | hclust, cc_hclust,...         | Choose clustering method                      |
+| spreadsheet_name_full_path | data/spreadsheets/foo.gxc.tsv | Path and file name of user-supplied gene sets |
+| results_directory          | run_dir/results               | Directory to save the output files            |
+| number_of_clusters         | 3                             | Estimated number of clusters                  |
+
+<!-- Also: nearest_neighbors, top_number_of_rows, cluster_ip_address, cluster_shared_ram, cluster_shared_volumn -->
+
+### Run the General Clustering Pipeline:
   * Update PYTHONPATH enviroment variable
-   ``` 
-   export PYTHONPATH='../src':$PYTHONPATH    
-   ```
-   
+   `export PYTHONPATH='../src':$PYTHONPATH` 
+
   * Run
-   ```
-  python3 ../src/general_clustering.py -run_directory ./run_dir -run_file zTEMPLATE_cc_net_nmf.yml
-   ```
+  `python3 ../src/general_clustering.py -run_directory ./run_dir -run_file zTEMPLATE_cc_net_nmf.yml`
 
-* * * 
-## Description of "run_parameters" file
-* * * 
-
-| **Key**                    | **Value**                    | **Comments**                                   |
-| -------------------------  | ---------------------------- | ---------------------------------------------- |
-| method                     | **hclust**, **cc_hclust**,...| Choose clustering method                       |
-| spreadsheet_name_full_path | directory+spreadsheet_name   |  Path and file name of user supplied gene sets |
-| results_directory          | directory                    | Directory to save the output files             |
-| number_of_clusters         | 3                            | Estimated number of clusters                   |
-
-spreadsheet_name = ProGENI_rwr20_STExp_GDSC_500.rname.gxc.tsv</br>
-
-* * * 
 ## Description of Output files saved in results directory
-* * * 
 
 * Output files of all  methods save row by col heatmap variances per row with name **row_variance_{method}_{timestamp}_viz.tsv**.</br>
 
