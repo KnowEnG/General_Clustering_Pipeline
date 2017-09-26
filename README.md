@@ -68,9 +68,6 @@ mkdir results
 
 <!-- Also: nearest_neighbors, top_number_of_rows, cluster_ip_address, cluster_shared_ram, cluster_shared_volumn -->
 
-### Run the General Clustering Pipeline:
-  * Update PYTHONPATH enviroment variable
-   `export PYTHONPATH='../src':$PYTHONPATH` 
 
   * Run
   `python3 ../src/general_clustering.py -run_directory ./run_dir -run_file zTEMPLATE_cc_net_nmf.yml`
