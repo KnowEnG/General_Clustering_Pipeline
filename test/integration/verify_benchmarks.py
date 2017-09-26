@@ -137,7 +137,7 @@ def main():
                 'top_rows_by_cluster_cc_hclust'
             ],
             'cc_link_hclust': [
-                'BENCHMARK_X_cc_link_hclust_continuous.yml',
+                'BENCHMARK_12_cc_link_hclust_continuous.yml',
                 'consensus_matrix_cc_link_hclust',
                 'rows_averages_by_cluster_cc_link_hclust',
                 'rows_by_columns_heatmap_cc_link_hclust',
