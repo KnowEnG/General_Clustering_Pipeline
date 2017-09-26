@@ -35,7 +35,6 @@ def run_cc_link_hclust(run_parameters):
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
     spreadsheet_mat            = spreadsheet_df.as_matrix()
-    spreadsheet_mat            = kn.get_quantile_norm_matrix(spreadsheet_mat)
     number_of_samples          = spreadsheet_mat.shape[1]
 
     if processing_method == 'serial':
@@ -164,7 +163,6 @@ def run_cc_hclust(run_parameters):
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
     spreadsheet_mat            = spreadsheet_df.as_matrix()
-    spreadsheet_mat            = kn.get_quantile_norm_matrix(spreadsheet_mat)
     number_of_samples          = spreadsheet_mat.shape[1]
 
     if processing_method == 'serial':
@@ -265,7 +263,6 @@ def run_cc_kmeans(run_parameters):
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
     spreadsheet_mat            = spreadsheet_df.as_matrix()
-    spreadsheet_mat            = kn.get_quantile_norm_matrix(spreadsheet_mat)
     number_of_samples          = spreadsheet_mat.shape[1]
 
     if processing_method == 'serial':

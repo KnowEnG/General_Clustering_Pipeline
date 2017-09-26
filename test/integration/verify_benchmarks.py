@@ -79,6 +79,16 @@ def main():
                 'samples_label_by_cluster_cc_hclust',
                 'silhouette_average_cc_hclust',
                 'top_rows_by_cluster_cc_hclust'
+            ],
+            'cc_link_hclust': [
+                'BENCHMARK_11_cc_link_hclust_binary.yml',
+                'consensus_matrix_cc_link_hclust',
+                'rows_averages_by_cluster_cc_link_hclust',
+                'rows_by_columns_heatmap_cc_link_hclust',
+                'rows_variance_cc_link_hclust',
+                'samples_label_by_cluster_cc_link_hclust',
+                'silhouette_average_cc_link_hclust',
+                'top_rows_by_cluster_cc_link_hclust'
             ]
         },
         'continuous': {
@@ -125,6 +135,16 @@ def main():
                 'samples_label_by_cluster_cc_hclust',
                 'silhouette_average_cc_hclust',
                 'top_rows_by_cluster_cc_hclust'
+            ],
+            'cc_link_hclust': [
+                'BENCHMARK_X_cc_link_hclust_continuous.yml',
+                'consensus_matrix_cc_link_hclust',
+                'rows_averages_by_cluster_cc_link_hclust',
+                'rows_by_columns_heatmap_cc_link_hclust',
+                'rows_variance_cc_link_hclust',
+                'samples_label_by_cluster_cc_link_hclust',
+                'silhouette_average_cc_link_hclust',
+                'top_rows_by_cluster_cc_link_hclust'
             ]
         }
     }
