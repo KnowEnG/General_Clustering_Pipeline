@@ -25,13 +25,21 @@ clean_dir_recursively:
 # ----------------------------------------------------------------
 # Large Benchmarks RUN Section                                   -
 # ----------------------------------------------------------------
-run_all_methods:\
-run_kmeans_binary 		run_kmeans_continuous \
-run_hclust_binary 		run_hclust_continuous \
-run_link_hclust_binary 		run_link_hclust_continuous \
-run_cc_kmeans_binary 		run_cc_kmeans_continuous \
-run_cc_hclust_binary 		run_cc_hclust_continuous \
-run_link_cc_hclust_binary	run_cc_link_hclust_continuous 
+run_all_binary:\
+run_kmeans_binary\
+run_hclust_binary\
+run_link_hclust_binary\
+run_cc_kmeans_binary\
+run_cc_hclust_binary\
+run_cc_link_hclust_binary
+
+run_all_continuous:\
+run_kmeans_continuous \
+run_hclust_continuous \
+run_link_hclust_continuous \
+run_cc_kmeans_continuous \
+run_cc_hclust_continuous \
+run_cc_link_hclust_continuous 
 
 run_kmeans_binary:
 	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_1_kmeans_binary.yml
