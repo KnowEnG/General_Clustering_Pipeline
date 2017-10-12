@@ -463,9 +463,9 @@ def save_final_samples_clustering(sample_names, labels, run_parameters):
         phenotypes_labeled_by_cluster_{method}_{timestamp}_viz.tsv
     """
 
-    cluster_mapping_full_path = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
-    cluster_labels_df         = kn.create_df_with_sample_labels(sample_names, labels)
-    cluster_labels_df.to_csv  (cluster_mapping_full_path, sep='\t', header=None, float_format='%g')
+    file_name_1        = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
+    cluster_labels_df  = kn.create_df_with_sample_labels(sample_names, labels)
+    cluster_labels_df.to_csv(file_name_1, sep='\t', header=None, float_format='%g')
 
 def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters):
     """ save the full rows by columns spreadsheet.
@@ -499,10 +499,15 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
         top_index                                                           = np.argsort(cluster_ave_df[sample].values)[::-1]
         top_number_of_rows_df[sample].iloc[top_index[0:top_number_of_rows]] = 1
 
-    clusters_df.to_csv          (get_output_file_name(run_parameters, 'rows_by_columns_heatmap' , 'viz'), sep='\t', float_format='%g')
-    cluster_ave_df.to_csv       (get_output_file_name(run_parameters, 'rows_averages_by_cluster', 'viz'), sep='\t', float_format='%g')
-    clusters_variance_df.to_csv (get_output_file_name(run_parameters, 'rows_variance',            'viz'), sep='\t', float_format='%g')
-    top_number_of_rows_df.to_csv(get_output_file_name(run_parameters, 'top_rows_by_cluster', 'download'), sep='\t', float_format='%g')
+    file_name_1 = get_output_file_name(run_parameters, 'rows_by_columns_heatmap' , 'viz')
+    file_name_2 = get_output_file_name(run_parameters, 'rows_averages_by_cluster', 'viz')
+    file_name_3 = get_output_file_name(run_parameters, 'rows_variance',            'viz')
+    file_name_4 = get_output_file_name(run_parameters, 'top_rows_by_cluster', 'download')
+
+    clusters_df.to_csv          (file_name_1, sep='\t', float_format='%g')
+    cluster_ave_df.to_csv       (file_name_2, sep='\t', float_format='%g')
+    clusters_variance_df.to_csv (file_name_3, sep='\t', float_format='%g')
+    top_number_of_rows_df.to_csv(file_name_4, sep='\t', float_format='%g')
 
 
 def save_consensus_clustering(consensus_matrix, sample_names, labels, run_parameters):
@@ -520,7 +525,11 @@ def save_consensus_clustering(consensus_matrix, sample_names, labels, run_parame
         silhouette_average_{method}_{timestamp}_viz.tsv
     """
     out_df = pd.DataFrame(data=consensus_matrix, columns=sample_names, index=sample_names)
-    out_df.to_csv(get_output_file_name(run_parameters, 'consensus_matrix', 'viz'), sep='\t', float_format='%g')
+
+    file_name_1 = get_output_file_name(run_parameters, 'consensus_matrix'  , 'viz')
+    file_name_2 = get_output_file_name(run_parameters, 'silhouette_average', 'viz')
+
+    out_df.to_csv(file_name_1, sep='\t', float_format='%g')
 
     n_labels = len(set(labels))
     n_samples= len(sample_names)
@@ -533,7 +542,7 @@ def save_consensus_clustering(consensus_matrix, sample_names, labels, run_parame
     silhouette_score_string = 'silhouette number of clusters = %d, corresponding silhouette score = %g' % (
         n_labels, silhouette_average)
 
-    with open(get_output_file_name(run_parameters, 'silhouette_average', 'viz'), 'w') as fh:
+    with open(file_name_2,'w') as fh:
         fh.write(silhouette_score_string)
 
 
