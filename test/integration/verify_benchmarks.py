@@ -97,9 +97,9 @@ def main():
                 'rows_variance_kmeans',
                 'samples_label_by_cluster_kmeans',
                 'top_rows_by_cluster_kmeans',
-                'clustering_evaluation_result.tsv'
+                'clustering_evaluation_result'
             ]
-        },
+         },
         'continuous': {
             'kmeans': [
                 'BENCHMARK_2_kmeans_continuous.yml',
