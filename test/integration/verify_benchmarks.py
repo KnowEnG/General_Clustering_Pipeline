@@ -89,6 +89,15 @@ def main():
                 'samples_label_by_cluster_cc_link_hclust',
                 'silhouette_average_cc_link_hclust',
                 'top_rows_by_cluster_cc_link_hclust'
+            ],
+            'kmeans_evaluation': [
+                'BENCHMARK_13_kmeans_binary_evaluation.yml',
+                'rows_averages_by_cluster_kmeans',
+                'rows_by_columns_heatmap_kmeans',
+                'rows_variance_kmeans',
+                'samples_label_by_cluster_kmeans',
+                'top_rows_by_cluster_kmeans',
+                'clustering_evaluation_result.tsv'
             ]
         },
         'continuous': {

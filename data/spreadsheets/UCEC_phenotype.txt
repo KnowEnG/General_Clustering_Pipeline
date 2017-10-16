@@ -1,0 +1,452 @@
+sample_id	days_to_death	days_to_last	days_survival	diag_age	race	ethnicity	gender	living	histICDO3	hist_simple	ICDO3site	ICD10	ICD10_simple	stage	stage_simple	stage_ismeta	grade	grade_simple	residual
+TCGA-A5-A0G1	3251		3251	67	white	not hispanic or latino	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-A5-A0G2		4053	4053	57	asian	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiib	iii	0	grade 3	High Grade	r0
+TCGA-A5-A0G3		1079	1079	61	black or african american	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-A5-A0G5		790	790	73	black or african american	NA	female	living	8310/3	other	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-A5-A0G9		2165	2165	79	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-A5-A0GA	543		543	67	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-A5-A0GB		275	275	65	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-A5-A0GD		97	97	75	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0GE		2717	2717	38	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0GG		2516	2516	76	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-A5-A0GH		1671	1671	57	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-A5-A0GI		1750	1750	63	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0GJ		1447	1447	44	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0GM		1448	1448	53	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-A5-A0GN		1477	1477	65	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-A5-A0GP		1087	1087	58	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-A5-A0GQ		1167	1167	76	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-A5-A0GR		780	780	69	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0GU		495	495	58	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-A5-A0GV		485	485	67	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-A5-A0GW		385	385	46	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-A5-A0GX		924	924	53	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0R6		369	369	64	NA	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	r0
+TCGA-A5-A0R7		40	40	55	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0R8		125	125	81	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0R9		294	294	51	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0RA		555	555	68	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0VO		128	128	64	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A0VP		927	927	74	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-A5-A0VQ		177	177	62	NA	hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-A5-A1OF		241	241	47	NA	hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	high grade	High Grade	r0
+TCGA-A5-A1OG		348	348	65	asian	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-A5-A1OJ		292	292	31	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-A5-A1OK		243	243	63	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r0
+TCGA-A5-A2K2		2768	2768	77	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-A5-A2K3		1409	1409	68	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-A5-A2K4	871		871	69	white	NA	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r1
+TCGA-A5-A2K5		161	161	76	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-A5-A2K7		156	156	41	NA	hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-A5-A3LO		223	223	64	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-A5-A3LP		230	230	74	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AJ-A23M		31	31	61	white	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	NA
+TCGA-AJ-A23O		60	60	69	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AJ-A2QK		12	12	65	white	hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AJ-A2QL		49	49	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	NA
+TCGA-AJ-A2QM		31	31	67	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	NA
+TCGA-AJ-A2QN		61	61	60	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-AJ-A2QO		91	91	85	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-AJ-A3BD		15	15	57	white	not hispanic or latino	female	living	8460/3	other	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-AJ-A3BF		34	34	65	white	not hispanic or latino	female	living	8460/3	other	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-AJ-A3BG		31	31	65	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AJ-A3BH				82	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AJ-A3BI		61	61	67	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AJ-A3BK		51	51	68	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 3	High Grade	r0
+TCGA-AJ-A3EJ	50		50	74	white	NA	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-AJ-A3EK		64	64	53	white	hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	NA
+TCGA-AJ-A3EL		65	65	47	native hawaiian or other pacific islander	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AJ-A3EM		50	50	70	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AJ-A3I9		39	39	52	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-AJ-A3IA		28	28	77	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AJ-A3NC		210	210	63	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AJ-A3NE		78	78	46	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AJ-A3NF		41	41	60	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-AJ-A3NG		52	52	83	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-AJ-A3NH		0	0	90	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AJ-A3OJ		59	59	54	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-AJ-A3OK		142	142	73	white	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AP-A051		2545	2545	69	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AP-A052	669		669	59	black or african american	NA	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	r2
+TCGA-AP-A053		181	181	90	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AP-A054	709		709	64	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	r1
+TCGA-AP-A056		2026	2026	64	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-AP-A059		250	250	69	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AP-A05A		1198	1198	81	white	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-AP-A05D		1364	1364	67	white	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-AP-A05H		831	831	75	white	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AP-A05J		639	639	66	white	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-AP-A05N		239	239	58	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AP-A05O		371	371	68	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AP-A05P		260	260	54	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AP-A0L8	1484		1484	70	black or african american	NA	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-AP-A0L9		3443	3443	71	white	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AP-A0LD		2906	2906	63	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AP-A0LE		2986	2986	57	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AP-A0LF		103	103	82	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	r2
+TCGA-AP-A0LG		1921	1921	54	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AP-A0LH	1106		1106	60	white	not hispanic or latino	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AP-A0LI		2602	2602	67	black or african american	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r2
+TCGA-AP-A0LJ		965	965	42	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AP-A0LL		2141	2141	56	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AP-A0LM		825	825	33	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-AP-A0LN		1992	1992	56	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AP-A0LO	1016		1016	45	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AP-A0LP		1875	1875	76	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AP-A0LQ		1906	1906	59	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AP-A0LS		1668	1668	63	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AP-A0LT		1185	1185	57	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AP-A0LV		385	385	39	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AP-A1DH		1816	1816	62	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AP-A1DK		1650	1650	53	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-AP-A1DM		1329	1329	60	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AP-A1DO		952	952	62	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AP-A1DP	1081		1081	70	white	NA	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AP-A1DQ		1184	1184	76	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	high grade	High Grade	r0
+TCGA-AP-A1DR		1131	1131	59	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AP-A1DV		204	204	59	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-AP-A1E0		691	691	40	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic2	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AP-A1E1		317	317	74	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AP-A1E3		523	523	45	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	r0
+TCGA-AP-A1E4		267	267	54	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AW-A1PO		17	17	66	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r0
+TCGA-AX-A05S	413		413	81	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r2
+TCGA-AX-A05T		603	603	82	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r1
+TCGA-AX-A05U		902	902	56	american indian or alaska native	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r1
+TCGA-AX-A05W		2078	2078	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iib	ii	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AX-A05Y		2191	2191	57	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AX-A05Z		1413	1413	37	NA	hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 2	"Low grade (1,2)"	r1
+TCGA-AX-A060		1075	1075	77	american indian or alaska native	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 3	High Grade	r1
+TCGA-AX-A062		1398	1398	53	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r1
+TCGA-AX-A063		2024	2024	63	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AX-A064		1064	1064	81	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iia	ii	0	grade 2	"Low grade (1,2)"	NA
+TCGA-AX-A06B		1639	1639	72	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iia	ii	0	grade 3	High Grade	r0
+TCGA-AX-A06D	373		373	82	white	NA	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 2	"Low grade (1,2)"	r1
+TCGA-AX-A06F		1554	1554	59	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iva	iv	1	grade 3	High Grade	r0
+TCGA-AX-A06H		833	833	60	american indian or alaska native	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 1	"Low grade (1,2)"	r1
+TCGA-AX-A06J		913	913	71	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AX-A06L		1479	1479	63	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r1
+TCGA-AX-A0IS		1065	1065	52	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 2	"Low grade (1,2)"	r1
+TCGA-AX-A0IU		868	868	79	black or african american	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-AX-A0IW		1148	1148	67	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r0
+TCGA-AX-A0IZ		1333	1333	53	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AX-A0J0		1219	1219	47	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AX-A0J1		2004	2004	80	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AX-A1C4		404	404	52	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r1
+TCGA-AX-A1C5		584	584	47	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r2
+TCGA-AX-A1C7		515	515	77	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AX-A1C8		412	412	77	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r1
+TCGA-AX-A1C9		464	464	73	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r2
+TCGA-AX-A1CA		617	617	70	black or african american	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r1
+TCGA-AX-A1CC		378	378	65	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ic	i	0	grade 3	High Grade	r0
+TCGA-AX-A1CE		610	610	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AX-A1CF		2337	2337	69	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	r2
+TCGA-AX-A1CI		2207	2207	61	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-AX-A1CJ		1645	1645	59	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AX-A1CK		2052	2052	58	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-AX-A1CN		764	764	54	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iib	ii	0	grade 3	High Grade	r0
+TCGA-AX-A1CP		1107	1107	84	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r1
+TCGA-AX-A1CR		337	337	70	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iib	ii	0	grade 3	High Grade	r1
+TCGA-AX-A2H2	145		145	86	black or african american	not hispanic or latino	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iia	ii	0	grade 3	High Grade	r0
+TCGA-AX-A2H4	915		915	66	white	not hispanic or latino	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r2
+TCGA-AX-A2H5		2167	2167	67	black or african american	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r1
+TCGA-AX-A2H7		1020	1020	87	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 3	High Grade	r0
+TCGA-AX-A2H8		1861	1861	64	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AX-A2HA		2090	2090	35	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AX-A2HC		1016	1016	53	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-AX-A2HD		1232	1232	69	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r1
+TCGA-AX-A2HF		489	489	67	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AX-A2HG		660	660	56	white	hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 3	High Grade	r1
+TCGA-AX-A2HH		539	539	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r1
+TCGA-AX-A2HJ		831	831	35	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 3	High Grade	r0
+TCGA-AX-A2HK	90		90	77	white	NA	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-AX-A2IN	946		946	63	white	NA	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 3	High Grade	r0
+TCGA-AX-A2IO		1176	1176	83	white	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iia	ii	0	grade 3	High Grade	r1
+TCGA-AX-A3FS		7	7	82	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ia	i	0	grade 3	High Grade	NA
+TCGA-AX-A3FT		3	3	64	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-AX-A3FW		10	10	66	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-AX-A3FX		4	4	69	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iib	ii	0	grade 3	High Grade	NA
+TCGA-AX-A3FZ		6	6	33	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiib	iii	0	grade 3	High Grade	NA
+TCGA-AX-A3G1	624		624	84	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 3	High Grade	NA
+TCGA-AX-A3G3		1	1	58	white	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	NA
+TCGA-AX-A3G4		4	4	60	native hawaiian or other pacific islander	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	NA
+TCGA-AX-A3G6		0	0	67	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-AX-A3G7		7	7	71	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	NA
+TCGA-AX-A3G8		36	36	76	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	NA
+TCGA-AX-A3G9		254	254	63	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r1
+TCGA-AX-A3GB		440	440	73	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-AX-A3GI		4	4	66	black or african american	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	NA
+TCGA-B5-A0JN		2068	2068	84	black or african american	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	NA
+TCGA-B5-A0JR		1465	1465	73	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-B5-A0JS		1241	1241	54	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A0JT		1312	1312	63	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A0JU		1483	1483	57	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-B5-A0JV		1125	1125	63	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-B5-A0JX		1360	1360	62	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-B5-A0JY		821	821	50	white	NA	female	living	8020/3	other	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	NA
+TCGA-B5-A0JZ		689	689	60	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	NA
+TCGA-B5-A0K0		679	679	48	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A0K1		746	746	69	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A0K2		682	682	54	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A0K3		700	700	62	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	NA
+TCGA-B5-A0K4		466	466	51	NA	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-B5-A0K6		426	426	58	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A0K7		372	372	64	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A0K8		542	542	71	white	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-B5-A0K9		166	166	88	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A0KB		124	124	62	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-B5-A11E		265	265	53	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-B5-A11F		5279	5279	55	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-B5-A11G		3076	3076	71	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A11H		2317	2317	67	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 2	"Low grade (1,2)"	NA
+TCGA-B5-A11I		2038	2038	65	black or african american	NA	female	living	8140/3	other	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	NA
+TCGA-B5-A11J		1291	1291	64	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-B5-A11L		1396	1396	71	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-B5-A11M		1117	1117	43	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A11N		1147	1147	69	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A11O		1034	1034	62	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A11P		1120	1120	87	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-B5-A11Q		702	702	64	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A11R		837	837	51	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	NA
+TCGA-B5-A11S		650	650	63	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-B5-A11U		271	271	74	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	NA
+TCGA-B5-A11V		231	231	64	black or african american	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A11W		339	339	61	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-B5-A11X		337	337	66	black or african american	NA	female	living	8020/3	other	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	NA
+TCGA-B5-A11Y		315	315	59	white	NA	female	living	8382/3	other	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A11Z		291	291	61	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A121		259	259	57	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A1MR		5690	5690	65	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	NA
+TCGA-B5-A1MU	1547		1547	79	white	NA	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	NA
+TCGA-B5-A1MV		380	380	84	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-B5-A1MW		220	220	55	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	NA
+TCGA-B5-A1MX		174	174	47	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-B5-A1MY	361		361	62	black or african american	NA	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	NA
+TCGA-B5-A1MZ		465	465	54	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-B5-A1N2		389	389	70	black or african american	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	NA
+TCGA-B5-A3FC		1890	1890	53	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	NA
+TCGA-BG-A0LW		194	194	47	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0LX		252	252	57	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0M0		237	237	66	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BG-A0M2		316	316	62	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0M3		742	742	74	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0M4		480	480	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-BG-A0M6		241	241	73	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-BG-A0M7		698	698	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0M8		690	690	50	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-BG-A0M9		765	765	73	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0MA	326		326	60	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	NA		stage ib	i	0	grade 3	High Grade	r0
+TCGA-BG-A0MC		827	827	74	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BG-A0MG		896	896	73	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BG-A0MH		1341	1341	61	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 2	"Low grade (1,2)"	NA
+TCGA-BG-A0MI	714		714	83	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0MO		1021	1021	63	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BG-A0MQ		761	761	71	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BG-A0MS		553	553	53	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	r0
+TCGA-BG-A0MT		240	240	64	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0MU		231	231	78	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BG-A0RY		128	128	68	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0VT		224	224	56	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0VV		260	260	53	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BG-A0VW		131	131	77	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BG-A0VX		490	490	58	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	rx
+TCGA-BG-A0VZ		868	868	58	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BG-A0W1		907	907	89	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A0W2		1151	1151	57	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	rx
+TCGA-BG-A0YU		279	279	37	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	rx
+TCGA-BG-A0YV		186	186	67	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r0
+TCGA-BG-A186		230	230	61	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 2	"Low grade (1,2)"	rx
+TCGA-BG-A187		231	231	65	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BG-A18A		252	252	74	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	rx
+TCGA-BG-A18B		155	155	53	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage i	i	0	grade 2	"Low grade (1,2)"	rx
+TCGA-BG-A18C		169	169	72	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	rx
+TCGA-BG-A220		220	220	69	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	NA
+TCGA-BG-A221		46	46	84	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-BG-A222		14	14	49	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	NA
+TCGA-BG-A2AD		0	0	63	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiib	iii	0	grade 3	High Grade	NA
+TCGA-BG-A2AE		16	16	57	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-BG-A2L7		177	177	68	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	rx
+TCGA-BK-A0C9		289	289	57	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BK-A0CA		371	371	61	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	rx
+TCGA-BK-A0CB		188	188	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BK-A0CC		211	211	69	black or african american	hispanic or latino	female	living	8460/3	other	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	rx
+TCGA-BK-A139		239	239	74	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-BK-A13B		578	578	58	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	NA
+TCGA-BK-A13C		202	202	47	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BK-A26L		233	233	71	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	rx
+TCGA-BS-A0T9	1428		1428	39	native hawaiian or other pacific islander	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	r2
+TCGA-BS-A0TA		714	714	58	native hawaiian or other pacific islander	hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	rx
+TCGA-BS-A0TC		2260	2260	69	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BS-A0TD		2002	2002	65	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BS-A0TE	146		146	35	asian	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.9	3	stage ivb	iv	1	grade 3	High Grade	r2
+TCGA-BS-A0TG		2034	2034	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage iiia	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BS-A0TI		1443	1443	64	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ic	i	0	grade 3	High Grade	r0
+TCGA-BS-A0TJ		1514	1514	59	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ic	i	0	grade 3	High Grade	r0
+TCGA-BS-A0U5		2204	2204	76	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BS-A0U7	934		934	63	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BS-A0U8		2606	2606	55	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage iiic	iii	0	grade 1	"Low grade (1,2)"	NA
+TCGA-BS-A0U9		1749	1749	59	native hawaiian or other pacific islander	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage iia	ii	0	grade 3	High Grade	rx
+TCGA-BS-A0UA		2540	2540	68	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BS-A0UF		1843	1843	65	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ib	i	0	grade 3	High Grade	r0
+TCGA-BS-A0UJ		27	27	68	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BS-A0UL		36	36	54	native hawaiian or other pacific islander	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BS-A0UM		2191	2191	64	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BS-A0UT		595	595	62	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage iib	ii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-BS-A0UV		149	149	55	native hawaiian or other pacific islander	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-BS-A0V4		31	31	56	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ib	i	0	grade 1	"Low grade (1,2)"	NA
+TCGA-BS-A0V6		1650	1650	55	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BS-A0V7		1429	1429	48	native hawaiian or other pacific islander	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-BS-A0V8		1507	1507	68	native hawaiian or other pacific islander	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iib	ii	0	grade 2	"Low grade (1,2)"	r1
+TCGA-BS-A0VI		1661	1661	58	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage iib	ii	0	grade 3	High Grade	r0
+TCGA-BS-A0WQ		1207	1207	55	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	NA		stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A0ZN		512	512	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A0ZO		69	69	75	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A0ZP		690	690	59	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iva	iv	1	grade 3	High Grade	rx
+TCGA-D1-A0ZQ		8	8	90	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A0ZR		17	17	57	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A0ZS		147	147	54	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-D1-A0ZU		578	578	34	white	not hispanic or latino	female	living	8382/3	other	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A0ZV		350	350	58	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A0ZZ		377	377	80	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-D1-A101		53	53	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	rx
+TCGA-D1-A102		43	43	49	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	rx
+TCGA-D1-A103		480	480	87	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A15V		1012	1012	68	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-D1-A15W		915	915	58	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 1	"Low grade (1,2)"	rx
+TCGA-D1-A15X		909	909	45	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	high grade	High Grade	r0
+TCGA-D1-A15Z	58		58	72	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A160		112	112	70	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A161		892	892	78	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A162		976	976	69	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A163		938	938	50	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A165		20	20	64	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A167		478	478	70	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A168		913	913	67	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-D1-A169		905	905	63	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iv	iv	1	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A16B		744	744	64	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A16D		908	908	49	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 2	"Low grade (1,2)"	rx
+TCGA-D1-A16E		909	909	73	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A16F		80	80	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A16G	834		834	74	white	not hispanic or latino	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iv	iv	1	high grade	High Grade	rx
+TCGA-D1-A16I	349		349	62	white	not hispanic or latino	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ic	i	0	high grade	High Grade	r0
+TCGA-D1-A16J		742	742	61	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iib	ii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A16N		640	640	51	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r0
+TCGA-D1-A16O		864	864	44	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A16Q		221	221	54	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A16R		21	21	39	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A16S		238	238	70	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	high grade	High Grade	r0
+TCGA-D1-A16V		43	43	78	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-D1-A16X		111	111	54	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A16Y		532	532	56	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	rx
+TCGA-D1-A174		324	324	51	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-D1-A175		202	202	48	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 3	High Grade	r0
+TCGA-D1-A176		506	506	67	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A177		347	347	70	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A179		206	206	76	white	hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	high grade	High Grade	r0
+TCGA-D1-A17A		19	19	59	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iia	ii	0	grade 3	High Grade	r0
+TCGA-D1-A17B		212	212	69	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A17C		1	1	78	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A17D		160	160	58	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-D1-A17F		39	39	68	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A17H		454	454	61	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A17K		429	429	74	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A17L		459	459	81	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A17M		311	311	56	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A17N		46	46	46	NA	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A17Q		54	54	54	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A17R	400		400	58	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A17S		326	326	59	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A17T		70	70	67	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A17U		396	396	53	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic2	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-D1-A1NS		43	43	53	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A1NU		311	311	74	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-D1-A1NW		22	22	72	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	r0
+TCGA-D1-A1NX		399	399	66	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-D1-A1NY		396	396	67	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-D1-A1NZ		8	8	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A1O0		2	2	77	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-D1-A1O5		377	377	61	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A1O7		32	32	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-D1-A1O8	120		120	70	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-D1-A2G0		107	107	70	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-D1-A2G5		1260	1260	50	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-D1-A2G6	258		258	53	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-D1-A2G7		1365	1365	65	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-D1-A3DA		8	8	77	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	r0
+TCGA-D1-A3DG	130		130	81	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	r0
+TCGA-D1-A3DH		125	125	71	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-DI-A0WH		405	405	64	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-DI-A1BU		1005	1005	55	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iib	ii	0	grade 3	High Grade	r0
+TCGA-DI-A1BY		1114	1114	63	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iib	ii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-DI-A1C3		739	739	38	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-DI-A1NN		943	943	63	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-DI-A1NO	285		285	68	black or african american	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	rx
+TCGA-DI-A2QT	377		377	51	american indian or alaska native	hispanic or latino	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r2
+TCGA-DI-A2QU	946		946	67	white	not hispanic or latino	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	rx
+TCGA-DI-A2QY		2797	2797	64	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iib	ii	0	grade 3	High Grade	rx
+TCGA-E6-A1LX		711	711	40	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-E6-A1LZ		1289	1289	76	black or african american	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-E6-A1M0		427	427	56	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r0
+TCGA-E6-A2P8	72		72	53	black or african american	not hispanic or latino	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iv	iv	1	grade 3	High Grade	NA
+TCGA-E6-A2P9		202	202	65	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	NA
+TCGA-EC-A1NJ		0	0	73	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-EC-A1QX		66	66	71	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EC-A24G		46	46	57	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-EO-A1Y5		332	332	63	NA	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-EO-A1Y7		243	243	65	NA	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EO-A1Y8		328	328	87	NA	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-EO-A22R		972	972	56	NA	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EO-A22S		1066	1066	58	NA	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EO-A22T		1004	1004	56	asian	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-EO-A22U		825	825	83	NA	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EO-A22X		929	929	36	NA	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r0
+TCGA-EO-A22Y		701	701	68	NA	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-EO-A2CG		672	672	69	asian	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-EO-A2CH	532		532	73	NA	NA	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiib	iii	0	grade 3	High Grade	r2
+TCGA-EY-A1G7	189		189	86	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-EY-A1G8	455		455	83	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EY-A1GC		138	138	62	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EY-A1GD		248	248	51	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-EY-A1GE		552	552	67	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-EY-A1GF		532	532	75	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-EY-A1GH		527	527	70	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-EY-A1GI		506	506	52	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-EY-A1GJ		510	510	73	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-EY-A1GK		503	503	74	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EY-A1GL		424	424	51	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ii	ii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-EY-A1GM		209	209	60	black or african american	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r0
+TCGA-EY-A1GO		360	360	65	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-EY-A1GP		348	348	54	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 1	"Low grade (1,2)"	r0
+TCGA-EY-A1GQ		340	340	76	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EY-A1GR		344	344	67	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-EY-A1GS		284	284	71	black or african american	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	r2
+TCGA-EY-A1GT		300	300	68	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 1	"Low grade (1,2)"	r0
+TCGA-EY-A1GU		259	259	66	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 2	"Low grade (1,2)"	r0
+TCGA-EY-A1GV		257	257	75	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	r0
+TCGA-EY-A1GW		260	260	73	white	hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	r1
+TCGA-EY-A1GX		166	166	76	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiia	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-EY-A1H0		339	339	57	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic2	iii	0	grade 2	"Low grade (1,2)"	r0
+TCGA-EY-A210		165	165	82	black or african american	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiic2	iii	0	grade 3	High Grade	r0
+TCGA-EY-A212		109	109	83	white	not hispanic or latino	female	living	8460/3	other	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	r0
+TCGA-EY-A214		252	252	66	white	NA	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic1	iii	0	grade 3	High Grade	r0
+TCGA-EY-A215		391	391	60	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EY-A2OM		235	235	55	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-EY-A2ON		171	171	61	black or african american	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	r2
+TCGA-EY-A2OO		774	774	56	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-EY-A2OP		503	503	63	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-EY-A2OQ		293	293	61	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-FI-A2CX		1217	1217	82	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-FI-A2CY		1064	1064	60	black or african american	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-FI-A2D0		1034	1034	55	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-FI-A2D2		1095	1095	66	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-FI-A2D4	242		242	44	white	NA	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage iiic	iii	0	grade 3	High Grade	r2
+TCGA-FI-A2D5	426		426	56	white	not hispanic or latino	female	deceased	8380/3	endometrioid type	c54.1	c54.1	1	stage ivb	iv	1	grade 3	High Grade	r0
+TCGA-FI-A2D6		273	273	74	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0
+TCGA-FI-A2EU		2557	2557	68	NA	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-FI-A2EW		1795	1795	71	black or african american	NA	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iib	ii	0	grade 3	High Grade	r0
+TCGA-FI-A2EX		276	276	58	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r0
+TCGA-FI-A2EY	883		883	63	white	not hispanic or latino	female	deceased	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage iiia	iii	0	grade 3	High Grade	r0
+TCGA-FI-A2F4		880	880	64	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ic	i	0	grade 3	High Grade	r0
+TCGA-FI-A2F8		761	761	64	white	not hispanic or latino	female	living	8441/3	serous adenocarcinoma	c54.1	c54.1	1	stage ii	ii	0	grade 3	High Grade	r0
+TCGA-FI-A2F9		791	791	79	white	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ia	i	0	grade 3	High Grade	r0
+TCGA-H5-A2HR		53	53	71	black or african american	not hispanic or latino	female	living	8380/3	endometrioid type	c54.1	c54.1	1	stage ib	i	0	grade 3	High Grade	r0

@@ -14,6 +14,7 @@ from scipy.sparse import csr_matrix
 import knpackage.toolbox as kn
 import knpackage.distributed_computing_utils as dstutil
 
+import general_clustering_eval_toolbox as cluster_eval
 
 def run_cc_link_hclust(run_parameters):
     """ wrapper: call sequence to perform hclust with
@@ -463,9 +464,15 @@ def save_final_samples_clustering(sample_names, labels, run_parameters):
         phenotypes_labeled_by_cluster_{method}_{timestamp}_viz.tsv
     """
 
-    file_name_1        = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
+    
     cluster_labels_df  = kn.create_df_with_sample_labels(sample_names, labels)
-    cluster_labels_df.to_csv(file_name_1, sep='\t', header=None, float_format='%g')
+    cluster_mapping_full_path = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
+    cluster_labels_df.to_csv(cluster_mapping_full_path, sep='\t', header=None, float_format='%g')
+    
+
+    if 'phenotype_name_full_path' in run_parameters.keys():
+        run_parameters['cluster_mapping_full_path'] = cluster_mapping_full_path
+        cluster_eval.clustering_evaluation(run_parameters)
 
 def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters):
     """ save the full rows by columns spreadsheet.
