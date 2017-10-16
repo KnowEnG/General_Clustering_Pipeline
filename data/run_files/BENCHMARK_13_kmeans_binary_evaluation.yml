@@ -1,0 +1,40 @@
+# --------------------------------------------------------------------
+# - Analysis Method: kmeans,hclust,link_hclust,cc_kmeans, cc_hclust  -
+# --------------------------------------------------------------------
+method:                     kmeans       
+
+# --------------------------------------------------------------------
+# - affinity_metric: euclidean, manhattan
+# --------------------------------------------------------------------
+affinity_metric:            euclidean
+
+# --------------------------------------------------------------------
+# - linkage_method:   ward, complete, average
+# --------------------------------------------------------------------
+linkage_criterion:          ward
+
+# --------------------------------------------------------------------
+# - spreadsheet          dataframe in .tsv format                    -
+# --------------------------------------------------------------------
+spreadsheet_name_full_path: ../data/spreadsheets/tcga_ucec_somatic_mutation_data.df
+phenotype_name_full_path:   ../data/spreadsheets/UCEC_phenotype.txt
+
+# --------------------------------------------------------------------
+# - directory where the result and temporary files will be written   -
+# --------------------------------------------------------------------
+results_directory:          ./run_dir/results
+
+# --------------------------------------------------------------------
+# - Number of Clusters Required                                      -
+# --------------------------------------------------------------------
+number_of_clusters:         3
+
+# --------------------------------------------------------------------
+# - Top number of rows to analyze                                    -
+# --------------------------------------------------------------------
+
+top_number_of_rows:         10
+# --------------------------------------------------------------------
+# - Threshold to define categorical data and continuous data         -
+# --------------------------------------------------------------------
+threshold: 10
