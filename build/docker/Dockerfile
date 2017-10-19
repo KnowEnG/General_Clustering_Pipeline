@@ -1,4 +1,4 @@
-FROM knowengdev/base_image:07_11_2017
+FROM knowengdev/base_image:09_19_2017
 MAINTAINER Nahil Sobh <sobh@illinois.edu>
 
 ENV SRC_LOC /home
