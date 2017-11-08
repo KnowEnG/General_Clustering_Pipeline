@@ -123,13 +123,13 @@ set the data file targets to the files you want to run, and the parameters as ap
 | results_directory          | directory                    | Directory to save the output files             |
 | tmp_directory              | ./run_dir/tmp                | Directory to save the temporary files          |
 | number_of_clusters         | 3                            | Estimated number of clusters                   |
-| number_of_bootstraps       | 4                            |Number of bootstraps for cc_kmeans and cc_hclust|
+| number_of_bootstraps       | 4                            |Number of bootstraps for cc_kmeans, cc_hclust and cc_link_hclust|
 | rows_sampling_fraction     | 0.8                          | Select 80% of spreadsheet rows                 |
 | cols_sampling_fraction     | 0.8                          | Select 80% of spreadsheet columns              |
 | top_number_of_rows         | 10                           | Top number of rows to analyze                  | 
 | processing_method          | serial or parallel or distribute| Choose processing method                    |
 | parallelism                | number of cores to use in parallel processing| Set number of cores for speed or memory|
-| threshold                  | 10                           | Threshold to define categorical data and continuous data| 
+| threshold                  | 10                           | Threshold to define categorical data and continuous data in evaluation toolbox| 
 | nearest_neighbors          | 10                           | Number of Nearest Neighbors in cc_link_hclust method |
 
 spreadsheet_name = ProGENI_rwr20_STExp_GDSC_500.rname.gxc.tsv</br>
