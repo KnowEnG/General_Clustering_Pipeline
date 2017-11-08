@@ -6,7 +6,7 @@ method:                     cc_hclust
 # --------------------------------------------------------------------
 # - affinity_metric: euclidean, manhattan
 # --------------------------------------------------------------------
-affinity_metric:            euclidean
+affinity_metric:            jaccard
 
 # --------------------------------------------------------------------
 # - linkage_method:   ward, complete, average
