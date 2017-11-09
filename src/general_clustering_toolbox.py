@@ -140,12 +140,10 @@ def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors, 
     """
 
     connectivity = kneighbors_graph(spreadsheet_mat, n_neighbors=nearest_neighbors, include_self=False)
-
     if affinity_metric == 'jaccard' :
 
         distance_mat = 1.0 - pairwise_distances(spreadsheet_mat,metric='jaccard')
-
-        if (linkage_criterion == "ward" ): affinity_metric = "euclidean"
+        if linkage_criterion == "ward" : affinity_metric = "euclidean"
         l_method = AgglomerativeClustering( n_clusters   = number_of_clusters
                                           , affinity     = affinity_metric
                                           , connectivity = connectivity
@@ -367,8 +365,7 @@ def perform_hclust(spreadsheet_mat, number_of_clusters, affinity_metric, linkage
     if affinity_metric == 'jaccard' :
 
         distance_mat = 1.0 - pairwise_distances(spreadsheet_mat,metric='jaccard')
-
-        if (linkage_criterion == "ward" ):affinity_metric = "euclidean"
+        if linkage_criterion == "ward" : affinity_metric = "euclidean"
         l_method = AgglomerativeClustering( n_clusters   = number_of_clusters
                                           , affinity     = affinity_metric
                                           , linkage      = linkage_criterion  ).fit(distance_mat)
