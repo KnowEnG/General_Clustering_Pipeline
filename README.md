@@ -117,22 +117,22 @@ set the data file targets to the files you want to run, and the parameters as ap
 | **Key**                    | **Value**                    | **Comments**                                   |
 | -------------------------  | ---------------------------- | ---------------------------------------------- |
 | method                     |  **kmeans**,**hclust**,**link_hclust**,**cc_kmeans**, **cc_hclust**, **cc_link_hclust**| Choose clustering method                       |
-| affinity_metric            | **euclidean**, **manhattan** | Choose clustering affinity                     |
+| affinity_metric            | **euclidean**, **manhattan**, **jaccard** | Choose clustering affinity                     |
 | linkage_criterion          | **ward**, **complete**, **average** | Choose clustering affinity              |
-| spreadsheet_name_full_path | directory+spreadsheet_name   |  Path and file name of user supplied gene sets |
-| results_directory          | directory                    | Directory to save the output files             |
-| tmp_directory              | ./run_dir/tmp                | Directory to save the temporary files          |
-| number_of_clusters         | 3                            | Estimated number of clusters                   |
-| number_of_bootstraps       | 4                            |Number of bootstraps for cc_kmeans, cc_hclust and cc_link_hclust|
-| rows_sampling_fraction     | 0.8                          | Select 80% of spreadsheet rows                 |
-| cols_sampling_fraction     | 0.8                          | Select 80% of spreadsheet columns              |
-| top_number_of_rows         | 10                           | Top number of rows to analyze                  | 
+| spreadsheet_name_full_path | directory+spreadsheet_name      |  Path and file name of user supplied gene sets |
+| results_directory          | directory                       | Directory to save the output files             |
+| tmp_directory              | ./run_dir/tmp                   | Directory to save the temporary files          |
+| number_of_clusters         | 3                               | Estimated number of clusters                   |
+| number_of_bootstraps       | 4                               | Number of bootstraps for cc_kmeans, cc_hclust and cc_link_hclust|
+| rows_sampling_fraction     | 0.8                             | Select 80% of spreadsheet rows                 |
+| cols_sampling_fraction     | 0.8                             | Select 80% of spreadsheet columns              |
+| top_number_of_rows         | 10                              | Top number of features to analyze              | 
 | processing_method          | serial or parallel or distribute| Choose processing method                    |
-| parallelism                | number of cores to use in parallel processing| Set number of cores for speed or memory|
-| threshold                  | 10                           | Threshold to define categorical data and continuous data in evaluation toolbox| 
-| nearest_neighbors          | 10                           | Number of Nearest Neighbors in cc_link_hclust method |
+| parallelism                | number of cores                 | Set number of cores for speed or memory|
+| threshold                  | 10                              | Threshold to define categorical data and continuous data in evaluation toolbox| 
+| nearest_neighbors          | 10                              | Number of Nearest Neighbors in cc_link_hclust method |
 
-spreadsheet_name = ProGENI_rwr20_STExp_GDSC_500.rname.gxc.tsv</br>
+spreadsheet_name = EXPR_GSE_METABRIC_lymphN_binary.tsv.gz</br>
 
 * * * 
 ## Description of Output files saved in results directory
