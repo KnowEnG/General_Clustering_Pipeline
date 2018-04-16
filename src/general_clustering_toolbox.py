@@ -362,13 +362,19 @@ def perform_hclust(spreadsheet_mat, number_of_clusters, affinity_metric, linkage
         number_of_clusters: number of clusters requested
     """
 
-    if affinity_metric == 'jaccard' :
+    if affinity_metric == 'jaccard':
 
-        distance_mat = 1.0 - pairwise_distances(spreadsheet_mat,metric='jaccard')
-        if linkage_criterion == "ward" : affinity_metric = "euclidean"
-        l_method = AgglomerativeClustering( n_clusters   = number_of_clusters
-                                          , affinity     = affinity_metric
-                                          , linkage      = linkage_criterion  ).fit(distance_mat)
+        if linkage_criterion == "ward":
+            affinity_metric_selected = "euclidean"
+        else:
+            affinity_metric_selected = "precomputed"
+
+        distance_mat = 1.0 - pairwise_distances(spreadsheet_mat, metric='jaccard')
+
+        l_method = AgglomerativeClustering(n_clusters=number_of_clusters
+                                           , affinity=affinity_metric_selected
+                                           , linkage=linkage_criterion).fit(distance_mat)
+
     else:
         l_method = AgglomerativeClustering( n_clusters   = number_of_clusters  
                                           , affinity     = affinity_metric  
