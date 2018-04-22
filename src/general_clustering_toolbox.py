@@ -13,6 +13,9 @@ from sklearn.metrics.pairwise import pairwise_distances
 
 from scipy.sparse import csr_matrix
 
+from scipy.cluster.hierarchy import ward
+from scipy.cluster.hierarchy import fcluster
+
 import knpackage.toolbox as kn
 import knpackage.distributed_computing_utils as dstutil
 
@@ -138,22 +141,20 @@ def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors, 
         spreadsheet_mat: matrix to be clusters by rows
         number_of_clusters: number of clusters requested
     """
-
     connectivity = kneighbors_graph(spreadsheet_mat, n_neighbors=nearest_neighbors, include_self=False)
-    if affinity_metric == 'jaccard' :
 
-        distance_mat = 1.0 - pairwise_distances(spreadsheet_mat,metric='jaccard')
-        if linkage_criterion == "ward" : affinity_metric = "euclidean"
-        l_method = AgglomerativeClustering( n_clusters   = number_of_clusters
-                                          , affinity     = affinity_metric
-                                          , connectivity = connectivity
-                                          , linkage      = linkage_criterion  ).fit(distance_mat)
+    if affinity_metric == 'jaccard' and linkage_criterion == "ward":
+        distance_mat   = 1.0 - pairwise_distances(spreadsheet_mat==0,metric='jaccard')
+        linkage_matrix = ward(distance_mat)
+
+        labels         = fcluster(linkage_matrix,number_of_clusters,criterion='maxclust') - 1
+
     else:
         l_method = AgglomerativeClustering( n_clusters   = number_of_clusters
                                           , affinity     = affinity_metric
                                           , connectivity = connectivity
                                           , linkage      = linkage_criterion  ).fit(spreadsheet_mat)
-    labels     = l_method.labels_
+        labels     = l_method.labels_
  
     return labels
 
@@ -362,25 +363,16 @@ def perform_hclust(spreadsheet_mat, number_of_clusters, affinity_metric, linkage
         number_of_clusters: number of clusters requested
     """
 
-    if affinity_metric == 'jaccard':
-
-        if linkage_criterion == "ward":
-            affinity_metric_selected = "euclidean"
-        else:
-            affinity_metric_selected = "precomputed"
-
-        distance_mat = 1.0 - pairwise_distances(spreadsheet_mat, metric='jaccard')
-
-        l_method = AgglomerativeClustering(n_clusters=number_of_clusters
-                                           , affinity=affinity_metric_selected
-                                           , linkage=linkage_criterion).fit(distance_mat)
+    if affinity_metric == 'jaccard' and linkage_criterion == "ward":
+        distance_mat   = 1.0 - pairwise_distances(spreadsheet_mat==0,metric='jaccard')
+        linkage_matrix = ward(distance_mat)
+        labels         = fcluster(linkage_matrix,number_of_clusters,criterion='maxclust') - 1
 
     else:
         l_method = AgglomerativeClustering( n_clusters   = number_of_clusters  
                                           , affinity     = affinity_metric  
                                           , linkage      = linkage_criterion  ).fit(spreadsheet_mat)
-
-    labels = l_method.labels_
+        labels = l_method.labels_
 
     return labels
 
