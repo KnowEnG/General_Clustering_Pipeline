@@ -29,38 +29,45 @@ def run_cc_link_hclust(run_parameters):
     Args:
         run_parameters: parameter set dictionary.
     """
-    tmp_dir = 'tmp_cc_link_hclust'
-    run_parameters = update_tmp_directory(run_parameters, tmp_dir)
 
-    processing_method          = run_parameters['processing_method']
+    tmp_dir                    = 'tmp_cc_link_hclust'
+    run_parameters             = update_tmp_directory(run_parameters, tmp_dir)
+
+    processing_method          = run_parameters['processing_method'   ]
     number_of_bootstraps       = run_parameters['number_of_bootstraps']
-    number_of_clusters         = run_parameters['number_of_clusters']
-    nearest_neighbors          = run_parameters['nearest_neighbors']
-    affinity_metric            = run_parameters['affinity_metric']
-    linkage_criterion          = run_parameters['linkage_criterion']
+    number_of_clusters         = run_parameters['number_of_clusters'  ]
+    nearest_neighbors          = run_parameters['nearest_neighbors'   ]
+    affinity_metric            = run_parameters['affinity_metric'     ]
+    linkage_criterion          = run_parameters['linkage_criterion'   ]
+
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
     spreadsheet_mat            = spreadsheet_df.as_matrix()
     number_of_samples          = spreadsheet_mat.shape[1]
 
-    if processing_method == 'serial':
-        for sample in range(0, number_of_bootstraps):
-            run_cc_link_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample)
+    if   processing_method ==     'serial':
+         for sample in range(0, number_of_bootstraps):
+            run_cc_link_hclust_clusters_worker( spreadsheet_mat
+                                              , run_parameters
+                                              , sample )
 
-    elif processing_method == 'parallel':
-        find_and_save_cc_link_hclust_clusters_parallel(spreadsheet_mat, run_parameters, number_of_bootstraps)
+    elif processing_method ==   'parallel':
+         find_and_save_cc_link_hclust_clusters_parallel( spreadsheet_mat
+                                                       , run_parameters
+                                                       , number_of_bootstraps )
 
     elif processing_method == 'distribute':
-        func_args = [spreadsheet_mat, run_parameters]
-        dependency_list = [run_cc_link_hclust_clusters_worker, kn.save_a_clustering_to_tmp, dstutil.determine_parallelism_locally]
-        dstutil.execute_distribute_computing_job(run_parameters['cluster_ip_address'],
-                                                 number_of_bootstraps,
-                                                 func_args,
-                                                 find_and_save_cc_link_hclust_clusters_parallel,
-                                                 dependency_list)
+         func_args       = [spreadsheet_mat, run_parameters]
+         dependency_list = [run_cc_link_hclust_clusters_worker, kn.save_a_clustering_to_tmp, dstutil.determine_parallelism_locally]
+
+         dstutil.execute_distribute_computing_job( run_parameters['cluster_ip_address'],
+                                                   number_of_bootstraps,
+                                                   func_args,
+                                                   find_and_save_cc_link_hclust_clusters_parallel,
+                                                   dependency_list )
     else:
-        raise ValueError('processing_method contains bad value.')
+         raise ValueError('processing_method contains bad value.')
 
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
     labels           = perform_link_hclust( consensus_matrix
@@ -85,17 +92,20 @@ def find_and_save_cc_link_hclust_clusters_parallel(spreadsheet_mat, run_paramete
         run_parameters: dictionary of run-time parameters.
         number_of_cpus: number of processes to be running in parallel
     """
+
     import knpackage.distributed_computing_utils as dstutil
 
-    jobs_id         = range(0, local_parallelism)
-    zipped_arguments= dstutil.zip_parameters(spreadsheet_mat, run_parameters, jobs_id)
+    jobs_id          = range(0, local_parallelism)
+    zipped_arguments = dstutil.zip_parameters(spreadsheet_mat, run_parameters, jobs_id)
 
     if 'parallelism' in run_parameters:
-        parallelism = dstutil.determine_parallelism_locally(local_parallelism, run_parameters['parallelism'])
+        parallelism = dstutil.determine_parallelism_locally( local_parallelism, run_parameters['parallelism'])
     else:
-        parallelism = dstutil.determine_parallelism_locally(local_parallelism)
+        parallelism = dstutil.determine_parallelism_locally( local_parallelism                               )
 
-    dstutil.parallelize_processes_locally(run_cc_link_hclust_clusters_worker, zipped_arguments, parallelism)
+    dstutil.parallelize_processes_locally( run_cc_link_hclust_clusters_worker
+                                         , zipped_arguments
+                                         , parallelism )
 
 
 def run_cc_link_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
@@ -110,19 +120,21 @@ def run_cc_link_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
         None
 
     """
+
     import knpackage.toolbox as kn
     import numpy as np
 
     np.random.seed(sample)
     rows_sampling_fraction = run_parameters["rows_sampling_fraction"]
     cols_sampling_fraction = run_parameters["cols_sampling_fraction"]
-    number_of_clusters     = run_parameters["number_of_clusters"]
-    nearest_neighbors      = run_parameters["nearest_neighbors"]
-    affinity_metric        = run_parameters['affinity_metric']
-    linkage_criterion      = run_parameters['linkage_criterion']
+    number_of_clusters     = run_parameters["number_of_clusters"    ]
+    nearest_neighbors      = run_parameters["nearest_neighbors"     ]
+    affinity_metric        = run_parameters['affinity_metric'       ]
+    linkage_criterion      = run_parameters['linkage_criterion'     ]
 
-    spreadsheet_mat, sample_permutation = kn.sample_a_matrix(spreadsheet_mat,
-                                                             rows_sampling_fraction, cols_sampling_fraction)
+    spreadsheet_mat, sample_permutation = kn.sample_a_matrix( spreadsheet_mat
+                                                            , rows_sampling_fraction
+                                                            , cols_sampling_fraction )
 
     labels                 = perform_link_hclust( spreadsheet_mat.T
                                                 , number_of_clusters
@@ -131,6 +143,7 @@ def run_cc_link_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
                                                 , linkage_criterion )
 
     h_mat                  = labels_to_hmat(labels, number_of_clusters)
+
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
 
 
@@ -141,6 +154,7 @@ def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors, 
         spreadsheet_mat: matrix to be clusters by rows
         number_of_clusters: number of clusters requested
     """
+
     connectivity = kneighbors_graph(spreadsheet_mat, n_neighbors=nearest_neighbors, include_self=False)
 
     if affinity_metric == 'jaccard' and linkage_criterion == "ward":
@@ -165,6 +179,7 @@ def run_cc_hclust(run_parameters):
     Args:
         run_parameters: parameter set dictionary.
     """
+
     tmp_dir = 'tmp_cc_nmf'
     run_parameters = update_tmp_directory(run_parameters, tmp_dir)
 
@@ -220,6 +235,7 @@ def find_and_save_cc_hclust_clusters_parallel(spreadsheet_mat, run_parameters, l
         run_parameters: dictionary of run-time parameters.
         number_of_cpus: number of processes to be running in parallel
     """
+
     import knpackage.distributed_computing_utils as dstutil
 
     jobs_id = range(0, local_parallelism)
@@ -243,6 +259,7 @@ def run_cc_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
         None
 
     """
+
     import knpackage.toolbox as kn
     import numpy as np
 
@@ -270,6 +287,7 @@ def run_cc_kmeans(run_parameters):
     Args:
         run_parameters: parameter set dictionary.
     """
+
     tmp_dir                    = 'tmp_cc_nmf'
     run_parameters             = update_tmp_directory(run_parameters, tmp_dir)
 
@@ -320,6 +338,7 @@ def find_and_save_cc_kmeans_clusters_parallel(spreadsheet_mat, run_parameters, l
         run_parameters: dictionary of run-time parameters.
         number_of_cpus: number of processes to be running in parallel
     """
+
     import knpackage.distributed_computing_utils as dstutil
 
     jobs_id         = range(0, local_parallelism)
@@ -341,8 +360,8 @@ def run_cc_kmeans_clusters_worker(spreadsheet_mat, run_parameters, sample):
 
     Returns:
         None
-
     """
+
     import knpackage.toolbox as kn
     import numpy as np
 
@@ -411,10 +430,10 @@ def run_hclust(run_parameters):
     """
 
     np.random.seed()
-    number_of_clusters         = run_parameters['number_of_clusters'        ]
-    affinity_metric            = run_parameters['affinity_metric']
-    linkage_criterion          = run_parameters['linkage_criterion']
 
+    number_of_clusters         = run_parameters['number_of_clusters'        ]
+    affinity_metric            = run_parameters['affinity_metric'           ]
+    linkage_criterion          = run_parameters['linkage_criterion'         ]
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
@@ -437,11 +456,11 @@ def run_link_hclust(run_parameters):
     """
 
     np.random.seed()
+
     nearest_neighbors          = run_parameters['nearest_neighbors'         ]
     number_of_clusters         = run_parameters['number_of_clusters'        ]
-    affinity_metric            = run_parameters['affinity_metric']
-    linkage_criterion          = run_parameters['linkage_criterion']
-
+    affinity_metric            = run_parameters['affinity_metric'           ]
+    linkage_criterion          = run_parameters['linkage_criterion'         ]
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
@@ -471,8 +490,10 @@ def labels_to_hmat(labels, number_of_clusters):
     Output:
         h_mat:              binary matrix number_of_clusters x sample size
     """
+
     col    = labels.shape[0]
     mtx    = csr_matrix((np.ones(col), (labels, np.arange(col))), shape=(number_of_clusters, col))
+
     return mtx.toarray()
 
 def save_final_samples_clustering(sample_names, labels, run_parameters):
@@ -488,7 +509,6 @@ def save_final_samples_clustering(sample_names, labels, run_parameters):
         phenotypes_labeled_by_cluster_{method}_{timestamp}_viz.tsv
     """
 
-    
     cluster_labels_df         = kn.create_df_with_sample_labels(sample_names, labels)
     cluster_mapping_full_path = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
     cluster_labels_df.to_csv(cluster_mapping_full_path, sep='\t', header=None, float_format='%g')
@@ -518,13 +538,15 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
     col_labels  = []
     for cluster_number in np.unique(labels):
         col_labels.append('Cluster_%d'%(cluster_number))
+
     cluster_ave_df.columns = col_labels
 
     clusters_variance_df  = pd.DataFrame( clusters_df.var(axis=1)
-                                        , columns=['variance']                  )
-    top_number_of_rows_df = pd.DataFrame( data=np.zeros((cluster_ave_df.shape))
-                                        , columns=cluster_ave_df.columns
-                                        , index=cluster_ave_df.index.values     )
+                                        , columns = ['variance']                    )
+
+    top_number_of_rows_df = pd.DataFrame( data    = np.zeros((cluster_ave_df.shape))
+                                        , columns = cluster_ave_df.columns
+                                        , index   = cluster_ave_df.index.values     )
 
     for sample in top_number_of_rows_df.columns.values:
         top_index                                                           = np.argsort(cluster_ave_df[sample].values)[::-1]
@@ -627,13 +649,14 @@ def get_output_file_name(run_parameters, prefix_string, suffix_string='', type_s
     Returns:
         output_file_name:   full file and directory name suitable for file writing
     """
+
     output_file_name = os.path.join(run_parameters["results_directory"], prefix_string + '_' + run_parameters['method'])
     output_file_name = kn.create_timestamped_filename(output_file_name) + '_' + suffix_string + '.' + type_suffix
 
     return output_file_name
 
 def update_tmp_directory(run_parameters, tmp_dir):
-    ''' Update tmp_directory value in rum_parameters dictionary
+    """ Update tmp_directory value in rum_parameters dictionary
 
     Args:
         run_parameters: run_parameters as the dictionary config
@@ -642,7 +665,7 @@ def update_tmp_directory(run_parameters, tmp_dir):
     Returns:
         run_parameters: an updated run_parameters
 
-    '''
+    """
     if (run_parameters['processing_method'] == 'distribute'):
         run_parameters["tmp_directory"] = kn.create_dir(run_parameters['cluster_shared_volumn'], tmp_dir)
     else:
