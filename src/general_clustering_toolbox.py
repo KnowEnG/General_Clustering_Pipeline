@@ -43,7 +43,7 @@ def run_cc_link_hclust(run_parameters):
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    spreadsheet_mat            = spreadsheet_df.value
     number_of_samples          = spreadsheet_mat.shape[1]
 
     if   processing_method ==     'serial':
@@ -192,7 +192,7 @@ def run_cc_hclust(run_parameters):
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
     if processing_method == 'serial':
@@ -298,7 +298,7 @@ def run_cc_kmeans(run_parameters):
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
     if processing_method == 'serial':
@@ -411,7 +411,7 @@ def run_kmeans(run_parameters):
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
     labels                     = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
@@ -437,7 +437,7 @@ def run_hclust(run_parameters):
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
     labels                     = perform_hclust(spreadsheet_mat.T, number_of_clusters, affinity_metric, linkage_criterion)
@@ -464,7 +464,7 @@ def run_link_hclust(run_parameters):
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat            = spreadsheet_df.as_matrix()
+    spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
     labels                     = perform_link_hclust( spreadsheet_mat.T
