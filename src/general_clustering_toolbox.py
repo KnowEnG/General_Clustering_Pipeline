@@ -43,7 +43,7 @@ def run_cc_link_hclust(run_parameters):
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat            = spreadsheet_df.value
+    spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
     if   processing_method ==     'serial':
@@ -569,9 +569,9 @@ def save_consensus_clustering(consensus_matrix, sample_names, labels, run_parame
 
     Args:
         consensus_matrix: sample_names x sample_names numerical matrix.
-        sample_names: data identifiers for column names.
-        labels: cluster numbers for row names.
-        run_parameters: path to write to consensus_data file (run_parameters["results_directory"]).
+        sample_names:     data identifiers for column names.
+        labels:           cluster numbers for row names.
+        run_parameters:   path to write to consensus_data file (run_parameters["results_directory"]).
 
     Output:
         consensus_matrix_{method}_{timestamp}_viz.tsv
