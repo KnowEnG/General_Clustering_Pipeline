@@ -578,10 +578,10 @@ def save_consensus_clustering(consensus_matrix, sample_names, labels, run_parame
         silhouette_average_{method}_{timestamp}_viz.tsv
     """
 
-    file_name_mat     = get_output_file_name(run_parameters, 'consensus_matrix',         'viz')
-    file_name_all     = get_output_file_name(run_parameters, 'all_silhouette_score',     'viz')
-    file_name_cluster = get_output_file_name(run_parameters, 'cluster_silhouette_score', 'viz')
-    file_name_sample  = get_output_file_name(run_parameters, 'sample_silhouette_score',  'viz')
+    file_name_mat     = get_output_file_name(run_parameters, 'consensus_matrix',             'viz')
+    file_name_all     = get_output_file_name(run_parameters, 'silhouette_overall_score',     'viz')
+    file_name_cluster = get_output_file_name(run_parameters, 'silhouette_per_cluster_score', 'viz')
+    file_name_sample  = get_output_file_name(run_parameters, 'silhouette_per_sample_score',  'viz')
 
     out_df = pd.DataFrame(data=consensus_matrix, columns=sample_names, index=sample_names)
     out_df.to_csv(file_name_mat, sep='\t', float_format='%g')
