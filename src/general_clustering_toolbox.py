@@ -620,7 +620,7 @@ def get_clustering_scores(consensus_matrix,labels):
     n_clusters = len(set(labels))
 
     if n_clusters > 1:
-        silhouette_values = silhouette_samples(consensus_matrix, labels)
+        silhouette_values = silhouette_samples(1.0-consensus_matrix, labels, metric='precomputed') 
     else:
         silhouette_values = np.ones(len(labels) )
 
