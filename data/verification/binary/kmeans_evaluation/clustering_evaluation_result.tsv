@@ -1,20 +1,20 @@
 	Measure	Trait_length_after_dropna	Sample_number_after_dropna	chi/fval	pval	SUCCESS/FAIL	Comments
-ICD10	chisquare	2	230	0.0504476481027	0.975091638641	SUCCESS	NA
-ICD10_simple	chisquare	2	230	0.0504476481027	0.975091638641	SUCCESS	NA
+ICD10	chisquare	2	230	0.0504476	0.975092	SUCCESS	NA
+ICD10_simple	chisquare	2	230	0.0504476	0.975092	SUCCESS	NA
 ICDO3site	NA	1	248	NA	1	FAIL	Number of unique trait is one
-days_survival	f_oneway	232	248	1.92313079886	0.148348460195	SUCCESS	NA
+days_survival	f_oneway	232	248	1.92313	0.148348	SUCCESS	NA
 days_to_death	f_oneway	17	17	NA	1	FAIL	The number of clusters is one
-days_to_last	f_oneway	216	231	1.80151329708	0.167390299028	SUCCESS	NA
-diag_age	f_oneway	53	248	1.87514167312	0.155527173991	SUCCESS	NA
-ethnicity	chisquare	2	171	4.57458002488	0.101541264894	SUCCESS	NA
+days_to_last	f_oneway	216	231	1.80151	0.16739	SUCCESS	NA
+diag_age	f_oneway	53	248	1.87514	0.155527	SUCCESS	NA
+ethnicity	chisquare	2	171	4.57458	0.101541	SUCCESS	NA
 gender	NA	1	248	NA	1	FAIL	Number of unique trait is one
-grade	chisquare	4	248	7.69707606667	0.261146815353	SUCCESS	NA
-grade_simple	chisquare	2	248	5.31968175895	0.0699593528278	SUCCESS	NA
-histICDO3	chisquare	7	248	14.0287451151	0.298876431206	SUCCESS	NA
-hist_simple	chisquare	3	248	4.33300043422	0.362810989078	SUCCESS	NA
-living	chisquare	2	248	1.00963433729	0.603615925255	SUCCESS	NA
-race	chisquare	5	241	5.64825569435	0.686564949032	SUCCESS	NA
-residual	chisquare	4	207	2.01781185847	0.918053175854	SUCCESS	NA
+grade	chisquare	4	248	7.69708	0.261147	SUCCESS	NA
+grade_simple	chisquare	2	248	5.31968	0.0699594	SUCCESS	NA
+histICDO3	chisquare	7	248	14.0287	0.298876	SUCCESS	NA
+hist_simple	chisquare	3	248	4.333	0.362811	SUCCESS	NA
+living	chisquare	2	248	1.00963	0.603616	SUCCESS	NA
+race	chisquare	5	241	5.64826	0.686565	SUCCESS	NA
+residual	chisquare	4	207	2.01781	0.918053	SUCCESS	NA
 stage	NA	14	248	NA	1	FAIL	Number of unique categorical trait is not below threshold
-stage_ismeta	chisquare	2	248	0.758931643278	0.684226810765	SUCCESS	NA
-stage_simple	chisquare	4	248	1.85293788953	0.932714673423	SUCCESS	NA
+stage_ismeta	chisquare	2	248	0.758932	0.684227	SUCCESS	NA
+stage_simple	chisquare	4	248	1.85294	0.932715	SUCCESS	NA

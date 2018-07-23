@@ -205,9 +205,6 @@ def clustering_evaluation(run_parameters):
     file_path = os.path.join(results_directory, file_name)
     result_df = pd.concat([result_df, fail_df], axis=1)
     result_df = result_df.T.sort_index()
+    result_df[['chi/fval', 'pval']] = result_df[['chi/fval', 'pval']].apply(pd.to_numeric)
+    result_df.to_csv( file_path, header=True, index=True, na_rep = 'NA', sep='\t', float_format='%g')
 
-    result_df.to_csv( file_path
-                    , header=True
-                    , index=True
-                    , sep='\t'
-                    , na_rep='NA')
