@@ -43,7 +43,7 @@ def run_cc_link_hclust(run_parameters):
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat            = spreadsheet_df.values
+    spreadsheet_mat            = spreadsheet_df.value
     number_of_samples          = spreadsheet_mat.shape[1]
 
     if   processing_method ==     'serial':
