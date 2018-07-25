@@ -67,7 +67,9 @@ def main():
                 'rows_by_columns_heatmap_cc_kmeans',
                 'rows_variance_cc_kmeans',
                 'samples_label_by_cluster_cc_kmeans',
-                'silhouette_average_cc_kmeans',
+                'silhouette_overall_score_cc_kmeans',
+                'silhouette_per_cluster_score_cc_kmeans',
+                'silhouette_per_sample_score_cc_kmeans',
                 'top_rows_by_cluster_cc_kmeans'
             ],
             'cc_hclust': [
@@ -77,7 +79,9 @@ def main():
                 'rows_by_columns_heatmap_cc_hclust',
                 'rows_variance_cc_hclust',
                 'samples_label_by_cluster_cc_hclust',
-                'silhouette_average_cc_hclust',
+                'silhouette_overall_score_cc_hclust',
+                'silhouette_per_cluster_score_cc_hclust',
+                'silhouette_per_sample_score_cc_hclust',
                 'top_rows_by_cluster_cc_hclust'
             ],
             'cc_link_hclust': [
@@ -87,7 +91,9 @@ def main():
                 'rows_by_columns_heatmap_cc_link_hclust',
                 'rows_variance_cc_link_hclust',
                 'samples_label_by_cluster_cc_link_hclust',
-                'silhouette_average_cc_link_hclust',
+                'silhouette_overall_score_cc_link_hclust',
+                'silhouette_per_cluster_score_cc_link_hclust',
+                'silhouette_per_sample_score_cc_link_hclust',
                 'top_rows_by_cluster_cc_link_hclust'
             ],
             'kmeans_evaluation': [
@@ -132,7 +138,9 @@ def main():
                 'rows_by_columns_heatmap_cc_kmeans',
                 'rows_variance_cc_kmeans',
                 'samples_label_by_cluster_cc_kmeans',
-                'silhouette_average_cc_kmeans',
+                'silhouette_overall_score_cc_kmeans',
+                'silhouette_per_cluster_score_cc_kmeans',
+                'silhouette_per_sample_score_cc_kmeans',
                 'top_rows_by_cluster_cc_kmeans'
             ],
             'cc_hclust': [
@@ -142,7 +150,9 @@ def main():
                 'rows_by_columns_heatmap_cc_hclust',
                 'rows_variance_cc_hclust',
                 'samples_label_by_cluster_cc_hclust',
-                'silhouette_average_cc_hclust',
+                'silhouette_overall_score_cc_hclust',
+                'silhouette_per_cluster_score_cc_hclust',
+                'silhouette_per_sample_score_cc_hclust',
                 'top_rows_by_cluster_cc_hclust'
             ],
             'cc_link_hclust': [
@@ -152,12 +162,13 @@ def main():
                 'rows_by_columns_heatmap_cc_link_hclust',
                 'rows_variance_cc_link_hclust',
                 'samples_label_by_cluster_cc_link_hclust',
-                'silhouette_average_cc_link_hclust',
+                'silhouette_overall_score_cc_link_hclust',
+                'silhouette_per_cluster_score_cc_link_hclust',
+                'silhouette_per_sample_score_cc_link_hclust',
                 'top_rows_by_cluster_cc_link_hclust'
             ]
         }
     }
-
     os.system('make env_setup')
     start_time = time.time()
     total_success, total_failure = 0, 0
