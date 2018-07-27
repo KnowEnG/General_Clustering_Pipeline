@@ -22,6 +22,7 @@ import knpackage.distributed_computing_utils as dstutil
 
 import general_clustering_eval_toolbox as cluster_eval
 
+
 #-----------------------------------------------------
 def run_cc_link_hclust(run_parameters):
 #-----------------------------------------------------
@@ -78,11 +79,12 @@ def run_cc_link_hclust(run_parameters):
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
     distance_matrix  = 1.0   - consensus_matrix
 
-    labels           = perform_link_hclust( consensus_matrix
+    labels, _        = perform_link_hclust( consensus_matrix
                                           , number_of_clusters
                                           , nearest_neighbors 
                                           , affinity_metric 
                                           , linkage_criterion) 
+
     sample_names     = spreadsheet_df.columns
 
     save_consensus_matrix                (consensus_matrix, sample_names, labels, run_parameters)
@@ -147,7 +149,7 @@ def run_cc_link_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
                                                             , rows_sampling_fraction
                                                             , cols_sampling_fraction )
 
-    labels                 = perform_link_hclust( spreadsheet_mat.T
+    labels, _              = perform_link_hclust( spreadsheet_mat.T
                                                 , number_of_clusters
                                                 , nearest_neighbors 
                                                 , affinity_metric
@@ -176,13 +178,14 @@ def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors, 
         labels         = fcluster(linkage_matrix,number_of_clusters,criterion='maxclust') - 1
 
     else:
+        distance_matrix= pairwise_distances(spreadsheet_mat,metric=affinity_metric)
         l_method = AgglomerativeClustering( n_clusters   = number_of_clusters
                                           , affinity     = affinity_metric
                                           , connectivity = connectivity
                                           , linkage      = linkage_criterion  ).fit(spreadsheet_mat)
         labels     = l_method.labels_
  
-    return labels
+    return labels, distance_matrix
 
 #-----------------------------------------------------
 def run_cc_hclust(run_parameters):
@@ -454,8 +457,11 @@ def run_kmeans(run_parameters):
     labels                     = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
     sample_names               = spreadsheet_df.columns
 
-    save_final_samples_clustering        (sample_names  , labels, run_parameters)
-    save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+    distance_matrix            = pairwise_distances(spreadsheet_mat.T)
+
+    save_clustering_scores               (distance_matrix, sample_names, labels, run_parameters)
+    save_final_samples_clustering        (                 sample_names, labels, run_parameters)
+    save_spreadsheet_and_variance_heatmap(spreadsheet_df,                labels, run_parameters)
 
     return labels
 
@@ -513,7 +519,7 @@ def run_link_hclust(run_parameters):
     spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
-    labels                     = perform_link_hclust( spreadsheet_mat.T
+    labels, distance_matrix   = perform_link_hclust( spreadsheet_mat.T
                                                     , number_of_clusters
                                                     , nearest_neighbors
                                                     , affinity_metric
@@ -521,8 +527,9 @@ def run_link_hclust(run_parameters):
         
     sample_names               = spreadsheet_df.columns
 
-    save_final_samples_clustering        (sample_names  , labels, run_parameters)
-    save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+    save_clustering_scores               (distance_matrix, sample_names, labels, run_parameters)
+    save_final_samples_clustering        (                 sample_names, labels, run_parameters)
+    save_spreadsheet_and_variance_heatmap( spreadsheet_df,               labels, run_parameters)
 
     return labels
 
