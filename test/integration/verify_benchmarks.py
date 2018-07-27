@@ -42,6 +42,9 @@ def main():
                 'rows_by_columns_heatmap_kmeans',
                 'rows_variance_kmeans',
                 'samples_label_by_cluster_kmeans',
+                'silhouette_overall_score_kmeans',
+                'silhouette_per_cluster_score_kmeans',
+                'silhouette_per_sample_score_kmeans',
                 'top_rows_by_cluster_kmeans'
             ],
             'hclust': [
@@ -50,6 +53,9 @@ def main():
                 'rows_by_columns_heatmap_hclust',
                 'rows_variance_hclust',
                 'samples_label_by_cluster_hclust',
+                'silhouette_overall_score_hclust',
+                'silhouette_per_cluster_score_hclust',
+                'silhouette_per_sample_score_hclust',
                 'top_rows_by_cluster_hclust'
             ],
             'link_hclust': [
@@ -58,6 +64,9 @@ def main():
                 'rows_by_columns_heatmap_link_hclust',
                 'rows_variance_link_hclust',
                 'samples_label_by_cluster_link_hclust',
+                'silhouette_overall_score_link_hclust',
+                'silhouette_per_cluster_score_link_hclust',
+                'silhouette_per_sample_score_link_hclust',
                 'top_rows_by_cluster_link_hclust'
             ],
             'cc_kmeans': [
@@ -102,6 +111,9 @@ def main():
                 'rows_by_columns_heatmap_kmeans',
                 'rows_variance_kmeans',
                 'samples_label_by_cluster_kmeans',
+                'silhouette_overall_score_kmeans',
+                'silhouette_per_cluster_score_kmeans',
+                'silhouette_per_sample_score_kmeans',
                 'top_rows_by_cluster_kmeans',
                 'clustering_evaluation_result'
             ]
@@ -113,6 +125,9 @@ def main():
                 'rows_by_columns_heatmap_kmeans',
                 'rows_variance_kmeans',
                 'samples_label_by_cluster_kmeans',
+                'silhouette_overall_score_kmeans',
+                'silhouette_per_cluster_score_kmeans',
+                'silhouette_per_sample_score_kmeans',
                 'top_rows_by_cluster_kmeans'
             ],
             'hclust': [
@@ -121,6 +136,9 @@ def main():
                 'rows_by_columns_heatmap_hclust',
                 'rows_variance_hclust',
                 'samples_label_by_cluster_hclust',
+                'silhouette_overall_score_hclust',
+                'silhouette_per_cluster_score_hclust',
+                'silhouette_per_sample_score_hclust',
                 'top_rows_by_cluster_hclust'
             ],
             'link_hclust': [
@@ -129,6 +147,9 @@ def main():
                 'rows_by_columns_heatmap_link_hclust',
                 'rows_variance_link_hclust',
                 'samples_label_by_cluster_link_hclust',
+                'silhouette_overall_score_link_hclust',
+                'silhouette_per_cluster_score_link_hclust',
+                'silhouette_per_sample_score_link_hclust',
                 'top_rows_by_cluster_link_hclust'
             ],
             'cc_kmeans': [

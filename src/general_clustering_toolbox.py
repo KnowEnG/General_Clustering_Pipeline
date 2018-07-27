@@ -22,7 +22,10 @@ import knpackage.distributed_computing_utils as dstutil
 
 import general_clustering_eval_toolbox as cluster_eval
 
+
+#-----------------------------------------------------
 def run_cc_link_hclust(run_parameters):
+#-----------------------------------------------------
     """ wrapper: call sequence to perform hclust with
         consensus clustering and write results.
 
@@ -48,9 +51,9 @@ def run_cc_link_hclust(run_parameters):
 
     if   processing_method ==     'serial':
          for sample in range(0, number_of_bootstraps):
-            run_cc_link_hclust_clusters_worker( spreadsheet_mat
-                                              , run_parameters
-                                              , sample )
+            run_cc_link_hclust_clusters_worker         ( spreadsheet_mat
+                                                       , run_parameters
+                                                       , sample )
 
     elif processing_method ==   'parallel':
          find_and_save_cc_link_hclust_clusters_parallel( spreadsheet_mat
@@ -58,8 +61,12 @@ def run_cc_link_hclust(run_parameters):
                                                        , number_of_bootstraps )
 
     elif processing_method == 'distribute':
-         func_args       = [spreadsheet_mat, run_parameters]
-         dependency_list = [run_cc_link_hclust_clusters_worker, kn.save_a_clustering_to_tmp, dstutil.determine_parallelism_locally]
+
+         func_args       = [ spreadsheet_mat, run_parameters]
+
+         dependency_list = [ run_cc_link_hclust_clusters_worker     \
+                           , kn.save_a_clustering_to_tmp            \
+                           , dstutil.determine_parallelism_locally  ]
 
          dstutil.execute_distribute_computing_job( run_parameters['cluster_ip_address'],
                                                    number_of_bootstraps,
@@ -70,21 +77,27 @@ def run_cc_link_hclust(run_parameters):
          raise ValueError('processing_method contains bad value.')
 
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
-    labels           = perform_link_hclust( consensus_matrix
+    distance_matrix  = 1.0   - consensus_matrix
+
+    labels, _        = perform_link_hclust( consensus_matrix
                                           , number_of_clusters
                                           , nearest_neighbors 
                                           , affinity_metric 
                                           , linkage_criterion) 
+
     sample_names     = spreadsheet_df.columns
 
-    save_consensus_clustering            (consensus_matrix, sample_names, labels, run_parameters)
+    save_consensus_matrix                (consensus_matrix, sample_names, labels, run_parameters)
+    save_clustering_scores               ( distance_matrix, sample_names, labels, run_parameters)
+
     save_final_samples_clustering        (                  sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(                spreadsheet_df, labels, run_parameters)
 
     kn.remove_dir(run_parameters["tmp_directory"])
 
-
+#-----------------------------------------------------
 def find_and_save_cc_link_hclust_clusters_parallel(spreadsheet_mat, run_parameters, local_parallelism):
+#-----------------------------------------------------
     """ central loop: compute components for the consensus matrix by hclust.
 
     Args:
@@ -107,8 +120,9 @@ def find_and_save_cc_link_hclust_clusters_parallel(spreadsheet_mat, run_paramete
                                          , zipped_arguments
                                          , parallelism )
 
-
+#-----------------------------------------------------
 def run_cc_link_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
+#-----------------------------------------------------
     """Worker to execute hclust in a single process
 
     Args:
@@ -135,7 +149,7 @@ def run_cc_link_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
                                                             , rows_sampling_fraction
                                                             , cols_sampling_fraction )
 
-    labels                 = perform_link_hclust( spreadsheet_mat.T
+    labels, _              = perform_link_hclust( spreadsheet_mat.T
                                                 , number_of_clusters
                                                 , nearest_neighbors 
                                                 , affinity_metric
@@ -145,8 +159,9 @@ def run_cc_link_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
 
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
 
-
+#-----------------------------------------------------
 def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors, affinity_metric, linkage_criterion):
+#-----------------------------------------------------
     """ wrapper: call sequence to perform hclust clustering 
 
     Args:
@@ -157,21 +172,24 @@ def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors, 
     connectivity = kneighbors_graph(spreadsheet_mat, n_neighbors=nearest_neighbors, include_self=False)
 
     if affinity_metric == 'jaccard' and linkage_criterion == "ward":
-        distance_mat   = 1.0 - pairwise_distances(spreadsheet_mat==0,metric='jaccard')
-        linkage_matrix = ward(distance_mat)
+        distance_matrix = 1.0 - pairwise_distances(spreadsheet_mat==0,metric='jaccard')
+        linkage_matrix  = ward(distance_matrix)
 
         labels         = fcluster(linkage_matrix,number_of_clusters,criterion='maxclust') - 1
 
     else:
+        distance_matrix= pairwise_distances(spreadsheet_mat,metric=affinity_metric)
         l_method = AgglomerativeClustering( n_clusters   = number_of_clusters
                                           , affinity     = affinity_metric
                                           , connectivity = connectivity
                                           , linkage      = linkage_criterion  ).fit(spreadsheet_mat)
         labels     = l_method.labels_
  
-    return labels
+    return labels, distance_matrix
 
+#-----------------------------------------------------
 def run_cc_hclust(run_parameters):
+#-----------------------------------------------------
     """ wrapper: call sequence to perform hclust with
         consensus clustering and write results.
 
@@ -182,12 +200,12 @@ def run_cc_hclust(run_parameters):
     tmp_dir = 'tmp_cc_nmf'
     run_parameters = update_tmp_directory(run_parameters, tmp_dir)
 
-    processing_method          = run_parameters['processing_method']
-    affinity_metric            = run_parameters['affinity_metric']
-    linkage_criterion          = run_parameters['linkage_criterion']
+    processing_method          = run_parameters['processing_method'         ]
+    affinity_metric            = run_parameters['affinity_metric'           ]
+    linkage_criterion          = run_parameters['linkage_criterion'         ]
    
-    number_of_bootstraps       = run_parameters['number_of_bootstraps']
-    number_of_clusters         = run_parameters['number_of_clusters']
+    number_of_bootstraps       = run_parameters['number_of_bootstraps'      ]
+    number_of_clusters         = run_parameters['number_of_clusters'        ]
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
@@ -196,37 +214,49 @@ def run_cc_hclust(run_parameters):
 
     if processing_method == 'serial':
         for sample in range(0, number_of_bootstraps):
-            run_cc_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample)
+            run_cc_hclust_clusters_worker        (spreadsheet_mat, run_parameters, sample              )
 
     elif processing_method == 'parallel':
         find_and_save_cc_hclust_clusters_parallel(spreadsheet_mat, run_parameters, number_of_bootstraps)
 
     elif processing_method == 'distribute':
-        func_args = [spreadsheet_mat, run_parameters]
-        dependency_list = [run_cc_hclust_clusters_worker, kn.save_a_clustering_to_tmp, dstutil.determine_parallelism_locally]
-        dstutil.execute_distribute_computing_job(run_parameters['cluster_ip_address'],
-                                                 number_of_bootstraps,
-                                                 func_args,
-                                                 find_and_save_cc_hclust_clusters_parallel,
-                                                 dependency_list)
+
+        func_args       = [ spreadsheet_mat, run_parameters]
+
+        dependency_list = [ run_cc_hclust_clusters_worker        \
+                          , kn.save_a_clustering_to_tmp          \
+                          , dstutil.determine_parallelism_locally]
+
+        dstutil.execute_distribute_computing_job( run_parameters['cluster_ip_address']
+                                                , number_of_bootstraps
+                                                , func_args
+                                                , find_and_save_cc_hclust_clusters_parallel
+                                                , dependency_list  )
     else:
         raise ValueError('processing_method contains bad value.')
 
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
-    labels           = perform_hclust( consensus_matrix
+
+    distance_matrix  = 1.0   - consensus_matrix
+
+    labels, _        = perform_hclust( consensus_matrix
                                      , number_of_clusters
                                      , affinity_metric
                                      , linkage_criterion )
+
     sample_names     = spreadsheet_df.columns
 
-    save_consensus_clustering            (consensus_matrix, sample_names, labels, run_parameters)
+    save_consensus_matrix                (consensus_matrix, sample_names, labels, run_parameters)
+    save_clustering_scores               ( distance_matrix, sample_names, labels, run_parameters)
+
     save_final_samples_clustering        (                  sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(                spreadsheet_df, labels, run_parameters)
 
     kn.remove_dir(run_parameters["tmp_directory"])
 
-
+#-----------------------------------------------------
 def find_and_save_cc_hclust_clusters_parallel(spreadsheet_mat, run_parameters, local_parallelism):
+#-----------------------------------------------------
     """ central loop: compute components for the consensus matrix by hclust.
 
     Args:
@@ -245,8 +275,9 @@ def find_and_save_cc_hclust_clusters_parallel(spreadsheet_mat, run_parameters, l
         parallelism = dstutil.determine_parallelism_locally(local_parallelism)
     dstutil.parallelize_processes_locally(run_cc_hclust_clusters_worker, zipped_arguments, parallelism)
 
-
+#-----------------------------------------------------
 def run_cc_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
+#-----------------------------------------------------
     """Worker to execute hclust in a single process
 
     Args:
@@ -273,13 +304,13 @@ def run_cc_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
     spreadsheet_mat, sample_permutation = kn.sample_a_matrix(spreadsheet_mat,
                                                              rows_sampling_fraction, cols_sampling_fraction)
 
-    labels                 = perform_hclust(spreadsheet_mat.T, number_of_clusters, affinity_metric, linkage_criterion)
+    labels, _              = perform_hclust(spreadsheet_mat.T, number_of_clusters, affinity_metric, linkage_criterion)
     h_mat                  = labels_to_hmat(labels, number_of_clusters)
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
 
-
-
+#-----------------------------------------------------
 def run_cc_kmeans(run_parameters):
+#-----------------------------------------------------
     """ wrapper: call sequence to perform kmeans with
         consensus clustering and write results.
 
@@ -319,17 +350,22 @@ def run_cc_kmeans(run_parameters):
         raise ValueError('processing_method contains bad value.')
 
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
+    distance_matrix  = 1.0   - consensus_matrix
+
     labels           = kn.perform_kmeans       (consensus_matrix, number_of_clusters)
     sample_names     = spreadsheet_df.columns
 
-    save_consensus_clustering            (consensus_matrix, sample_names, labels, run_parameters)
+    save_consensus_matrix                (consensus_matrix, sample_names, labels, run_parameters)
+    save_clustering_scores               ( distance_matrix, sample_names, labels, run_parameters)
+
     save_final_samples_clustering        (                  sample_names, labels, run_parameters)
     save_spreadsheet_and_variance_heatmap(                spreadsheet_df, labels, run_parameters)
 
     kn.remove_dir(run_parameters["tmp_directory"])
 
-
+#-----------------------------------------------------
 def find_and_save_cc_kmeans_clusters_parallel(spreadsheet_mat, run_parameters, local_parallelism):
+#-----------------------------------------------------
     """ central loop: compute components for the consensus matrix by kmeans.
 
     Args:
@@ -348,8 +384,9 @@ def find_and_save_cc_kmeans_clusters_parallel(spreadsheet_mat, run_parameters, l
         parallelism = dstutil.determine_parallelism_locally(local_parallelism)
     dstutil.parallelize_processes_locally(run_cc_kmeans_clusters_worker, zipped_arguments, parallelism)
 
-
+#-----------------------------------------------------
 def run_cc_kmeans_clusters_worker(spreadsheet_mat, run_parameters, sample):
+#-----------------------------------------------------
     """Worker to execute kmeans in a single process
 
     Args:
@@ -375,8 +412,9 @@ def run_cc_kmeans_clusters_worker(spreadsheet_mat, run_parameters, sample):
     h_mat                  = labels_to_hmat(labels, number_of_clusters)
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
 
-
+#-----------------------------------------------------
 def perform_hclust(spreadsheet_mat, number_of_clusters, affinity_metric, linkage_criterion):
+#-----------------------------------------------------
     """ wrapper: call sequence to perform hclust clustering 
 
     Args:
@@ -385,20 +423,23 @@ def perform_hclust(spreadsheet_mat, number_of_clusters, affinity_metric, linkage
     """
 
     if affinity_metric == 'jaccard' and linkage_criterion == "ward":
-        distance_mat   = 1.0 - pairwise_distances(spreadsheet_mat==0,metric='jaccard')
-        linkage_matrix = ward(distance_mat)
+        distance_matrix= 1.0 - pairwise_distances(spreadsheet_mat==0,metric='jaccard')
+        linkage_matrix = ward(distance_matrix)
         labels         = fcluster(linkage_matrix,number_of_clusters,criterion='maxclust') - 1
 
     else:
+        distance_matrix= pairwise_distances(spreadsheet_mat,metric=affinity_metric)
         l_method = AgglomerativeClustering( n_clusters   = number_of_clusters  
                                           , affinity     = affinity_metric  
                                           , linkage      = linkage_criterion  ).fit(spreadsheet_mat)
+
         labels = l_method.labels_
 
-    return labels
+    return labels, distance_matrix
 
-
+#-----------------------------------------------------
 def run_kmeans(run_parameters):
+#-----------------------------------------------------
     """ wrapper: call sequence to perform kmeans clustering and save the results.
 
     Args:
@@ -416,12 +457,17 @@ def run_kmeans(run_parameters):
     labels                     = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
     sample_names               = spreadsheet_df.columns
 
-    save_final_samples_clustering        (sample_names  , labels, run_parameters)
-    save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+    distance_matrix            = pairwise_distances(spreadsheet_mat.T)
+
+    save_clustering_scores               (distance_matrix, sample_names, labels, run_parameters)
+    save_final_samples_clustering        (                 sample_names, labels, run_parameters)
+    save_spreadsheet_and_variance_heatmap(spreadsheet_df,                labels, run_parameters)
 
     return labels
 
+#-----------------------------------------------------
 def run_hclust(run_parameters):
+#-----------------------------------------------------
     """ wrapper: call sequence to perform hierchical clustering and save the results.
 
     Args:
@@ -439,15 +485,22 @@ def run_hclust(run_parameters):
     spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
-    labels                     = perform_hclust(spreadsheet_mat.T, number_of_clusters, affinity_metric, linkage_criterion)
+    labels, distance_matrix    = perform_hclust( spreadsheet_mat.T
+                                               , number_of_clusters
+                                               , affinity_metric
+                                               , linkage_criterion )
+
     sample_names               = spreadsheet_df.columns
 
-    save_final_samples_clustering        (sample_names  , labels, run_parameters)
-    save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+    save_clustering_scores               (distance_matrix, sample_names, labels, run_parameters)
+    save_final_samples_clustering        (                 sample_names, labels, run_parameters)
+    save_spreadsheet_and_variance_heatmap( spreadsheet_df,               labels, run_parameters)
 
     return labels
 
+#-----------------------------------------------------
 def run_link_hclust(run_parameters):
+#-----------------------------------------------------
     """ wrapper: call sequence to perform hierchical clustering using linkage and save the results.
 
     Args:
@@ -466,7 +519,7 @@ def run_link_hclust(run_parameters):
     spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
-    labels                     = perform_link_hclust( spreadsheet_mat.T
+    labels, distance_matrix   = perform_link_hclust( spreadsheet_mat.T
                                                     , number_of_clusters
                                                     , nearest_neighbors
                                                     , affinity_metric
@@ -474,12 +527,15 @@ def run_link_hclust(run_parameters):
         
     sample_names               = spreadsheet_df.columns
 
-    save_final_samples_clustering        (sample_names  , labels, run_parameters)
-    save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters)
+    save_clustering_scores               (distance_matrix, sample_names, labels, run_parameters)
+    save_final_samples_clustering        (                 sample_names, labels, run_parameters)
+    save_spreadsheet_and_variance_heatmap( spreadsheet_df,               labels, run_parameters)
 
     return labels
 
+#-----------------------------------------------------
 def labels_to_hmat(labels, number_of_clusters):
+#-----------------------------------------------------
     """ Convert labels in sampled data to a binary matrix for consensus clustering methods.
 
     Args:
@@ -495,7 +551,9 @@ def labels_to_hmat(labels, number_of_clusters):
 
     return mtx.toarray()
 
+#-----------------------------------------------------
 def save_final_samples_clustering(sample_names, labels, run_parameters):
+#-----------------------------------------------------
     """ write .tsv file that assings a cluster number label to the sample_names.
 
     Args:
@@ -511,13 +569,14 @@ def save_final_samples_clustering(sample_names, labels, run_parameters):
     cluster_labels_df         = kn.create_df_with_sample_labels(sample_names, labels)
     cluster_mapping_full_path = get_output_file_name(run_parameters, 'samples_label_by_cluster', 'viz')
     cluster_labels_df.to_csv(cluster_mapping_full_path, sep='\t', header=None, float_format='%g')
-    
 
     if 'phenotype_name_full_path' in run_parameters.keys():
         run_parameters['cluster_mapping_full_path'] = cluster_mapping_full_path
         cluster_eval.clustering_evaluation(run_parameters)
 
+#-----------------------------------------------------
 def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters):
+#-----------------------------------------------------
     """ save the full rows by columns spreadsheet.
         Also save variance in separate file.
     Args:
@@ -562,7 +621,9 @@ def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters
     top_number_of_rows_df.to_csv(file_name_4, sep='\t', float_format='%g')
 
 
-def save_consensus_clustering(consensus_matrix, sample_names, labels, run_parameters):
+#-----------------------------------------------------
+def save_consensus_matrix(consensus_matrix, sample_names, labels, run_parameters):
+#-----------------------------------------------------
     """ write the consensus matrix as a dataframe with sample_names column lablels
         and cluster labels as row labels.
 
@@ -574,36 +635,52 @@ def save_consensus_clustering(consensus_matrix, sample_names, labels, run_parame
 
     Output:
         consensus_matrix_{method}_{timestamp}_viz.tsv
+    """
+    file_name_mat = get_output_file_name(run_parameters, 'consensus_matrix', 'viz')
+    out_df        = pd.DataFrame(data=consensus_matrix, columns=sample_names, index=sample_names)
+    out_df.to_csv(file_name_mat, sep='\t', float_format='%g')
+
+#-----------------------------------------------------
+def save_clustering_scores(distance_matrix, sample_names, labels, run_parameters):
+#-----------------------------------------------------
+    """ 
+       
+
+    Args:
+        matrix:           sample_names x sample_names numerical matrix.
+        sample_names:     data identifiers for column names.
+        labels:           cluster numbers for row names.
+        run_parameters:   path to write to consensus_data file (run_parameters["results_directory"]).
+
+    Output:
         silhouette_average_{method}_{timestamp}_viz.tsv
     """
 
-    file_name_mat     = get_output_file_name(run_parameters, 'consensus_matrix',             'viz')
     file_name_all     = get_output_file_name(run_parameters, 'silhouette_overall_score',     'viz')
     file_name_cluster = get_output_file_name(run_parameters, 'silhouette_per_cluster_score', 'viz')
     file_name_sample  = get_output_file_name(run_parameters, 'silhouette_per_sample_score',  'viz')
 
-    out_df = pd.DataFrame(data=consensus_matrix, columns=sample_names, index=sample_names)
-    out_df.to_csv(file_name_mat, sep='\t', float_format='%g')
-
     n_clusters,       \
     overall,          \
     per_cluster,      \
-    per_sample        = get_clustering_scores(1.0-consensus_matrix,labels) # distance matrix
+    per_sample        = get_clustering_scores(distance_matrix,labels) # distance matrix
 
-    with open(file_name_all,     'w') as fh_all: 
-                fh_all.write( "%d  %g\n" %(n_clusters,overall) )    
+    with open(file_name_all,     'w') as fh_all:
+                fh_all.write( "%d  %g\n" %(n_clusters,overall) )
 
-    with open(file_name_cluster, 'w') as fh_cluster: 
-        for i in range(n_clusters): 
-            fh_cluster.write( "%d  %g\n" %(i, per_cluster[i]) ) 
+    with open(file_name_cluster, 'w') as fh_cluster:
+        for i in range(n_clusters):
+            fh_cluster.write( "%d  %g\n" %(i, per_cluster[i]) )
 
-    with open(file_name_sample,   'w') as fh_sample: 
-        for i in range(n_clusters): 
-            for item in np.sort(per_sample[labels == i]): 
+    with open(file_name_sample,   'w') as fh_sample:
+        for i in range(n_clusters):
+            for item in np.sort(per_sample[labels == i]):
                 fh_sample.write( "%d  %g\n" %(i, item            ) )
 
 
+#-----------------------------------------------------
 def get_clustering_scores(matrix,labels):
+#-----------------------------------------------------
     """ computes three levels silhoutte scores,overall, per_cluster, and per_sample
 
     Args:
@@ -638,7 +715,9 @@ def get_clustering_scores(matrix,labels):
     return n_clusters, overall, per_cluster, per_sample
 
 
+#-----------------------------------------------------
 def get_output_file_name(run_parameters, prefix_string, suffix_string='', type_suffix='tsv'):
+#-----------------------------------------------------
     """ get the full directory / filename for writing
     Args:
         run_parameters: dictionary with keys: "results_directory", "method" and "correlation_measure"
@@ -654,7 +733,9 @@ def get_output_file_name(run_parameters, prefix_string, suffix_string='', type_s
 
     return output_file_name
 
+#-----------------------------------------------------
 def update_tmp_directory(run_parameters, tmp_dir):
+#-----------------------------------------------------
     """ Update tmp_directory value in rum_parameters dictionary
 
     Args:
