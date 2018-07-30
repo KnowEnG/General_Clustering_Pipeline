@@ -7,7 +7,6 @@ import pandas as pd
 
 from sklearn.cluster   import AgglomerativeClustering
 from sklearn.neighbors import kneighbors_graph
-from sklearn.metrics   import silhouette_score
 from sklearn.metrics   import silhouette_samples
 
 from sklearn.metrics.pairwise import pairwise_distances
