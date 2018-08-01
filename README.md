@@ -184,9 +184,8 @@ spreadsheet_name = EXPR_GSE_METABRIC_lymphN_binary.tsv.gz</br>
     | number of clusters | silhouette score  |
     2. silhouette per cluster score file:
     | ith clusters | corresponding silhouette score |
-    
     3. silhouette per sample score file:
-    | sample ith | corresponding silhouette score|
+    | ith sample  | corresponding silhouette score|
 
  
     
