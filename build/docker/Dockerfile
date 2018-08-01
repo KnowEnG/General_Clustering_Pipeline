@@ -1,4 +1,4 @@
-FROM knowengdev/base_image:09_19_2017
+FROM knowengdev/base_image:08_01_2018
 LABEL Xi Chen="xichen24@illinois.edu" \
       Jing Ge="jingge2@illinois.edu" \
       Dan Lanier="lanier4@illinois.edu" \
