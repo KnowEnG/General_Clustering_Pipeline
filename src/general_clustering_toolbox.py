@@ -671,10 +671,9 @@ def save_clustering_scores(distance_matrix, sample_names, labels, run_parameters
         for i in range(n_clusters):
             fh_cluster.write( "%d  %g\n" %(i, per_cluster[i]) )
 
-    with open(file_name_sample,   'w') as fh_sample:
-        for i in range(n_clusters):
-            for item in np.sort(per_sample[labels == i]):
-                fh_sample.write( "%d  %g\n" %(i, item            ) )
+
+    per_sample_df = pd.DataFrame(data=per_sample, index=sample_names)
+    per_sample_df.to_csv(file_name_sample, sep='\t', header=None, float_format='%g')
 
 
 #-----------------------------------------------------
