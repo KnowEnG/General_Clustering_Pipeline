@@ -665,11 +665,11 @@ def save_clustering_scores(distance_matrix, sample_names, labels, run_parameters
     per_sample        = get_clustering_scores(distance_matrix,labels) # distance matrix
 
     with open(file_name_all,     'w') as fh_all:
-                fh_all.write( "%d  %g\n" %(n_clusters,overall) )
+                fh_all.write( "%d\t%g\n" %(n_clusters,overall) )
 
     with open(file_name_cluster, 'w') as fh_cluster:
         for i in range(n_clusters):
-            fh_cluster.write( "%d  %g\n" %(i, per_cluster[i]) )
+            fh_cluster.write( "%d\t%g\n" %(i, per_cluster[i]) )
 
 
     per_sample_df = pd.DataFrame(data=per_sample, index=sample_names)
