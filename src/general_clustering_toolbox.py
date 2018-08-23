@@ -42,6 +42,7 @@ def run_cc_link_hclust(run_parameters):
     affinity_metric            = run_parameters['affinity_metric'     ]
     linkage_criterion          = run_parameters['linkage_criterion'   ]
 
+
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
@@ -76,13 +77,13 @@ def run_cc_link_hclust(run_parameters):
          raise ValueError('processing_method contains bad value.')
 
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
-    distance_matrix  = 1.0   - consensus_matrix
 
-    labels, _        = perform_link_hclust( consensus_matrix
-                                          , number_of_clusters
-                                          , nearest_neighbors 
-                                          , affinity_metric 
-                                          , linkage_criterion) 
+    labels, \
+    distance_matrix = perform_link_hclust( consensus_matrix
+                                         , number_of_clusters
+                                         , nearest_neighbors
+                                         , affinity_metric
+                                         , linkage_criterion)
 
     sample_names     = spreadsheet_df.columns
 
@@ -148,7 +149,7 @@ def run_cc_link_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
                                                             , rows_sampling_fraction
                                                             , cols_sampling_fraction )
 
-    labels, _              = perform_link_hclust( spreadsheet_mat.T
+    labels, _              = perform_link_hclust( spreadsheet_mat
                                                 , number_of_clusters
                                                 , nearest_neighbors 
                                                 , affinity_metric
@@ -168,20 +169,21 @@ def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors, 
         number_of_clusters: number of clusters requested
     """
 
-    connectivity = kneighbors_graph(spreadsheet_mat, n_neighbors=nearest_neighbors, include_self=False)
+    spreadsheet_mat_T = spreadsheet_mat.T
+    connectivity = kneighbors_graph(spreadsheet_mat_T, n_neighbors=nearest_neighbors, include_self=False)
 
     if affinity_metric == 'jaccard' and linkage_criterion == "ward":
-        distance_matrix = 1.0 - pairwise_distances(spreadsheet_mat==0,metric='jaccard')
+        distance_matrix = pairwise_distances(spreadsheet_mat_T==1,metric='jaccard')
         linkage_matrix  = ward(distance_matrix)
 
         labels         = fcluster(linkage_matrix,number_of_clusters,criterion='maxclust') - 1
 
     else:
-        distance_matrix= pairwise_distances(spreadsheet_mat,metric=affinity_metric)
+        distance_matrix= pairwise_distances(spreadsheet_mat_T,metric=affinity_metric)
         l_method = AgglomerativeClustering( n_clusters   = number_of_clusters
                                           , affinity     = affinity_metric
                                           , connectivity = connectivity
-                                          , linkage      = linkage_criterion  ).fit(spreadsheet_mat)
+                                          , linkage      = linkage_criterion  ).fit(spreadsheet_mat_T)
         labels     = l_method.labels_
  
     return labels, distance_matrix
@@ -236,9 +238,8 @@ def run_cc_hclust(run_parameters):
 
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
 
-    distance_matrix  = 1.0   - consensus_matrix
-
-    labels, _        = perform_hclust( consensus_matrix
+    labels, \
+    distance_matrix  = perform_hclust( consensus_matrix
                                      , number_of_clusters
                                      , affinity_metric
                                      , linkage_criterion )
@@ -303,7 +304,7 @@ def run_cc_hclust_clusters_worker(spreadsheet_mat, run_parameters, sample):
     spreadsheet_mat, sample_permutation = kn.sample_a_matrix(spreadsheet_mat,
                                                              rows_sampling_fraction, cols_sampling_fraction)
 
-    labels, _              = perform_hclust(spreadsheet_mat.T, number_of_clusters, affinity_metric, linkage_criterion)
+    labels, _              = perform_hclust(spreadsheet_mat, number_of_clusters, affinity_metric, linkage_criterion)
     h_mat                  = labels_to_hmat(labels, number_of_clusters)
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
 
@@ -349,8 +350,7 @@ def run_cc_kmeans(run_parameters):
         raise ValueError('processing_method contains bad value.')
 
     consensus_matrix = kn.form_consensus_matrix(run_parameters, number_of_samples)
-    distance_matrix  = 1.0   - consensus_matrix
-
+    distance_matrix  = pairwise_distances      (consensus_matrix)
     labels           = kn.perform_kmeans       (consensus_matrix, number_of_clusters)
     sample_names     = spreadsheet_df.columns
 
@@ -407,7 +407,8 @@ def run_cc_kmeans_clusters_worker(spreadsheet_mat, run_parameters, sample):
     spreadsheet_mat, sample_permutation = kn.sample_a_matrix(spreadsheet_mat,
                                                              rows_sampling_fraction, cols_sampling_fraction)
 
-    labels                 = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
+    spreadsheet_mat_T      = spreadsheet_mat.T
+    labels                 = kn.perform_kmeans(spreadsheet_mat_T, number_of_clusters)
     h_mat                  = labels_to_hmat(labels, number_of_clusters)
     kn.save_a_clustering_to_tmp(h_mat, sample_permutation, run_parameters, sample)
 
@@ -420,17 +421,17 @@ def perform_hclust(spreadsheet_mat, number_of_clusters, affinity_metric, linkage
         spreadsheet_mat: matrix to be clusters by rows
         number_of_clusters: number of clusters requested
     """
-
+    spreadsheet_mat_T = spreadsheet_mat.T
     if affinity_metric == 'jaccard' and linkage_criterion == "ward":
-        distance_matrix= 1.0 - pairwise_distances(spreadsheet_mat==0,metric='jaccard')
+        distance_matrix= pairwise_distances(spreadsheet_mat_T==1,metric='jaccard')
         linkage_matrix = ward(distance_matrix)
         labels         = fcluster(linkage_matrix,number_of_clusters,criterion='maxclust') - 1
 
     else:
-        distance_matrix= pairwise_distances(spreadsheet_mat,metric=affinity_metric)
+        distance_matrix= pairwise_distances(spreadsheet_mat_T,metric=affinity_metric)
         l_method = AgglomerativeClustering( n_clusters   = number_of_clusters  
                                           , affinity     = affinity_metric  
-                                          , linkage      = linkage_criterion  ).fit(spreadsheet_mat)
+                                          , linkage      = linkage_criterion  ).fit(spreadsheet_mat_T)
 
         labels = l_method.labels_
 
@@ -450,13 +451,15 @@ def run_kmeans(run_parameters):
     spreadsheet_name_full_path = run_parameters['spreadsheet_name_full_path']
 
     spreadsheet_df             = kn.get_spreadsheet_df(spreadsheet_name_full_path)
-    spreadsheet_mat            = spreadsheet_df.values
-    number_of_samples          = spreadsheet_mat.shape[1]
+    spreadsheet_mat_T          = spreadsheet_df.values.T
+    number_of_samples          = spreadsheet_mat_T.shape[0]
 
-    labels                     = kn.perform_kmeans(spreadsheet_mat.T, number_of_clusters)
+
+    distance_matrix            = pairwise_distances(spreadsheet_mat_T                    )
+    labels                     = kn.perform_kmeans (spreadsheet_mat_T, number_of_clusters)
     sample_names               = spreadsheet_df.columns
 
-    distance_matrix            = pairwise_distances(spreadsheet_mat.T)
+
 
     save_clustering_scores               (distance_matrix, sample_names, labels, run_parameters)
     save_final_samples_clustering        (                 sample_names, labels, run_parameters)
@@ -484,7 +487,7 @@ def run_hclust(run_parameters):
     spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
-    labels, distance_matrix    = perform_hclust( spreadsheet_mat.T
+    labels, distance_matrix    = perform_hclust( spreadsheet_mat
                                                , number_of_clusters
                                                , affinity_metric
                                                , linkage_criterion )
@@ -518,7 +521,7 @@ def run_link_hclust(run_parameters):
     spreadsheet_mat            = spreadsheet_df.values
     number_of_samples          = spreadsheet_mat.shape[1]
 
-    labels, distance_matrix   = perform_link_hclust( spreadsheet_mat.T
+    labels, distance_matrix   = perform_link_hclust( spreadsheet_mat
                                                     , number_of_clusters
                                                     , nearest_neighbors
                                                     , affinity_metric
