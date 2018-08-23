@@ -4,7 +4,7 @@
 method:                     cc_link_hclust       
 
 # --------------------------------------------------------------------
-# - affinity_metric: euclidean, manhattan, jaccard
+# - affinity_metric: euclidean, manhattan
 # --------------------------------------------------------------------
 affinity_metric:            jaccard
 
