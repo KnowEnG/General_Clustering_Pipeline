@@ -1,0 +1,44 @@
+# --------------------------------------------------------------------
+# - Analysis Method: kmeans,hclust,link_hclust,cc_kmeans, cc_hclust  -
+# --------------------------------------------------------------------
+method:                     kmeans       
+
+# --------------------------------------------------------------------
+# - affinity_metric: euclidean, manhattan
+# --------------------------------------------------------------------
+affinity_metric:            euclidean
+
+# --------------------------------------------------------------------
+# - linkage_method:   ward, complete, average
+# --------------------------------------------------------------------
+linkage_criterion:          ward
+
+# --------------------------------------------------------------------
+# - spreadsheet          dataframe in .tsv format                    -
+# --------------------------------------------------------------------
+spreadsheet_name_full_path: ../data/spreadsheets/NEST-1_ETL.tsv
+phenotype_name_full_path: ../data/spreadsheets/NEST-2_ETL.tsv
+
+# --------------------------------------------------------------------
+# - directory where the result and temporary files will be written   -
+# --------------------------------------------------------------------
+results_directory:          ./run_dir/results
+tmp_directory:              ./run_dir/tmp
+
+# --------------------------------------------------------------------
+# - Number of Clusters Required                                      -
+# --------------------------------------------------------------------
+number_of_clusters:         5
+
+# --------------------------------------------------------------------
+# - Top number of rows to analyze                                    -
+# --------------------------------------------------------------------
+top_number_of_rows:         100
+
+# --------------------------------------------------------------------
+# - Threshold to define categorical data and continuous data         -
+# --------------------------------------------------------------------
+threshold: 15
+
+processing_method:          parallel   # available methods: serial, parallel, distribute
+parallelism:                4          # user defined parallelism
