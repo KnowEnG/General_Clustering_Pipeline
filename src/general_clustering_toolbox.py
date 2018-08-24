@@ -16,6 +16,8 @@ from scipy.sparse import csr_matrix
 from scipy.cluster.hierarchy import ward
 from scipy.cluster.hierarchy import fcluster
 
+from scipy.spatial.distance  import squareform
+
 import knpackage.toolbox as kn
 import knpackage.distributed_computing_utils as dstutil
 
@@ -174,7 +176,7 @@ def perform_link_hclust(spreadsheet_mat, number_of_clusters, nearest_neighbors, 
 
     if affinity_metric == 'jaccard' and linkage_criterion == "ward":
         distance_matrix = pairwise_distances(spreadsheet_mat_T==1,metric='jaccard')
-        linkage_matrix  = ward(distance_matrix)
+        linkage_matrix  = ward(  squareform(distance_matrix ) )
 
         labels         = fcluster(linkage_matrix,number_of_clusters,criterion='maxclust') - 1
 
@@ -423,8 +425,9 @@ def perform_hclust(spreadsheet_mat, number_of_clusters, affinity_metric, linkage
     """
     spreadsheet_mat_T = spreadsheet_mat.T
     if affinity_metric == 'jaccard' and linkage_criterion == "ward":
-        distance_matrix= pairwise_distances(spreadsheet_mat_T==1,metric='jaccard')
-        linkage_matrix = ward(distance_matrix)
+        distance_matrix = pairwise_distances(spreadsheet_mat_T==1,metric='jaccard')
+        linkage_matrix  = ward(  squareform(distance_matrix ) )
+
         labels         = fcluster(linkage_matrix,number_of_clusters,criterion='maxclust') - 1
 
     else:
