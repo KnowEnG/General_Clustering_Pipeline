@@ -5,32 +5,32 @@ Created on Wed Jul 20 14:47:45 2016
 
 def hclust(run_parameters):
     '''hierarchical clustering'''
-    from general_clustering_toolbox import run_hclust
+    from .general_clustering_toolbox import run_hclust
     run_hclust(run_parameters) 
 
 def link_hclust(run_parameters):
     '''linked hierarchical clustering'''
-    from general_clustering_toolbox import run_link_hclust
+    from .general_clustering_toolbox import run_link_hclust
     run_link_hclust(run_parameters) 
 
 def kmeans(run_parameters):
     '''kmeans clustering'''
-    from general_clustering_toolbox import run_kmeans
+    from .general_clustering_toolbox import run_kmeans
     run_kmeans(run_parameters)
 
 def cc_kmeans(run_parameters):
     """ consensus clustering kmeans """
-    from general_clustering_toolbox import run_cc_kmeans
+    from .general_clustering_toolbox import run_cc_kmeans
     run_cc_kmeans(run_parameters)
 
 def cc_hclust(run_parameters):
     """ consensus clustering hclust """
-    from general_clustering_toolbox import run_cc_hclust
+    from .general_clustering_toolbox import run_cc_hclust
     run_cc_hclust(run_parameters)
 
 def cc_link_hclust(run_parameters):
     """ consensus link clustering hclust """
-    from general_clustering_toolbox import run_cc_link_hclust
+    from .general_clustering_toolbox import run_cc_link_hclust
     run_cc_link_hclust(run_parameters)
 
 SELECT = { 

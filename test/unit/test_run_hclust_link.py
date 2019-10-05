@@ -1,6 +1,6 @@
 import unittest
 from unittest import TestCase
-import general_clustering_toolbox as tl
+import kngeneralclustering.general_clustering_toolbox as tl
 import numpy as np
 
 class TestRun_ClustLink(TestCase):

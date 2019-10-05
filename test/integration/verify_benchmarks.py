@@ -12,7 +12,7 @@ results_dir = '../test/run_dir/results'
 
 
 def verify_benchmark(option, algo_name, BENCHMARK_name_list, BENCHMARK_YML):
-    run_command = 'python3 ../src/general_clustering.py -run_directory ./run_dir -run_file ' + BENCHMARK_YML
+    run_command = 'PYTHONPATH=../ python3 -m kngeneralclustering.general_clustering -run_directory ./run_dir -run_file ' + BENCHMARK_YML
     os.system(run_command)
 
     All_files_in_results_dir = os.listdir(results_dir)

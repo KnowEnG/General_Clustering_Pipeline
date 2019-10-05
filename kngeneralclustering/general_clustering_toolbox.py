@@ -21,7 +21,7 @@ from scipy.spatial.distance  import squareform
 import knpackage.toolbox as kn
 import knpackage.distributed_computing_utils as dstutil
 
-import general_clustering_eval_toolbox as cluster_eval
+from .general_clustering_eval_toolbox import clustering_evaluation
 
 
 #-----------------------------------------------------
@@ -577,7 +577,7 @@ def save_final_samples_clustering(sample_names, labels, run_parameters):
 
     if 'phenotype_name_full_path' in run_parameters.keys():
         run_parameters['cluster_mapping_full_path'] = cluster_mapping_full_path
-        cluster_eval.clustering_evaluation(run_parameters)
+        clustering_evaluation(run_parameters)
 
 #-----------------------------------------------------
 def save_spreadsheet_and_variance_heatmap(spreadsheet_df, labels, run_parameters):

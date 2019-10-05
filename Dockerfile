@@ -10,7 +10,7 @@ ENV SRC_LOC /home
 RUN pip3 install -I knpackage
 
 # Copy source code to docker container
-COPY src ${SRC_LOC}/src
+COPY kngeneralclustering ${SRC_LOC}/kngeneralclustering
 COPY test ${SRC_LOC}/test
 COPY data ${SRC_LOC}/data
 COPY docs ${SRC_LOC}/docs

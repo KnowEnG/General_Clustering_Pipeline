@@ -1,9 +1,10 @@
-SCRIPT = ../src/general_clustering.py
+SCRIPT = -m kngeneralclustering.general_clustering
 RUN_DIR = ./run_dir
 RUN_FILES = ../data/run_files
 RESULTS_DIR = $(RUN_DIR)/results
 INPUT_DATA_DIR = ../data
 UNIT_TEST_TEMP_DIR = ./unit/tmp
+PYTHONPATH = ../
 
 RMR = rm -rf
 MKDIR_P = mkdir -p
@@ -42,51 +43,51 @@ run_cc_hclust_continuous \
 run_cc_link_hclust_continuous 
 
 run_kmeans_binary:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_1_kmeans_binary.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_1_kmeans_binary.yml
 
 run_kmeans_continuous:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_2_kmeans_continuous.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_2_kmeans_continuous.yml
 
 run_hclust_binary:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_3_hclust_binary.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_3_hclust_binary.yml
 
 run_hclust_continuous:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_4_hclust_continuous.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_4_hclust_continuous.yml
 
 run_link_hclust_binary:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_5_link_hclust_binary.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_5_link_hclust_binary.yml
 
 run_link_hclust_continuous:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_6_link_hclust_continuous.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_6_link_hclust_continuous.yml
 
 run_cc_kmeans_binary:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_7_cc_kmeans_binary.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_7_cc_kmeans_binary.yml
 
 run_cc_kmeans_continuous:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_8_cc_kmeans_continuous.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_8_cc_kmeans_continuous.yml
 
 
 run_cc_hclust_binary:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_9_cc_hclust_binary.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_9_cc_hclust_binary.yml
 
 run_cc_hclust_continuous:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_X_cc_hclust_continuous.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_X_cc_hclust_continuous.yml
 
 run_cc_link_hclust_binary:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_11_cc_link_hclust_binary.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_11_cc_link_hclust_binary.yml
 
 run_cc_link_hclust_continuous:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_12_cc_link_hclust_continuous.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_12_cc_link_hclust_continuous.yml
 
 # ----------------------------------------------------------------
 # - EVALUATION TESTS RUN SECTION                                 -
 # ----------------------------------------------------------------
 
 run_kmeans_binary_eval:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_13_kmeans_binary_evaluation.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_13_kmeans_binary_evaluation.yml
 
 run_MATT_test:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file MATT_kmeans.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file MATT_kmeans.yml
 # ----------------------------------------------------------------
 # - VERIFICATION TESTS RUN SECTION                               -
 # ----------------------------------------------------------------
@@ -103,7 +104,7 @@ unit_tests:
 	cd unit; make all_unit_tests
 	
 run_benchmark_test:
-	python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_1_hclustering.yml
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_1_hclustering.yml
 
 # ----------------------------------------------------------------
 # - CLEAN UP SECTION                                             -

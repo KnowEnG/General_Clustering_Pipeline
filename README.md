@@ -102,12 +102,12 @@ set the data file targets to the files you want to run, and the parameters as ap
 
   * Update PYTHONPATH enviroment variable
    ``` 
-   export PYTHONPATH='../src':$PYTHONPATH    
+   export PYTHONPATH='../':$PYTHONPATH    
    ```
    
   * Run
    ```
-  python3 ../src/general_clustering.py -run_directory ./run_dir -run_file zTEMPLATE_cc_net_nmf.yml
+  python3 -m kngeneralclustering.general_clustering -run_directory ./run_dir -run_file zTEMPLATE_cc_net_nmf.yml
    ```
 
 * * * 
