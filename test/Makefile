@@ -86,8 +86,8 @@ run_cc_link_hclust_continuous:
 run_kmeans_binary_eval:
 	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file BENCHMARK_13_kmeans_binary_evaluation.yml
 
-run_MATT_test:
-	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file MATT_kmeans.yml
+run_platform_example_test:
+	PYTHONPATH=${PYTHONPATH} python3 $(SCRIPT) -run_directory $(RUN_DIR) -run_file platform_example_kmeans.yml
 # ----------------------------------------------------------------
 # - VERIFICATION TESTS RUN SECTION                               -
 # ----------------------------------------------------------------
