@@ -2,7 +2,7 @@
 .gitignore
 .DS_Store
 .idea/
-src/__pycache__/
+kngeneralclustering/__pycache__/
 test/unit/__pycache__/
 test/unit/tmp/
 test/run_dir
